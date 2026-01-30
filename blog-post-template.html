@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On Organizational Entropy - Deliberate Works</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FFF8E7;
+            --dark-blue: #1a2332;
+            --bronze: #CD7F32;
+            --burnt-orange: #C85A3E;
+            --sage: #8B9D83;
+            --stone: #D4C5B9;
+            --deep-teal: #2C5F5F;
+        }
+        
+        body {
+            font-family: 'IBM Plex Serif', serif;
+            background: var(--cream);
+            color: var(--dark-blue);
+            line-height: 1.7;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        /* Geometric pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
+            pointer-events: none;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bronze);
+            z-index: 1000;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10rem 0 3rem;
+        }
+        
+        .back-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--deep-teal);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .back-link::before {
+            content: '←';
+        }
+        
+        .post-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--deep-teal);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .post-header h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--dark-blue);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+        
+        .post-intro {
+            font-size: 1.3rem;
+            color: var(--deep-teal);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--stone);
+        }
+        
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+        
+        .post-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+        }
+        
+        .post-content h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin: 3rem 0 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin: 2.5rem 0 1rem;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+        
+        .post-content blockquote {
+            background: rgba(255, 255, 255, 0.5);
+            border-left: 3px solid var(--bronze);
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--deep-teal);
+        }
+        
+        .post-content strong {
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .post-content em {
+            font-style: italic;
+        }
+        
+        .post-footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0 6rem;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .post-footer p {
+            font-size: 1rem;
+            color: var(--deep-teal);
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: var(--cream);
+            padding: 4rem 0 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        footer .container {
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .post-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .post-intro {
+                font-size: 1.1rem;
+            }
+            
+            .post-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .post-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">DELIBERATE WORKS</a>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="blog.html">Writing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <article>
+        <div class="post-header">
+            <div class="container">
+                <a href="blog.html" class="back-link">All Writing</a>
+                <div class="post-meta">January 10, 2026</div>
+                <h1>On Organizational Entropy</h1>
+                <p class="post-intro">
+                    Organizations don't fail because they make one catastrophic decision. They drift. Slowly, then suddenly, the operating system that once worked stops working—and most leaders don't notice until it's already happened.
+                </p>
+            </div>
+        </div>
+        
+        <div class="post-content">
+            <div class="container">
+                <p>
+                    I've watched this pattern play out dozens of times. A company is doing well. Revenue is growing. The team is energized. Leadership feels confident. And then, somewhere between year three and year seven, something shifts.
+                </p>
+                
+                <p>
+                    It's not dramatic at first. Meetings start running longer. Decisions take more approval layers. Information gets siloed. People work harder but accomplish less. The phrase "this didn't used to be this hard" becomes increasingly common.
+                </p>
+                
+                <p>
+                    Most organizations respond by looking for someone to blame or something to fix. A leader isn't performing. A team is dysfunctional. The culture has gone sideways. And so they intervene: they replace people, reorganize teams, launch new initiatives.
+                </p>
+                
+                <p>
+                    Sometimes it helps. More often, it doesn't. Because the real problem isn't the people or the structure—it's the system itself.
+                </p>
+                
+                <h2>Entropy is Always at Work</h2>
+                
+                <p>
+                    Organizations are complex adaptive systems. They don't stay in equilibrium. They're constantly responding to internal and external forces: new hires, market shifts, product changes, leadership transitions, growth, contraction.
+                </p>
+                
+                <p>
+                    Each of these forces creates friction. Small misalignments compound. Informal workarounds become entrenched. The gap between how things are supposed to work and how they actually work widens.
+                </p>
+                
+                <p>
+                    This is organizational entropy. It's not a failure of leadership or culture. It's physics.
+                </p>
+                
+                <blockquote>
+                    The question is not whether drift will happen. The question is whether the organization has the awareness and discipline to respond to it deliberately rather than reactively.
+                </blockquote>
+                
+                <h2>What It Looks Like in Practice</h2>
+                
+                <p>
+                    Here are some patterns I see repeatedly when entropy has taken hold:
+                </p>
+                
+                <ul>
+                    <li><strong>Decision-making becomes unclear.</strong> Who actually has authority to decide what? When pressed, leaders can't answer clearly—and neither can the people doing the work.</li>
+                    <li><strong>Information doesn't flow.</strong> The right people don't have the right context at the right time. Instead of designing for this, people compensate by adding more meetings and cc'ing more people.</li>
+                    <li><strong>Incentives drift out of alignment.</strong> What people are measured on no longer matches what the organization actually needs. But no one has stepped back to question it.</li>
+                    <li><strong>Bureaucracy compounds.</strong> Processes designed to solve one-time problems become permanent. No one has permission to remove them.</li>
+                </ul>
+                
+                <p>
+                    None of these are catastrophic on their own. But together, they create drag. Work becomes exhausting. High performers get frustrated. Energy leaks out.
+                </p>
+                
+                <h2>The Alternative</h2>
+                
+                <p>
+                    The alternative to entropy isn't perfection. It's deliberateness.
+                </p>
+                
+                <p>
+                    Organizations that navigate this well don't avoid drift—they develop the capacity to notice it early and respond to it thoughtfully. They treat their operating system as something that requires active stewardship, not something that can be designed once and left alone.
+                </p>
+                
+                <p>
+                    This requires a different kind of leadership. Not the kind that announces a transformation from the top. The kind that pays attention to what's actually happening, surfaces tensions before they calcify, and is willing to run small experiments rather than betting everything on one big change.
+                </p>
+                
+                <p>
+                    It's quieter work. Less heroic. But far more durable.
+                </p>
+                
+                <p>
+                    Because in the long run, the organizations that thrive aren't the ones with the best strategy or the most talent. They're the ones that learned how to evolve.
+                </p>
+            </div>
+        </div>
+        
+        <div class="post-footer">
+            <div class="container">
+                <p>If you're wrestling with these patterns in your organization, I'd be glad to talk. Reach out at <a href="mailto:sam@deliberateworks.com" style="color: var(--burnt-orange); text-decoration: none;">sam@deliberateworks.com</a>.</p>
+            </div>
+        </div>
+    </article>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 Deliberate Works. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:samspurlin.com)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:www.gitcoin.co)",
+      "Bash(done)",
+      "Bash(for:*)",
+      "Bash(do echo \"$f:\")",
+      "Bash(sips:*)"
+    ]
+  }
+}

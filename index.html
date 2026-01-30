@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deliberate Works - Organizational Evolution</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FFF8E7;
+            --dark-blue: #1a2332;
+            --bronze: #CD7F32;
+            --burnt-orange: #C85A3E;
+            --sage: #8B9D83;
+            --stone: #D4C5B9;
+            --deep-teal: #2C5F5F;
+        }
+        
+        body {
+            font-family: 'IBM Plex Serif', serif;
+            background: var(--cream);
+            color: var(--dark-blue);
+            line-height: 1.7;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        /* Geometric pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
+            pointer-events: none;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bronze);
+            z-index: 1000;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .mobile-menu-close {
+            display: none;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 8rem;
+            padding-bottom: 2rem;
+        }
+
+        .murmuration-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        #murmuration-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero .container {
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--dark-blue);
+            max-width: 900px;
+        }
+        
+        .hero h1 strong {
+            font-weight: 500;
+            color: var(--burnt-orange);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            color: var(--deep-teal);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--dark-blue);
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            border: 2px solid var(--dark-blue);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--burnt-orange);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            left: 0;
+        }
+        
+        .cta-button:hover {
+            border-color: var(--burnt-orange);
+        }
+        
+        h2 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: var(--dark-blue);
+            position: relative;
+            display: block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--bronze);
+        }
+        
+        h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--dark-blue);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-section {
+            margin-bottom: 5rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 3rem;
+            border: 1px solid var(--stone);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, var(--bronze), var(--burnt-orange));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .service-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--burnt-orange);
+        }
+        
+        .service-card .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--deep-teal);
+        }
+        
+        .service-card p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .service-card li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        
+        .service-card li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--bronze);
+            font-size: 0.8rem;
+        }
+        
+        .service-meta {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--stone);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .service-meta h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+            color: var(--deep-teal);
+        }
+        
+        .service-meta h4:first-child {
+            margin-top: 0;
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: var(--cream);
+            padding: 4rem 0 2rem;
+            margin-top: 8rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        footer .container {
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .quote-block {
+            background: rgba(255, 255, 255, 0.5);
+            border-left: 3px solid var(--bronze);
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--deep-teal);
+        }
+
+        #clients {
+            padding: 3rem 0 4rem 0;
+        }
+
+        #clients h2 {
+            text-align: center;
+        }
+
+        #clients h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem 4rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            filter: grayscale(100%);
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .client-logo-img {
+            height: 50px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        .client-logo-img.logo-lesmills {
+            height: 50px;
+        }
+
+        .client-logo-img.logo-rescuetime {
+            height: 65px;
+        }
+
+        .client-logo-img.logo-pge {
+            height: 70px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            
+            body::before {
+                opacity: 0.02;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            nav .container {
+                padding: 1rem 1.5rem;
+            }
+            
+            nav .logo {
+                font-size: 1rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: var(--cream);
+                flex-direction: column;
+                gap: 0;
+                padding: 5rem 2rem 2rem 2rem;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--bronze);
+            }
+            
+            nav ul.active {
+                right: 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid var(--stone);
+            }
+            
+            nav ul a {
+                display: block;
+                padding: 1.25rem 0;
+                font-size: 1rem;
+            }
+            
+            .mobile-menu-close {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: var(--dark-blue);
+                cursor: pointer;
+                padding: 0.5rem;
+                line-height: 1;
+            }
+            
+            .hero {
+                min-height: 80vh;
+                padding-top: 6rem;
+            }
+            
+            .murmuration-container {
+                opacity: 0.7;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            h2::after {
+                width: 50px;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .about-content p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .about-section {
+                margin-bottom: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .service-card .tagline {
+                font-size: 1.05rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .service-card p {
+                margin-bottom: 1.25rem;
+            }
+            
+            .service-card ul {
+                margin: 1.5rem 0;
+            }
+            
+            .service-meta {
+                font-size: 0.85rem;
+            }
+            
+            .service-meta h4 {
+                font-size: 0.8rem;
+            }
+            
+            footer {
+                margin-top: 4rem;
+                padding: 3rem 0 1.5rem;
+            }
+            
+            footer p {
+                font-size: 0.85rem;
+            }
+            
+            #contact div[style*="max-width"] p {
+                font-size: 1rem !important;
+            }
+
+            .client-logos {
+                gap: 2rem 3rem;
+            }
+
+            .client-logo-img {
+                height: 40px;
+                max-width: 120px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .service-card {
+                padding: 1.5rem 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">DELIBERATE WORKS</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul>
+                <button class="mobile-menu-close" aria-label="Close menu">×</button>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="murmuration-container">
+            <canvas id="murmuration-canvas"></canvas>
+        </div>
+        <div class="container">
+            <div>
+                <h1>Organizations as <strong>living systems</strong>, not static structures</h1>
+                <p>We help you design, build, and evolve ever better organizations.</p>
+                <a href="#services" class="cta-button">EXPLORE SERVICES</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="container">
+            <h2>About Deliberate Works</h2>
+            <div class="about-content">
+                <div class="about-section">
+                    <p>Most organizations don't struggle because they lack talent, ambition, or good intentions. They struggle because the systems they operate inside no longer fit the realities they face. Decision-making slows. Attention fragments. Energy leaks out through bureaucracy, misaligned incentives, and well-worn routines that once made sense and now quietly get in the way.</p>
+                    
+                    <p>People feel this long before it shows up in a metric. Work that should be straightforward becomes exhausting. Effort stops translating into impact. Over time, a subtle form of resignation sets in.</p>
+                    
+                    <p>When this happens, the default response is often a large intervention: a re-org, a new strategy, a culture initiative, a transformation program. Sometimes those are necessary. More often, they treat symptoms while leaving the deeper issue untouched—the organization hasn't developed the capacity to notice, learn from, and deliberately evolve its own operating system.</p>
+                    
+                    <p>Deliberate Works exists to focus on that deeper work.</p>
+                </div>
+
+                <div class="about-section">
+                    <h3>About Sam Spurlin</h3>
+                    <p>Deliberate Works is led by Sam Spurlin, an organization designer with over a decade of experience helping executive teams reimagine how decisions get made, how teams coordinate, and how organizations evolve. As a former Partner at The Ready, he led transformation initiatives for global companies while coaching senior leaders through some of their most complex challenges. His perspective draws from positive psychology, systems thinking, and a deep belief that organizations can—and should—learn to steward their own evolution.</p>
+
+                    <p>Sam's approach is grounded in the conviction that lasting change doesn't come from external interventions or silver-bullet frameworks. It comes from building internal capacity: helping leaders and teams develop the awareness, skills, and rhythms to continuously adapt. His work sits at the intersection of strategy, structure, and attention—always oriented toward making organizations more humane, more effective, and more capable of navigating complexity.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="services">
+        <div class="container">
+            <h2>Services</h2>
+            
+            <div style="max-width: 900px; margin: 0 auto 4rem auto;">
+                <p>Our work sits at the intersection of organizational design, strategy, and leadership—always grounded in real constraints.</p>
+                
+                <p>Rather than delivering answers from the outside, we work alongside leaders and teams to:</p>
+                
+                <ul style="list-style: none; margin: 2rem 0;">
+                    <li style="padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--bronze);">◆</span>
+                        Make invisible systems visible
+                    </li>
+                    <li style="padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--bronze);">◆</span>
+                        Surface the tensions that quietly shape behavior
+                    </li>
+                    <li style="padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--bronze);">◆</span>
+                        Design small, meaningful experiments that test better ways of working
+                    </li>
+                    <li style="padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative;">
+                        <span style="position: absolute; left: 0; color: var(--bronze);">◆</span>
+                        Build internal capacity so the organization can continue evolving long after we're gone
+                    </li>
+                </ul>
+                
+                <p>This work often looks quieter than traditional change efforts. Fewer slogans. Fewer decks. More thinking together. More attention paid to where energy is getting trapped or misdirected. More care taken with sequencing, pacing, and stewardship.</p>
+                
+                <p>The most durable changes rarely announce themselves. They compound slowly, then suddenly feel obvious in hindsight.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Executive Advisory</h3>
+                    <p class="tagline">Senior organizational judgment, when it matters most.</p>
+                    
+                    <p>This is advisory work for leaders who don't need another framework—they need a trusted thinking partner who understands how organizations actually function under pressure.</p>
+                    
+                    <p>As your advisor, we work alongside you on whatever is most consequential right now: strategic decisions, organizational structure, leadership dynamics, operating rhythms, or the ambiguous problems that don't fit neatly into anyone's role.</p>
+                    
+                    <p>This is not coaching. It is not facilitation. It is experienced judgment applied in real time.</p>
+                    
+                    <div class="service-meta">
+                        <h4>What this looks like</h4>
+                        <ul>
+                            <li>Pressure-testing decisions before they harden</li>
+                            <li>Diagnosing organizational friction and tradeoffs</li>
+                            <li>Advising on structure, roles, and decision rights</li>
+                            <li>Acting as a trusted outside perspective in moments that matter</li>
+                        </ul>
+                        
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>CEOs, founders, and senior executives</li>
+                            <li>Complex, time-sensitive decisions</li>
+                            <li>Leaders who value clarity and momentum</li>
+                        </ul>
+                        
+                        <p style="margin-top: 1rem; opacity: 0.8;">This offering is capacity-limited and reserved for a small number of clients at any given time.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Fractional Organizational Design Leadership</h3>
+                    <p class="tagline">Build the capability to evolve—inside your organization.</p>
+                    
+                    <p>Most transformations fail because they live outside the organization. This engagement is designed to do the opposite.</p>
+                    
+                    <p>We serve as a fractional Org Design or Transformation leadership function, embedded long enough to help your organization learn how to design, adapt, and steward its own operating system. The goal is not a one-time change, but durable internal capability.</p>
+                    
+                    <p>This is senior, hands-on work focused on systems—not slogans.</p>
+                    
+                    <div class="service-meta">
+                        <h4>What we work on</h4>
+                        <ul>
+                            <li>Clarifying and evolving your organizational operating system</li>
+                            <li>Designing and running high-leverage experiments</li>
+                            <li>Building internal org design and change capability</li>
+                            <li>Coaching leaders to steward the system over time</li>
+                        </ul>
+                        
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>Organizations navigating growth, restructuring, or strategic shifts</li>
+                            <li>Leaders tired of one-off reorganizations</li>
+                            <li>Teams ready to internalize this work</li>
+                        </ul>
+                        
+                        <h4>Engagement structure</h4>
+                        <ul>
+                            <li>6-month minimum</li>
+                            <li>Fractional executive capacity (typically 1—2 days per week)</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">This is positioned as an alternative to hiring a full-time executive or launching a large external transformation.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Strategy Rhythm-in-a-Box</h3>
+                    <p class="tagline">Strategy as an operating system, not an annual event.</p>
+                    
+                    <p>Many leadership teams do strategy once a year and then spend the rest of the year reacting. This offering replaces episodic strategy with a deliberate, repeatable rhythm.</p>
+                    
+                    <p>We design and steward your annual strategy cadence—typically four sessions per year—handling the preparation, facilitation, synthesis, and follow-through so strategy actually guides decisions over time.</p>
+                    
+                    <div class="service-meta">
+                        <h4>What's included</h4>
+                        <ul>
+                            <li>Design and facilitation of four strategy sessions</li>
+                            <li>Thoughtful pre-work that sharpens thinking</li>
+                            <li>Clear decisions, outputs, and next steps</li>
+                            <li>Iteration on the strategy rhythm itself</li>
+                        </ul>
+                        
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>Leadership teams frustrated by ineffective offsites</li>
+                            <li>Organizations operating in uncertainty</li>
+                            <li>Teams who want strategy to live beyond the deck</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">This is a fixed-fee, annual engagement designed to create clarity, continuity, and learning.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Organizational Design Audit</h3>
+                    <p class="tagline">See how your organization really operates—and where to start changing it.</p>
+                    
+                    <p>This diagnostic engagement makes the invisible visible.</p>
+                    
+                    <p>We analyze how your organization actually functions today across structure, decision rights, incentives, information flow, and rhythms. Instead of a static set of recommendations, you receive a prioritized backlog of experiments tailored to your specific context.</p>
+                    
+                    <p>This creates a grounded starting point for meaningful change—without launching a massive transformation.</p>
+                    
+                    <div class="service-meta">
+                        <h4>What you receive</h4>
+                        <ul>
+                            <li>A clear articulation of your current operating system</li>
+                            <li>Key tensions and constraints shaping behavior</li>
+                            <li>A prioritized experiment backlog</li>
+                            <li>A practical path forward</li>
+                        </ul>
+                        
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>Organizations sensing friction but unsure where to intervene</li>
+                            <li>Leaders considering reorganization</li>
+                            <li>Teams seeking clarity before committing to change</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">This engagement often serves as a front door into deeper work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients">
+        <div class="container">
+            <h2>Select Clients</h2>
+            <div class="client-logos">
+                <div class="client-logo" title="General Electric">
+                    <img src="logos/ge.png" alt="General Electric" class="client-logo-img">
+                </div>
+                <div class="client-logo" title="FreshDirect">
+                    <img src="logos/freshdirect.png" alt="FreshDirect" class="client-logo-img">
+                </div>
+                <div class="client-logo" title="Akamai">
+                    <img src="logos/akamai.png" alt="Akamai" class="client-logo-img">
+                </div>
+                <div class="client-logo" title="Gitcoin">
+                    <img src="logos/gitcoin.png" alt="Gitcoin" class="client-logo-img">
+                </div>
+                <div class="client-logo" title="MITRE">
+                    <img src="logos/MITRE.png" alt="MITRE" class="client-logo-img">
+                </div>
+            </div>
+            <div class="client-logos">
+                <div class="client-logo" title="Les Mills">
+                    <img src="logos/lesmills.png" alt="Les Mills" class="client-logo-img logo-lesmills">
+                </div>
+                <div class="client-logo" title="RescueTime">
+                    <img src="logos/rescuetime.png" alt="RescueTime" class="client-logo-img logo-rescuetime">
+                </div>
+                <div class="client-logo" title="PG&E">
+                    <img src="logos/pge.png" alt="PG&E" class="client-logo-img logo-pge">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="padding: 3rem 0 4rem 0;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="margin-bottom: 2rem;">Let's Talk</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Deliberate Works helps organizations build the capability to evolve—by designing better operating systems and teaching people how to steward them.</p>
+                <p style="font-size: 1.1rem; color: var(--deep-teal);">Interested in working together? <a href="mailto:samspurlin@gmail.com" style="color: var(--burnt-orange); text-decoration: underline;">Reach out to start a conversation</a>.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2026 Deliberate Works. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const menuClose = document.querySelector('.mobile-menu-close');
+        const menu = document.querySelector('nav ul');
+        
+        menuToggle.addEventListener('click', () => {
+            menu.classList.add('active');
+        });
+        
+        menuClose.addEventListener('click', () => {
+            menu.classList.remove('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Murmuration Animation
+        (function() {
+            const canvas = document.getElementById('murmuration-canvas');
+            const ctx = canvas.getContext('2d');
+
+            let width, height;
+            let particles = [];
+            let animationId;
+            let obstacles = []; // Rectangles birds will bounce off
+
+            // Configuration
+            const config = {
+                particleCount: 120,
+                maxSpeed: 2,
+                minSpeed: 0.5,
+                neighborRadius: 80,
+                separationRadius: 25,
+                alignmentWeight: 0.05,
+                cohesionWeight: 0.03,
+                separationWeight: 0.08,
+                wanderWeight: 0.02,
+                edgeMargin: 50,
+                edgeTurnForce: 0.15,
+                particleSize: 4,
+                trailLength: 12,
+                obstaclePadding: 5,       // Extra padding around obstacles
+                obstacleAvoidForce: 0.4   // How strongly birds avoid obstacles
+            };
+
+            // Update obstacle positions based on DOM elements
+            function updateObstacles() {
+                const canvasRect = canvas.parentElement.getBoundingClientRect();
+                const heroSection = document.querySelector('.hero');
+                const h1 = heroSection.querySelector('h1');
+                const p = heroSection.querySelector('p');
+                const ctaButton = heroSection.querySelector('.cta-button');
+
+                obstacles = [];
+
+                [h1, p, ctaButton].forEach(el => {
+                    if (el) {
+                        const rect = el.getBoundingClientRect();
+                        obstacles.push({
+                            x: rect.left - canvasRect.left - config.obstaclePadding,
+                            y: rect.top - canvasRect.top - config.obstaclePadding,
+                            width: rect.width + config.obstaclePadding * 2,
+                            height: rect.height + config.obstaclePadding * 2
+                        });
+                    }
+                });
+            }
+
+            // Colors from the site palette
+            const colors = [
+                'rgba(205, 127, 50, 0.6)',   // bronze
+                'rgba(200, 90, 62, 0.5)',    // burnt-orange
+                'rgba(44, 95, 95, 0.5)',     // deep-teal
+                'rgba(139, 157, 131, 0.4)'   // sage
+            ];
+
+            function resize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                width = rect.width;
+                height = rect.height;
+                canvas.width = width * window.devicePixelRatio;
+                canvas.height = height * window.devicePixelRatio;
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+
+            class Particle {
+                constructor() {
+                    // Start particles from right side, moving left
+                    this.x = width * 0.5 + Math.random() * width * 0.5;
+                    this.y = height * 0.2 + Math.random() * height * 0.6;
+
+                    const angle = Math.PI + (Math.random() - 0.5) * 0.5;
+                    const speed = config.minSpeed + Math.random() * (config.maxSpeed - config.minSpeed);
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.size = config.particleSize * (0.5 + Math.random() * 1.0);
+                    this.history = [];
+                }
+
+                update(particles) {
+                    // Store position history for trail
+                    this.history.push({ x: this.x, y: this.y });
+                    if (this.history.length > config.trailLength) {
+                        this.history.shift();
+                    }
+
+                    // Flocking behavior
+                    let avgVx = 0, avgVy = 0;
+                    let avgX = 0, avgY = 0;
+                    let sepX = 0, sepY = 0;
+                    let neighbors = 0;
+                    let separators = 0;
+
+                    for (const other of particles) {
+                        if (other === this) continue;
+
+                        const dx = other.x - this.x;
+                        const dy = other.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < config.neighborRadius) {
+                            avgVx += other.vx;
+                            avgVy += other.vy;
+                            avgX += other.x;
+                            avgY += other.y;
+                            neighbors++;
+
+                            if (dist < config.separationRadius && dist > 0) {
+                                sepX -= dx / dist;
+                                sepY -= dy / dist;
+                                separators++;
+                            }
+                        }
+                    }
+
+                    if (neighbors > 0) {
+                        // Alignment
+                        avgVx /= neighbors;
+                        avgVy /= neighbors;
+                        this.vx += (avgVx - this.vx) * config.alignmentWeight;
+                        this.vy += (avgVy - this.vy) * config.alignmentWeight;
+
+                        // Cohesion
+                        avgX /= neighbors;
+                        avgY /= neighbors;
+                        this.vx += (avgX - this.x) * config.cohesionWeight * 0.01;
+                        this.vy += (avgY - this.y) * config.cohesionWeight * 0.01;
+                    }
+
+                    if (separators > 0) {
+                        // Separation
+                        this.vx += sepX * config.separationWeight;
+                        this.vy += sepY * config.separationWeight;
+                    }
+
+                    // Wander
+                    this.vx += (Math.random() - 0.5) * config.wanderWeight;
+                    this.vy += (Math.random() - 0.5) * config.wanderWeight;
+
+                    // Edge avoidance
+                    if (this.x < config.edgeMargin) {
+                        this.vx += config.edgeTurnForce;
+                    } else if (this.x > width - config.edgeMargin) {
+                        this.vx -= config.edgeTurnForce;
+                    }
+
+                    if (this.y < config.edgeMargin) {
+                        this.vy += config.edgeTurnForce;
+                    } else if (this.y > height - config.edgeMargin) {
+                        this.vy -= config.edgeTurnForce;
+                    }
+
+                    // Obstacle avoidance (bounce off hero text and button)
+                    for (const obs of obstacles) {
+                        // Check if bird is inside or near the obstacle
+                        const closestX = Math.max(obs.x, Math.min(this.x, obs.x + obs.width));
+                        const closestY = Math.max(obs.y, Math.min(this.y, obs.y + obs.height));
+                        const dx = this.x - closestX;
+                        const dy = this.y - closestY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        // If bird is inside or very close to obstacle
+                        if (dist < 5) {
+                            // Bird is inside the obstacle - push it out
+                            const centerX = obs.x + obs.width / 2;
+                            const centerY = obs.y + obs.height / 2;
+                            const pushX = this.x - centerX;
+                            const pushY = this.y - centerY;
+                            const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
+
+                            // Strong push away from center
+                            this.vx = (pushX / pushDist) * config.maxSpeed;
+                            this.vy = (pushY / pushDist) * config.maxSpeed;
+                        } else if (dist < 30) {
+                            // Bird is close - apply avoidance force
+                            const avoidX = dx / (dist || 1);
+                            const avoidY = dy / (dist || 1);
+                            const force = config.obstacleAvoidForce * (1 - dist / 30);
+                            this.vx += avoidX * force;
+                            this.vy += avoidY * force;
+                        }
+                    }
+
+                    // Speed limits
+                    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                    if (speed > config.maxSpeed) {
+                        this.vx = (this.vx / speed) * config.maxSpeed;
+                        this.vy = (this.vy / speed) * config.maxSpeed;
+                    } else if (speed < config.minSpeed) {
+                        this.vx = (this.vx / speed) * config.minSpeed;
+                        this.vy = (this.vy / speed) * config.minSpeed;
+                    }
+
+                    // Update position
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    // Wrap around edges (soft reset)
+                    if (this.x < -50) this.x = width + 50;
+                    if (this.x > width + 50) this.x = -50;
+                    if (this.y < -50) this.y = height + 50;
+                    if (this.y > height + 50) this.y = -50;
+                }
+
+                draw() {
+                    // Draw trail
+                    for (let i = 0; i < this.history.length; i++) {
+                        const alpha = (i / this.history.length) * 0.4;
+                        const size = this.size * (i / this.history.length) * 0.6;
+                        ctx.beginPath();
+                        ctx.arc(this.history[i].x, this.history[i].y, size, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color.replace(/[\d.]+\)$/, alpha + ')');
+                        ctx.fill();
+                    }
+
+                    // Calculate angle from velocity
+                    const angle = Math.atan2(this.vy, this.vx);
+
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(angle);
+
+                    // Draw bird-like shape (small chevron/v-shape)
+                    ctx.beginPath();
+                    const size = this.size * 2;
+                    // Wing span
+                    ctx.moveTo(-size, -size * 0.8);
+                    ctx.lineTo(size * 0.5, 0);
+                    ctx.lineTo(-size, size * 0.8);
+                    // Slight curve inward for body
+                    ctx.quadraticCurveTo(-size * 0.3, 0, -size, -size * 0.8);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+
+                    ctx.restore();
+                }
+            }
+
+            function init() {
+                resize();
+                updateObstacles();
+                particles = [];
+                for (let i = 0; i < config.particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (const particle of particles) {
+                    particle.update(particles);
+                }
+
+                for (const particle of particles) {
+                    particle.draw();
+                }
+
+                animationId = requestAnimationFrame(animate);
+            }
+
+            // Pause animation when not visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!animationId) animate();
+                    } else {
+                        if (animationId) {
+                            cancelAnimationFrame(animationId);
+                            animationId = null;
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(canvas.parentElement);
+
+            window.addEventListener('resize', () => {
+                resize();
+                updateObstacles();
+            });
+
+            init();
+            animate();
+        })();
+    </script>
+</body>
+</html>
