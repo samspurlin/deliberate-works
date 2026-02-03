@@ -93,7 +93,21 @@
         nav a:hover {
             color: var(--burnt-orange);
         }
-        
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close {
+            display: none;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -255,9 +269,53 @@
                 font-size: 1.3rem;
             }
             
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             nav ul {
-                gap: 1.5rem;
-                font-size: 0.85rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: var(--cream);
+                flex-direction: column;
+                gap: 0;
+                padding: 5rem 2rem 2rem 2rem;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--bronze);
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid var(--stone);
+            }
+
+            nav ul a {
+                display: block;
+                padding: 1.25rem 0;
+                font-size: 1rem;
+            }
+
+            .mobile-menu-close {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: var(--dark-blue);
+                cursor: pointer;
+                padding: 0.5rem;
+                line-height: 1;
             }
         }
     </style>
@@ -266,7 +324,9 @@
     <nav>
         <div class="container">
             <a href="index.html" class="logo">DELIBERATE WORKS</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
+                <button class="mobile-menu-close" aria-label="Close menu">×</button>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="blog.html">Writing</a></li>
@@ -376,5 +436,24 @@
             <p>© 2026 Deliberate Works. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const menuClose = document.querySelector('.mobile-menu-close');
+        const menu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            menu.classList.remove('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
