@@ -69,11 +69,14 @@
         }
 
         nav .logo {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--dark-blue);
             text-decoration: none;
-            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo img {
+            height: 55px;
+            width: auto;
         }
 
         nav ul {
@@ -342,7 +345,7 @@
 <body>
     <nav>
         <div class="container">
-            <a href="index.html" class="logo">DELIBERATE WORKS</a>
+            <a href="index.html" class="logo"><img src="logos/deliberate-works-logo.png" alt="Deliberate Works"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
                 <button class="mobile-menu-close" aria-label="Close menu">×</button>
