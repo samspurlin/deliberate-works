@@ -628,6 +628,146 @@
                 padding: 1.5rem 1.25rem;
             }
         }
+
+        /* Get in Touch Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 35, 50, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--cream);
+            border: 1px solid var(--stone);
+            max-width: 520px;
+            width: 100%;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .modal h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-blue);
+            line-height: 1;
+            opacity: 0.6;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--deep-teal);
+            margin-bottom: 0.4rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: white;
+            border: 1px solid var(--stone);
+            font-family: 'IBM Plex Serif', serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--dark-blue);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--deep-teal);
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: var(--dark-blue);
+            color: var(--cream);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 2px solid var(--dark-blue);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: var(--burnt-orange);
+            border-color: var(--burnt-orange);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 1rem 0;
+            color: var(--deep-teal);
+            font-size: 1.05rem;
+        }
+
+        .get-in-touch-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--burnt-orange);
+            color: var(--cream);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 2px solid var(--burnt-orange);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            margin-top: 1.5rem;
+        }
+
+        .get-in-touch-btn:hover {
+            background: transparent;
+            color: var(--burnt-orange);
+        }
     </style>
 </head>
 <body>
@@ -759,7 +899,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <h3>Strategy Rhythm-in-a-Box</h3>
+                    <h3>Quarterly Strategy Cadence</h3>
                     <p class="tagline">A repeatable cadence your leadership team can own and evolve.</p>
 
                     <p>Many leadership teams do strategy once a year and then spend the rest of the year reacting. The problem isn't the strategy—it's that no rhythm exists to revisit, pressure-test, and adapt it as reality shifts.</p>
@@ -786,33 +926,6 @@
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <h3>Organizational Design Audit</h3>
-                    <p class="tagline">Understand how your organization actually operates—and where the trapped energy is.</p>
-
-                    <p>Before an organization can build the capability to evolve, it needs to see itself clearly. This diagnostic maps how decisions actually get made, where coordination friction is draining energy, and which structural patterns are silently shaping behavior.</p>
-
-                    <p>The output isn't a static set of recommendations. It's a prioritized backlog of targeted changes—designed to be run as experiments your team can own, not a consulting deliverable that sits on a shelf.</p>
-
-                    <div class="service-meta">
-                        <h4>What you receive</h4>
-                        <ul>
-                            <li>A clear map of how the organization actually operates today</li>
-                            <li>Identification of where potential energy is being trapped by friction</li>
-                            <li>A prioritized backlog of experiments, not just recommendations</li>
-                            <li>A practical starting point your team can act on immediately</li>
-                        </ul>
-
-                        <h4>Best for</h4>
-                        <ul>
-                            <li>Organizations sensing friction but unsure where to intervene first</li>
-                            <li>Leaders considering reorganization who want to understand before acting</li>
-                            <li>Teams preparing to build internal org design capability</li>
-                        </ul>
-
-                        <p style="margin-top: 1rem; opacity: 0.8;">This engagement often serves as the starting point for building a longer-term internal capability.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -853,10 +966,40 @@
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
                 <h2 style="margin-bottom: 2rem;">Let's Talk</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 2rem;">Deliberate Works helps organizations build the internal capability to evolve—so the next time something needs to change, your organization can do it itself.</p>
-                <p style="font-size: 1.1rem; color: var(--deep-teal);">Interested in exploring what this could look like? <a href="mailto:sam@deliberateworks.com" style="color: var(--burnt-orange); text-decoration: underline;">Reach out to start a conversation</a>.</p>
+                <p style="font-size: 1.1rem; color: var(--deep-teal); margin-bottom: 0.5rem;">Interested in exploring what this could look like?</p>
+                <button class="get-in-touch-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
             </div>
         </div>
     </section>
+
+    <!-- Get in Touch Modal -->
+    <!-- To receive form submissions by email, create a free account at formspree.io,
+         create a form, and replace "YOUR_FORM_ID" in the action URL below. -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="document.getElementById('contact-modal').classList.remove('active')" aria-label="Close">&times;</button>
+            <h3>Get in Touch</h3>
+            <form id="contact-form" action="https://formspree.io/f/xeeplkrl" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">How can I help?</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <input type="hidden" name="_replyto" value="sam@deliberateworks.com">
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+            <div class="form-success" id="form-success">
+                <p>Thanks for reaching out. I'll be in touch soon.</p>
+            </div>
+        </div>
+    </div>
     
     <footer>
         <div class="container">
@@ -865,6 +1008,31 @@
     </footer>
     
     <script>
+        // Contact form modal
+        const contactModal = document.getElementById('contact-modal');
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) contactModal.classList.remove('active');
+        });
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                contactForm.style.display = 'none';
+                formSuccess.style.display = 'block';
+            } else {
+                alert('Something went wrong. Please email sam@deliberateworks.com directly.');
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
