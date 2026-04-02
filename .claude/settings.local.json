@@ -8,7 +8,24 @@
       "Bash(done)",
       "Bash(for:*)",
       "Bash(do echo \"$f:\")",
-      "Bash(sips:*)"
+      "Bash(sips:*)",
+      "Bash(gh repo view:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(git remote add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(brew install:*)",
+      "Bash(/opt/homebrew/bin/brew:*)",
+      "Bash(/usr/local/bin/brew:*)",
+      "Bash(git fetch:*)",
+      "Bash(git add:*)",
+      "Bash(git pull --rebase origin main)",
+      "Bash(git stash:*)",
+      "WebFetch(domain:www.samspurlin.com)",
+      "Bash(cd:*)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)"
     ]
   }
 }
