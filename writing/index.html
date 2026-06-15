@@ -62,7 +62,7 @@
         nav .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -75,8 +75,9 @@
         }
 
         nav .logo img {
-            height: 300px;
+            height: 180px;
             width: auto;
+            display: block;
         }
         
         nav ul {
@@ -93,7 +94,8 @@
             letter-spacing: 0.5px;
         }
         
-        nav a:hover {
+        nav a:hover,
+        nav a.active {
             color: var(--burnt-orange);
         }
 
@@ -120,7 +122,7 @@
         }
         
         .blog-header {
-            padding: 350px 0 3rem;
+            padding: 200px 0 3rem;
             text-align: center;
         }
         
@@ -139,19 +141,25 @@
         }
         
         .blog-list {
-            max-width: 900px;
-            margin: 0 auto;
             padding: 3rem 0 6rem;
         }
-        
+
+        .blog-list .container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+
         .blog-post {
             background: rgba(255, 255, 255, 0.6);
             border: 1px solid var(--stone);
-            padding: 3rem;
-            margin-bottom: 3rem;
+            padding: 2rem;
             transition: all 0.3s;
             text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             color: inherit;
         }
         
@@ -170,18 +178,22 @@
         }
         
         .blog-post h2 {
-            font-size: 2rem;
+            font-size: 1.35rem;
             font-weight: 500;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
-            line-height: 1.3;
+            margin-bottom: 0.85rem;
+            line-height: 1.35;
         }
-        
+
         .blog-post-excerpt {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--dark-blue);
             margin-bottom: 1.5rem;
-            line-height: 1.7;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
         .read-more {
@@ -192,8 +204,9 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: auto;
         }
-        
+
         .read-more::after {
             content: '→';
             transition: transform 0.3s;
@@ -220,13 +233,23 @@
             opacity: 0.8;
         }
         
+        @media (max-width: 980px) {
+            .blog-list .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             nav .logo img {
                 height: 90px;
             }
 
+            .blog-list .container {
+                grid-template-columns: 1fr;
+            }
+
             .blog-header {
-                padding-top: 145px;
+                padding-top: 130px;
             }
 
             .blog-header h1 {
@@ -299,41 +322,104 @@
 <body>
     <nav>
         <div class="container">
-            <a href="index.html" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
+            <a href="../index.html" class="logo"><img src="../images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
                 <button class="mobile-menu-close" aria-label="Close menu">×</button>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="studio.html">Studio</a></li>
-                <li><a href="speaking.html">Speaking</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#services">Services</a></li>
+                <li><a href="../studio.html">Studio</a></li>
+                <li><a href="../speaking.html">Speaking</a></li>
+                <li><a href="index.html" class="active">Writing</a></li>
             </ul>
         </div>
     </nav>
-    
+
     <div class="blog-header">
         <div class="container">
             <h1>Writing</h1>
             <p>Thoughts on organizational design, change, and the systems that shape how we work.</p>
         </div>
     </div>
-    
+
     <div class="blog-list">
         <div class="container">
-            
-            <a href="changing-how-you-change.html" class="blog-post">
-                <div class="blog-post-meta">January 2026</div>
-                <h2>Changing How You Change: The Case for Building Internal Org Design Capacity</h2>
+
+            <a href="the-deliberate-organization/" class="blog-post">
+                <h2>The Deliberate Organization</h2>
                 <p class="blog-post-excerpt">
-                    The next frontier of performance isn't strategy or talent&mdash;it's the ability to change how you change. And that capability can only be built from within.
+                    Entropy, attention, and why your org chart can't save you
                 </p>
                 <span class="read-more">Read more</span>
             </a>
-            
+
+            <a href="the-strategy-was-never-the-problem/" class="blog-post">
+                <h2>The Strategy Was Never the Problem</h2>
+                <p class="blog-post-excerpt">
+                    Why good thinking keeps dying in bad organizations — and what AI changes about it
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="changing-how-you-change/" class="blog-post">
+                <h2>Changing How You Change: The Case for Building Internal Org Design Capacity</h2>
+                <p class="blog-post-excerpt">
+                    The next frontier of performance isn't strategy or talent—it's the ability to change how you change. And that capability can only be built from within.
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="design-by-subtraction/" class="blog-post">
+                <h2>Design by Subtraction</h2>
+                <p class="blog-post-excerpt">
+                    Why the most valuable organizational design work is removal — and why almost nobody does it
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="leadership-after-control/" class="blog-post">
+                <h2>Leadership After Control</h2>
+                <p class="blog-post-excerpt">
+                    What's left for leaders when organizations can't be driven
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="where-will-the-judgment-come-from/" class="blog-post">
+                <h2>Where Will the Judgment Come From?</h2>
+                <p class="blog-post-excerpt">
+                    The death of the training paradigm and the future of getting better at work
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="the-right-amount-of-noise/" class="blog-post">
+                <h2>The Right Amount of Noise</h2>
+                <p class="blog-post-excerpt">
+                    Stochastic resonance, weak signals, and why your organization shouldn't be too quiet
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="working-on-it/" class="blog-post">
+                <h2>Working On It</h2>
+                <p class="blog-post-excerpt">
+                    Four beliefs that separate organizations that keep getting better from organizations that quietly stop
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
+            <a href="the-weekly-meeting-is-your-organization-in-miniature/" class="blog-post">
+                <h2>The Weekly Meeting Is Your Organization in Miniature</h2>
+                <p class="blog-post-excerpt">
+                    The weekly team meeting is the smallest complete expression of your operating system. Everything about how your organization actually works leaks out in that hour—which makes it your best diagnostic and your highest-leverage place to intervene.
+                </p>
+                <span class="read-more">Read more</span>
+            </a>
+
         </div>
     </div>
-    
+
     <footer>
         <div class="container">
             <p>© 2026 Deliberate Works. All rights reserved.</p>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working On It - Deliberate Works</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cream: #FFF8E7;
+            --dark-blue: #1a2332;
+            --bronze: #CD7F32;
+            --burnt-orange: #C85A3E;
+            --sage: #8B9D83;
+            --stone: #D4C5B9;
+            --deep-teal: #2C5F5F;
+        }
+        
+        body {
+            font-family: 'IBM Plex Serif', serif;
+            background: var(--cream);
+            color: var(--dark-blue);
+            line-height: 1.7;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        
+        /* Geometric pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
+            pointer-events: none;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bronze);
+            z-index: 1000;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo img {
+            height: 180px;
+            width: auto;
+            display: block;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        nav a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        
+        nav a:hover,
+        nav a.active {
+            color: var(--burnt-orange);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close {
+            display: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .post-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 200px 0 3rem;
+        }
+        
+        .back-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--deep-teal);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--burnt-orange);
+        }
+        
+        .back-link::before {
+            content: '←';
+        }
+        
+        .post-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--deep-teal);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .post-header h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--dark-blue);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+        
+        .post-intro {
+            font-size: 1.3rem;
+            color: var(--deep-teal);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--stone);
+        }
+        
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+        
+        .post-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+        }
+        
+        .post-content h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin: 3rem 0 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .post-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--dark-blue);
+            margin: 2.5rem 0 1rem;
+        }
+        
+        .post-content ul, .post-content ol {
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+        
+        .post-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+        
+        .post-content blockquote {
+            background: rgba(255, 255, 255, 0.5);
+            border-left: 3px solid var(--bronze);
+            padding: 2rem 2.5rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--deep-teal);
+        }
+        
+        .post-content strong {
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+        
+        .post-content em {
+            font-style: italic;
+        }
+        
+        .post-footer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0 6rem;
+            border-top: 1px solid var(--stone);
+        }
+        
+        .post-footer p {
+            font-size: 1rem;
+            color: var(--deep-teal);
+        }
+        
+        footer {
+            background: var(--dark-blue);
+            color: var(--cream);
+            padding: 4rem 0 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        footer .container {
+            text-align: center;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            nav .logo img {
+                height: 90px;
+            }
+
+            .post-header {
+                padding-top: 130px;
+            }
+
+            .post-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .post-intro {
+                font-size: 1.1rem;
+            }
+            
+            .post-content h2 {
+                font-size: 1.6rem;
+            }
+            
+            .post-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: var(--cream);
+                flex-direction: column;
+                gap: 0;
+                padding: 5rem 2rem 2rem 2rem;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--bronze);
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid var(--stone);
+            }
+
+            nav ul a {
+                display: block;
+                padding: 1.25rem 0;
+                font-size: 1rem;
+            }
+
+            .mobile-menu-close {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                font-size: 2rem;
+                color: var(--dark-blue);
+                cursor: pointer;
+                padding: 0.5rem;
+                line-height: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../../index.html" class="logo"><img src="../../images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul>
+                <button class="mobile-menu-close" aria-label="Close menu">×</button>
+                <li><a href="../../index.html#about">About</a></li>
+                <li><a href="../../index.html#services">Services</a></li>
+                <li><a href="../../studio.html">Studio</a></li>
+                <li><a href="../../speaking.html">Speaking</a></li>
+                <li><a href="../" class="active">Writing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <article>
+        <div class="post-header">
+            <div class="container">
+                <a href="../" class="back-link">All Writing</a>
+                <h1>Working On It</h1>
+                <p class="post-intro">
+                    Four beliefs that separate organizations that keep getting better from organizations that quietly stop
+                </p>
+            </div>
+        </div>
+
+        <div class="post-content">
+            <div class="container">
+                <p>Early in my consulting career I wrote, half-jokingly, that I fantasized about a world where organizational design consultants were unnecessary — where I could retire to a llama farm because every organization had baked the capacity for self-improvement into itself. The joke aged strangely: a decade later I built a company on exactly that premise. The entire orientation of my work now is capacity-building — leaving organizations <em>more able to design themselves</em> rather than more dependent on me. The llamas remain theoretical. The premise does not.</p>
+
+                <p>So it's worth asking the question seriously, the way my younger self only asked it playfully: what would actually have to be true inside an organization for outside expertise to be redundant? Not which structures or processes — those are downstream. The real answer lives a layer deeper, in what the people of an organization <em>believe</em>: about whose job the organization is, about what kind of system they're standing in, about what failure means, and about each other. Four beliefs, and I've come to think they function less like a curriculum and more like load-bearing walls. Organizations that hold all four keep getting better, almost regardless of which methods they use. Organizations missing them can adopt every best practice in the literature and still quietly stop improving.</p>
+
+                <h2>1. The organization is something you work on, not just in</h2>
+
+                <p>The first belief is a distinction. Working <em>in</em> your organization is doing what you were hired to do — the projects, the emails, the meetings, the craft. Working <em>on</em> your organization is treating the organization itself as a product: noticing that the meeting is badly designed and not just attending it, asking why everyone drowns in email rather than just answering yours, seeing the way teams form and dissolve as a thing that was designed and could be designed differently.</p>
+
+                <p>Traditionally, working-on was reserved for management while everyone else was expected to keep their head down and crank. That division of labor fails in a complex environment for a simple informational reason: the people closest to the work hold most of the knowledge about where the system is breaking, and the people authorized to change the system are furthest from that knowledge. An organization where only the top works on the system is an organization redesigning itself based on its worst available information.</p>
+
+                <p>But I owe my younger self a correction here, because "everyone is an org designer now" — the banner I marched under in 2016 — has a known failure mode: everyone's responsibility has a way of becoming no one's responsibility. Telling ten thousand people they all own the operating system, without channels for their observations or stewardship of the whole, doesn't produce a self-improving organization. It produces ten thousand people with opinions and a system that still never changes. The mature version of this belief is a both/and: <em>everyone practices</em> — noticing, surfacing, proposing, running small experiments within their reach — <em>and the practice is genuinely supported</em> — with real channels, real permission, and real attention paid to what surfaces. Distributed perception, deliberate stewardship. Everyone washes their hands; you still want doctors in the building.</p>
+
+                <p>One more thing has made this belief more urgent rather than less. As AI absorbs a growing share of working-in — the drafting, the processing, the execution — the distinctly human remit inside organizations is migrating toward working-on: judging how the system should work, noticing where it doesn't, redesigning it. "We're all org designers now" was an aspiration in 2016. It's turning into a literal job description.</p>
+
+                <h2>2. You're standing in weather, not in a machine</h2>
+
+                <p>The second belief is about what kind of thing an organization is. Most management practice quietly assumes it's a machine: pull this lever, get that output; find the broken part, replace it; design the whole thing on paper, then build to spec. Machines reward that thinking. Organizations punish it, because an organization is not a machine — it's closer to weather, or traffic, or an ecosystem: many semi-autonomous agents, each following local logic, producing system-level patterns that nobody is directing and nobody can fully predict.</p>
+
+                <p>Holding this belief changes your posture in two specific ways. First, you surrender the fantasy of one-to-one causality. In a complex system, your intervention never touches just its target; it ripples, gets metabolized, provokes adaptations you didn't anticipate. If you believe your reorg will affect exactly the thing it was aimed at and nothing else, you're not thinking about an organization — you're thinking about a vending machine. Second, you stop trying to specify paths and start tending conditions. You can't dictate how ten teams will navigate next quarter any more than you can dictate where each raindrop lands, but you can shape the simple rules, boundaries, and shared commitments within which good local decisions become likely. Leadership in a complex system is less like operating equipment and more like setting the conditions in which the things you want can grow — and then watching honestly to see what actually does.</p>
+
+                <h2>3. Failure is tuition, not verdict</h2>
+
+                <p>The third belief concerns what mistakes mean. Carol Dweck's well-known distinction is useful here: people with a <em>fixed</em> mindset experience their abilities as a settled quantity, so every challenge is a trial that might expose them, and every failure is a verdict. People with a <em>growth</em> mindset experience ability like muscle — built precisely by working at the edge of what they can do — so setbacks read as information rather than indictment.</p>
+
+                <p>The organizational stakes are straightforward: an organization improving itself is, definitionally, an organization doing things it doesn't yet know how to do, which means a steady diet of small failures is not a bug in the improvement process — it <em>is</em> the improvement process, the same way falling is part of learning to ride a bike. An organization performing flawlessly at all times isn't excellent. It's static, operating safely inside the boundary of what it already knows.</p>
+
+                <p>What I'd add now is that organizations have mindsets about <em>themselves</em>, and the fixed kind is epidemic. You hear it in identity claims dressed up as facts: "We're not that kind of company." "That would never work here." "This is just how we are." Each one converts a current state into a permanent essence — a fixed mindset at the institutional scale, foreclosing the experiment before anyone designs it. The growth-minded organization holds its own identity the way it should hold everything else: as a present configuration, not a verdict. And a sober caveat my 2016 self skipped: mindset is a precondition, not a mechanism. Believing in growth without the infrastructure of growth — the experiments, the reflection, the channels — is just optimism with good branding. The belief earns its keep only when it's allowed to change what you actually do after something fails.</p>
+
+                <h2>4. Your design is your theory of human nature, compiled</h2>
+
+                <p>The last belief is the deepest, because it's the one all your structures silently encode. Douglas McGregor named the poles sixty years ago: Theory X holds that people are fundamentally work-avoidant — they'll shirk without supervision, move only for carrot or stick. Theory Y holds that people are intrinsically motivated — that under the right conditions, work is as natural as play and people will pursue mastery and contribution without being prodded.</p>
+
+                <p>Here's the part that matters for design: you cannot opt out of this choice. Every approval chain, every policy, every monitoring system, every freedom granted or withheld is one of these theories made operational. An organization's design <em>is</em> its belief about human nature, compiled into infrastructure — and the infrastructure then runs whether or not anyone remembers choosing the belief.</p>
+
+                <p>And the choice is self-sealing, which is what makes it so consequential. People are exquisitely good at sensing what their environment assumes about them, and they conform to it. Build for Theory X and people respond to surveillance the way anyone does — with compliance, gamesmanship, and the withdrawal of everything voluntary — which managers then read as proof the controls were needed. The loop closes; the belief becomes unfalsifiable from the inside. Meanwhile the Theory X organization pays twice: enormous energy spent supervising people into minimum performance, and all the latent energy of people who <em>wanted</em> to give more, squandered against the bars.</p>
+
+                <p>Which is why the first leader who decides to break the loop is doing something genuinely courageous — and why they need to be warned about the lag. Extend trust into an environment trained on distrust and the trustworthy behavior does not appear on Tuesday. People test it. They wait to see if it's real. The weeks between changed belief and changed behavior are exactly when the old theory whispers that it was right all along. Holding through the lag is the whole game; most reversions happen there.</p>
+
+                <h2>The organization that doesn't need me</h2>
+
+                <p>Put the four together and you can see why I called them load-bearing. The working-on belief supplies the <em>will</em> to improve. The complexity belief supplies the <em>posture</em> — humble, experimental, conditions-focused. The growth belief makes failure <em>survivable enough to learn from</em>. And the Theory Y belief determines whether the people doing all of this are treated as the engine of improvement or its suspects. Every practice I've ever written about — the meetings, the experiments, the channels, the subtraction — runs on this substrate, and none of them runs without it.</p>
+
+                <p>I no longer think the consultant-free world is coming, exactly. But I've kept the orientation, because it's the only honest test of this kind of work: did the organization become more capable of designing itself, or more dependent on someone else doing it? The four beliefs are how you'd know. And they share one convenient property — you don't need permission, a budget, or an engagement to start holding them. You just need to start acting like the organization is yours to work on. Because it is.</p>
+
+                <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--stone); font-size: 0.95rem; color: var(--deep-teal);"><em>A note on lineage: an earlier version of these ideas appeared in 2016 as a two-part series, "We're All Org Designers Now" and "How to Make Sure Your Organization Is Constantly Getting Better," written during my decade at The Ready. The working-on/working-in distinction echoes Michael Gerber's classic advice to business owners; Theory X/Y belongs to Douglas McGregor and mindset to Carol Dweck. The diffusion-of-responsibility correction, the organizational self-concept argument, and the design-as-compiled-belief framing are where the thinking has gone since.</em></p>
+            </div>
+        </div>
+
+        <div class="post-footer">
+            <div class="container">
+                <p>If you're wrestling with these patterns in your organization, I'd be glad to talk. Reach out at <a href="mailto:sam@deliberateworks.com" style="color: var(--burnt-orange); text-decoration: none;">sam@deliberateworks.com</a>.</p>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Deliberate Works. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const menuClose = document.querySelector('.mobile-menu-close');
+        const menu = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.add('active');
+        });
+
+        menuClose.addEventListener('click', () => {
+            menu.classList.remove('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
