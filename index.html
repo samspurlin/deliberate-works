@@ -282,10 +282,34 @@
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 4rem;
             margin-top: 4rem;
             align-items: start;
+        }
+
+        .service-card.featured {
+            grid-column: 1 / -1;
+        }
+
+        /* When the featured card spans the full row, keep its text to a
+           readable, centered measure rather than one very long line. */
+        @media (min-width: 1025px) {
+            .service-card.featured > h3,
+            .service-card.featured > .tagline,
+            .service-card.featured > p,
+            .service-card.featured > .service-card-footer,
+            .service-card.featured > .service-meta {
+                max-width: 760px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         .service-card {
@@ -999,7 +1023,7 @@
                     </div>
                 </div>
 
-                <div class="service-card">
+                <div class="service-card featured">
                     <h3>Experimentation Sprint</h3>
                     <p class="tagline">Resolve one keenly felt organizational tension in six to eight weeks—and prove the organization can change itself.</p>
 
