@@ -491,16 +491,33 @@
             }
             function draw() {
                 ctx.clearRect(0, 0, width, height);
-                for (let i = 0; i < nodes.length; i++) {
-                    for (let j = i + 1; j < nodes.length; j++) {
+                const count = nodes.length;
+                const linked = new Array(count).fill(false);
+                function edge(i, j, alpha) {
+                    ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.strokeStyle = config.lineColor + alpha + ')'; ctx.lineWidth = 1; ctx.stroke();
+                }
+                for (let i = 0; i < count; i++) {
+                    for (let j = i + 1; j < count; j++) {
                         const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
                         if (dist < config.connectionDist) {
-                            const a = config.maxLineAlpha * (1 - dist / config.connectionDist);
-                            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-                            ctx.strokeStyle = config.lineColor + a + ')'; ctx.lineWidth = 1; ctx.stroke();
+                            edge(i, j, config.maxLineAlpha * (1 - dist / config.connectionDist));
+                            linked[i] = true; linked[j] = true;
                         }
                     }
+                }
+                // No free-floating dots: link any isolated node to its nearest neighbour.
+                for (let i = 0; i < count; i++) {
+                    if (linked[i]) continue;
+                    let best = -1, bestDist = Infinity;
+                    for (let j = 0; j < count; j++) {
+                        if (j === i) continue;
+                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+                        const d = dx * dx + dy * dy;
+                        if (d < bestDist) { bestDist = d; best = j; }
+                    }
+                    if (best >= 0) { edge(i, best, config.maxLineAlpha * 0.5); linked[i] = true; linked[best] = true; }
                 }
                 for (const n of nodes) {
                     ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
