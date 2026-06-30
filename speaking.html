@@ -590,6 +590,21 @@
             width: 100%;
             height: 56px;
         }
+        /* Rich footer */
+        footer .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            text-align: left;
+            margin-bottom: 3rem;
+        }
+        .footer-brand p { font-size: 0.95rem; opacity: 0.85; max-width: 30ch; margin-top: 0.75rem; }
+        .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 1rem; }
+        .footer-col a { display: block; color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.7rem; transition: opacity 0.2s, color 0.2s; }
+        .footer-col a:hover { opacity: 1; color: var(--bronze); }
+        .footer-bottom { border-top: 1px solid rgba(255, 248, 231, 0.18); padding-top: 1.5rem; text-align: left; opacity: 0.7; }
+        @media (max-width: 900px) { footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+        @media (max-width: 560px) { footer .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -835,7 +850,28 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 Deliberate Works. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <strong>Deliberate Works</strong>
+                    <p>Helping organizations become more human, more adaptive, and more able to change themselves.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="speaking.html">Speaking</a>
+                    <a href="writing/">Writing</a>
+                    <a href="studio.html">Studio</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a>
+                    <a href="studio.html">Newsletter</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Deliberate Works. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
