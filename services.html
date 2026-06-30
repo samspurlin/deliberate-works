@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deliberate Works - Organizational Evolution</title>
+    <title>Services - Deliberate Works</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
         
@@ -96,6 +96,10 @@
         nav a:hover {
             color: var(--burnt-orange);
         }
+
+        nav a.active {
+            color: var(--burnt-orange);
+        }
         
         .mobile-menu-toggle {
             display: none;
@@ -123,6 +127,10 @@
             padding: 4rem 0;
         }
 
+        .page-top {
+            padding-top: 220px;
+        }
+
         /* ── Geometric motif system ───────────────────────────────────
            Extends the faceted-bird / murmuration language into the rest
            of the page: low-poly section seams, a faceted card-corner
@@ -145,29 +153,33 @@
         @media (max-width: 768px) {
             .section-divider { padding: 1rem 0; }
             .section-divider svg { height: 40px; }
+            .network-container { height: 360px; }
         }
 
-        #contact {
+        .geo-host {
             position: relative;
+        }
+
+        .geo-host > .container {
+            position: relative;
+            z-index: 1;
         }
 
         .network-container {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 600px;
             overflow: hidden;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.7;
+            opacity: 0.4;
         }
 
         #network-canvas {
             width: 100%;
             height: 100%;
-        }
-
-        #contact .container {
-            position: relative;
-            z-index: 1;
         }
 
         .hero {
@@ -735,7 +747,11 @@
             section {
                 padding: 3rem 0;
             }
-            
+
+            .page-top {
+                padding-top: 140px;
+            }
+
             .about-content p {
                 font-size: 1rem;
                 margin-bottom: 1.5rem;
@@ -965,12 +981,12 @@
 <body>
     <nav>
         <div class="container">
-            <a href="#" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
+            <a href="index.html" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
                 <button class="mobile-menu-close" aria-label="Close menu">×</button>
                 <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
                 <li><a href="studio.html">Studio</a></li>
                 <li><a href="speaking.html">Speaking</a></li>
                 <li><a href="writing/">Writing</a></li>
@@ -978,75 +994,162 @@
         </div>
     </nav>
     
-    <section class="hero">
-        <div class="murmuration-container">
-            <canvas id="murmuration-canvas"></canvas>
-        </div>
-        <div class="container">
-            <div>
-                <h1>&ldquo;It shouldn't be <strong>this hard</strong>.&rdquo;</h1>
-                <p>The friction you've learned to live with—decisions that grind, coordination that eats the day, reorgs that change nothing—isn't the price of doing business. It's a design problem. And it's solvable.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-section">
-                    <p>If you lead an organization, you've probably said it—or heard it in the hallway after the third meeting about the meeting: it shouldn't be this hard. You're right. It shouldn't. But the difficulty isn't bad luck or bad people. Every organization has an operating model—the patterns, structures, and habits that shape how decisions get made, how information flows, and how people coordinate. When that model stops fitting the reality the organization faces, everything gets hard. And here's the trap: most organizations can redesign their products, their strategies, even their brands. But they can't redesign themselves.</p>
-
-                    <p>So the typical response is to rent the capability instead—hire consultants, launch a transformation program. Sometimes that's necessary. But it quietly reinforces the underlying problem: the organization never develops its own capacity to evolve. Every few years, the same cycle repeats—new leadership, new initiative, new deck, same underlying constraint. And the work stays hard.</p>
-
-                    <p>Deliberate Works exists to break that cycle. Not by delivering a better reorganization from the outside, but by helping organizations build a permanent, internal capability to sense what's not working, design better ways of operating, and iterate continuously—without waiting for the next crisis or the next consultant.</p>
-
-                    <p>The premise is simple: the ability to change how you work is itself a skill. It can be developed, practiced, and embedded inside the organization—where it belongs. And once it is, the hard stops being something you endure and becomes something you fix.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="clients">
-        <div class="container">
-            <h2>Select Clients</h2>
-            <div class="client-logos">
-                <div class="client-logo" title="FreshDirect">
-                    <img src="logos/freshdirect.png" alt="FreshDirect" class="client-logo-img">
-                </div>
-                <div class="client-logo" title="Akamai">
-                    <img src="logos/akamai.png" alt="Akamai" class="client-logo-img">
-                </div>
-                <div class="client-logo" title="Gitcoin">
-                    <img src="logos/gitcoin.png" alt="Gitcoin" class="client-logo-img">
-                </div>
-                <div class="client-logo" title="MITRE">
-                    <img src="logos/MITRE.png" alt="MITRE" class="client-logo-img">
-                </div>
-            </div>
-            <div class="client-logos">
-                <div class="client-logo" title="Les Mills">
-                    <img src="logos/lesmills.png" alt="Les Mills" class="client-logo-img logo-lesmills">
-                </div>
-                <div class="client-logo" title="RescueTime">
-                    <img src="logos/rescuetime.png" alt="RescueTime" class="client-logo-img logo-rescuetime">
-                </div>
-                <div class="client-logo" title="PG&E">
-                    <img src="logos/pge.png" alt="PG&E" class="client-logo-img logo-pge">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" style="padding: 3rem 0 4rem 0;">
+    <section id="services" class="page-top geo-host">
         <div class="network-container" aria-hidden="true">
             <canvas id="network-canvas"></canvas>
         </div>
         <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2 style="margin-bottom: 2rem;">Let's Talk</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Deliberate Works helps organizations build the internal capability to evolve—so the next time something needs to change, your organization can do it itself.</p>
-                <p style="font-size: 1.1rem; color: var(--deep-teal); margin-bottom: 0.5rem;">Interested in exploring what this could look like?</p>
-                <button class="get-in-touch-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
+            <div style="max-width: 900px; margin: 0 auto 4rem auto;">
+                <p>Most organizations outsource their own evolution. When something isn't working—decision-making is too slow, coordination is breaking down, strategy isn't translating into action—the instinct is to bring in outside help. That can be valuable. But it doesn't solve the underlying problem: the organization has no internal function dedicated to continuously improving how it operates.</p>
+
+                <p>Deliberate Works offers several ways to close that gap, each designed to leave your organization more capable than before:</p>
+            </div>
+
+            <div class="section-divider" aria-hidden="true">
+                <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
+                    <polygon points="0,30 150,8 150,48" fill="#CD7F32" fill-opacity="0.11"/>
+                    <polygon points="0,30 150,48 0,48" fill="#CD7F32" fill-opacity="0.18"/>
+                    <polygon points="150,8 300,34 300,48" fill="#2C5F5F" fill-opacity="0.10"/>
+                    <polygon points="150,8 300,48 150,48" fill="#2C5F5F" fill-opacity="0.16"/>
+                    <polygon points="300,34 450,12 450,48" fill="#C85A3E" fill-opacity="0.11"/>
+                    <polygon points="300,34 450,48 300,48" fill="#C85A3E" fill-opacity="0.18"/>
+                    <polygon points="450,12 600,36 600,48" fill="#8B9D83" fill-opacity="0.12"/>
+                    <polygon points="450,12 600,48 450,48" fill="#8B9D83" fill-opacity="0.18"/>
+                    <polygon points="600,36 750,10 750,48" fill="#CD7F32" fill-opacity="0.11"/>
+                    <polygon points="600,36 750,48 600,48" fill="#CD7F32" fill-opacity="0.18"/>
+                    <polygon points="750,10 900,32 900,48" fill="#2C5F5F" fill-opacity="0.10"/>
+                    <polygon points="750,10 900,48 750,48" fill="#2C5F5F" fill-opacity="0.16"/>
+                    <polygon points="900,32 1050,14 1050,48" fill="#C85A3E" fill-opacity="0.11"/>
+                    <polygon points="900,32 1050,48 900,48" fill="#C85A3E" fill-opacity="0.18"/>
+                    <polygon points="1050,14 1200,30 1200,48" fill="#8B9D83" fill-opacity="0.12"/>
+                    <polygon points="1050,14 1200,48 1050,48" fill="#8B9D83" fill-opacity="0.18"/>
+                </svg>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card featured">
+                    <div class="service-card-head">
+                        <span class="service-index">01</span>
+                        <span class="service-badge">Best first step</span>
+                    </div>
+                    <h3>Experimentation Sprint</h3>
+                    <p class="tagline">Resolve one keenly felt organizational tension in six to eight weeks—and prove the organization can change itself.</p>
+
+                    <p>Every organization carries at least one tension everyone can feel but no one has resolved: a handoff that keeps breaking, a decision that never quite gets made, a meeting that drains more energy than it creates. The usual responses are too big or too slow—a sweeping reorganization, or another diagnostic that ends in a document nobody acts on.</p>
+
+                    <div class="service-card-footer">
+                        <button class="service-more-btn">More</button>
+                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
+                    </div>
+
+                    <div class="service-details">
+                    <p>An Experimentation Sprint does something narrower and far more useful. We choose one tension that genuinely matters, and over six to eight weeks design and run a small set of finely scoped experiments aimed squarely at it. Not a plan to maybe change someday—real changes, tested in the actual flow of work and adjusted as we learn. The first goal is relief you can feel, quickly.</p>
+
+                    <p>The deeper payoff is what the sprint leaves behind. When a team watches itself name a problem, try something, and make it measurably better, it stops experiencing change as something that happens to it. That self-efficacy compounds: the people who ran these experiments are now more capable of stewarding the next round of change themselves—without waiting for permission or outside help.</p>
+
+                    <p>This is not a strategy offsite or a transformation program. It is a tight, hands-on proof that your hardest knots can be untied—by the people who live inside them.</p>
+
+                    <div class="service-meta">
+                        <h4>What this looks like</h4>
+                        <ul>
+                            <li>Naming the one tension worth solving—and getting honest about what it's costing</li>
+                            <li>Designing a small portfolio of finely scoped, low-risk experiments</li>
+                            <li>Running them with the people closest to the work, not around them</li>
+                            <li>Reading the results together—keeping what works, retiring what doesn't</li>
+                        </ul>
+
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>Teams stuck on a specific, persistent friction they can name</li>
+                            <li>Leaders who want momentum and evidence before committing to a larger effort</li>
+                            <li>Organizations that want to build the muscle for change, not just buy an answer</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">Often the best first step—a focused, low-commitment way to create real relief and see how Deliberate Works operates before a deeper engagement.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-head">
+                        <span class="service-index">02</span>
+                    </div>
+                    <h3>Executive Advisory</h3>
+                    <p class="tagline">Organizational judgment for leaders navigating consequential decisions.</p>
+
+                    <p>Some decisions can't wait for a full engagement. Leaders facing structural questions, strategic ambiguity, or organizational friction need a thinking partner with deep pattern recognition—not another framework or slide deck.</p>
+
+                    <div class="service-card-footer">
+                        <button class="service-more-btn">More</button>
+                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
+                    </div>
+
+                    <div class="service-details">
+                    <p>This advisory relationship focuses on the specific decisions and dynamics that matter most right now. The orientation is always toward building the leader's own judgment about how their organization works, not creating ongoing dependency.</p>
+
+                    <p>This is not coaching. It is not facilitation. It is experienced organizational judgment applied in real time.</p>
+
+                    <div class="service-meta">
+                        <h4>What this looks like</h4>
+                        <ul>
+                            <li>Pressure-testing structural and strategic decisions before they harden</li>
+                            <li>Identifying where coordination friction is draining energy</li>
+                            <li>Advising on how to sequence changes so they actually stick</li>
+                            <li>Helping leaders see the system they're operating inside</li>
+                        </ul>
+
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>CEOs, founders, and senior executives</li>
+                            <li>Complex, time-sensitive organizational decisions</li>
+                            <li>Leaders building their own capacity to read and reshape their organization</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">This offering is capacity-limited and reserved for a small number of clients at any given time.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-card-head">
+                        <span class="service-index">03</span>
+                    </div>
+                    <h3>Fractional Organizational Design Leadership</h3>
+                    <p class="tagline">Build a permanent internal capability to evolve how your organization works.</p>
+
+                    <p>Most transformation efforts fail for the same reason: they live outside the organization. Consultants leave. The initiative winds down. And the organization reverts, because it never developed its own capacity to keep evolving.</p>
+
+                    <div class="service-card-footer">
+                        <button class="service-more-btn">More</button>
+                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
+                    </div>
+
+                    <div class="service-details">
+                    <p>This engagement is designed to do the opposite. Deliberate Works embeds as a fractional Org Design leadership function—not to deliver a reorganization, but to help your organization build something like an internal innovation lab focused on itself. The goal is a permanent capability that can sense what's not working, design targeted changes, and iterate continuously.</p>
+
+                    <p>Think of it as three modes of work operating in parallel: research and sensing (understanding how the organization actually functions), testing and design (running focused experiments), and development and iteration (scaling what works and retiring what doesn't). Over time, this produces a compounding portfolio of better practices, clearer structures, and stronger internal judgment about how to adapt.</p>
+
+                    <div class="service-meta">
+                        <h4>What this covers</h4>
+                        <ul>
+                            <li>Standing up an internal org design function with real authority and scope</li>
+                            <li>Diagnosing where coordination friction is trapping potential energy</li>
+                            <li>Designing and running high-leverage experiments on how the organization operates</li>
+                            <li>Transferring the skills and rhythms so this work continues without outside help</li>
+                        </ul>
+
+                        <h4>Best for</h4>
+                        <ul>
+                            <li>Organizations tired of cyclical reorganizations that don't stick</li>
+                            <li>Leaders who want to stop outsourcing their own evolution</li>
+                            <li>Teams ready to own how they work, not just what they work on</li>
+                        </ul>
+
+                        <p style="margin-top: 1rem; opacity: 0.8;">This is an alternative to hiring a full-time executive or launching a large external transformation.</p>
+                    </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1160,430 +1263,79 @@
             }
         });
 
-        // Murmuration Animation
-        (function() {
-            const canvas = document.getElementById('murmuration-canvas');
-            const ctx = canvas.getContext('2d');
-
-            let width, height;
-            let particles = [];
-            let animationId;
-            let obstacles = []; // Rectangles birds will bounce off
-
-            // Configuration
-            const config = {
-                particleCount: 120,
-                maxSpeed: 2,
-                minSpeed: 0.5,
-                neighborRadius: 80,
-                separationRadius: 25,
-                alignmentWeight: 0.05,
-                cohesionWeight: 0.03,
-                separationWeight: 0.08,
-                wanderWeight: 0.02,
-                edgeMargin: 50,
-                edgeTurnForce: 0.15,
-                particleSize: 4,
-                trailLength: 12,
-                obstaclePadding: 5,       // Extra padding around obstacles
-                obstacleAvoidForce: 0.4   // How strongly birds avoid obstacles
-            };
-
-            // Update obstacle positions based on DOM elements
-            function updateObstacles() {
-                const canvasRect = canvas.parentElement.getBoundingClientRect();
-                const heroSection = document.querySelector('.hero');
-                const h1 = heroSection.querySelector('h1');
-                const p = heroSection.querySelector('p');
-                const ctaButton = heroSection.querySelector('.cta-button');
-
-                obstacles = [];
-
-                [h1, p, ctaButton].forEach(el => {
-                    if (el) {
-                        const rect = el.getBoundingClientRect();
-                        obstacles.push({
-                            x: rect.left - canvasRect.left - config.obstaclePadding,
-                            y: rect.top - canvasRect.top - config.obstaclePadding,
-                            width: rect.width + config.obstaclePadding * 2,
-                            height: rect.height + config.obstaclePadding * 2
-                        });
-                    }
-                });
-            }
-
-            // Colors from the site palette
-            const colors = [
-                'rgba(205, 127, 50, 0.6)',   // bronze
-                'rgba(200, 90, 62, 0.5)',    // burnt-orange
-                'rgba(44, 95, 95, 0.5)',     // deep-teal
-                'rgba(139, 157, 131, 0.4)'   // sage
-            ];
-
-            function resize() {
-                const rect = canvas.parentElement.getBoundingClientRect();
-                width = rect.width;
-                height = rect.height;
-                canvas.width = width * window.devicePixelRatio;
-                canvas.height = height * window.devicePixelRatio;
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
-
-            class Particle {
-                constructor() {
-                    // Start particles from right side, moving left
-                    this.x = width * 0.5 + Math.random() * width * 0.5;
-                    this.y = height * 0.2 + Math.random() * height * 0.6;
-
-                    const angle = Math.PI + (Math.random() - 0.5) * 0.5;
-                    const speed = config.minSpeed + Math.random() * (config.maxSpeed - config.minSpeed);
-                    this.vx = Math.cos(angle) * speed;
-                    this.vy = Math.sin(angle) * speed;
-
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
-                    this.size = config.particleSize * (0.5 + Math.random() * 1.0);
-                    this.history = [];
-                }
-
-                update(particles) {
-                    // Store position history for trail
-                    this.history.push({ x: this.x, y: this.y });
-                    if (this.history.length > config.trailLength) {
-                        this.history.shift();
-                    }
-
-                    // Flocking behavior
-                    let avgVx = 0, avgVy = 0;
-                    let avgX = 0, avgY = 0;
-                    let sepX = 0, sepY = 0;
-                    let neighbors = 0;
-                    let separators = 0;
-
-                    for (const other of particles) {
-                        if (other === this) continue;
-
-                        const dx = other.x - this.x;
-                        const dy = other.y - this.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < config.neighborRadius) {
-                            avgVx += other.vx;
-                            avgVy += other.vy;
-                            avgX += other.x;
-                            avgY += other.y;
-                            neighbors++;
-
-                            if (dist < config.separationRadius && dist > 0) {
-                                sepX -= dx / dist;
-                                sepY -= dy / dist;
-                                separators++;
-                            }
-                        }
-                    }
-
-                    if (neighbors > 0) {
-                        // Alignment
-                        avgVx /= neighbors;
-                        avgVy /= neighbors;
-                        this.vx += (avgVx - this.vx) * config.alignmentWeight;
-                        this.vy += (avgVy - this.vy) * config.alignmentWeight;
-
-                        // Cohesion
-                        avgX /= neighbors;
-                        avgY /= neighbors;
-                        this.vx += (avgX - this.x) * config.cohesionWeight * 0.01;
-                        this.vy += (avgY - this.y) * config.cohesionWeight * 0.01;
-                    }
-
-                    if (separators > 0) {
-                        // Separation
-                        this.vx += sepX * config.separationWeight;
-                        this.vy += sepY * config.separationWeight;
-                    }
-
-                    // Wander
-                    this.vx += (Math.random() - 0.5) * config.wanderWeight;
-                    this.vy += (Math.random() - 0.5) * config.wanderWeight;
-
-                    // Edge avoidance
-                    if (this.x < config.edgeMargin) {
-                        this.vx += config.edgeTurnForce;
-                    } else if (this.x > width - config.edgeMargin) {
-                        this.vx -= config.edgeTurnForce;
-                    }
-
-                    if (this.y < config.edgeMargin) {
-                        this.vy += config.edgeTurnForce;
-                    } else if (this.y > height - config.edgeMargin) {
-                        this.vy -= config.edgeTurnForce;
-                    }
-
-                    // Obstacle avoidance (bounce off hero text and button)
-                    for (const obs of obstacles) {
-                        // Check if bird is inside or near the obstacle
-                        const closestX = Math.max(obs.x, Math.min(this.x, obs.x + obs.width));
-                        const closestY = Math.max(obs.y, Math.min(this.y, obs.y + obs.height));
-                        const dx = this.x - closestX;
-                        const dy = this.y - closestY;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-
-                        // If bird is inside or very close to obstacle
-                        if (dist < 5) {
-                            // Bird is inside the obstacle - push it out
-                            const centerX = obs.x + obs.width / 2;
-                            const centerY = obs.y + obs.height / 2;
-                            const pushX = this.x - centerX;
-                            const pushY = this.y - centerY;
-                            const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
-
-                            // Strong push away from center
-                            this.vx = (pushX / pushDist) * config.maxSpeed;
-                            this.vy = (pushY / pushDist) * config.maxSpeed;
-                        } else if (dist < 30) {
-                            // Bird is close - apply avoidance force
-                            const avoidX = dx / (dist || 1);
-                            const avoidY = dy / (dist || 1);
-                            const force = config.obstacleAvoidForce * (1 - dist / 30);
-                            this.vx += avoidX * force;
-                            this.vy += avoidY * force;
-                        }
-                    }
-
-                    // Speed limits
-                    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                    if (speed > config.maxSpeed) {
-                        this.vx = (this.vx / speed) * config.maxSpeed;
-                        this.vy = (this.vy / speed) * config.maxSpeed;
-                    } else if (speed < config.minSpeed) {
-                        this.vx = (this.vx / speed) * config.minSpeed;
-                        this.vy = (this.vy / speed) * config.minSpeed;
-                    }
-
-                    // Update position
-                    this.x += this.vx;
-                    this.y += this.vy;
-
-                    // Wrap around edges (soft reset)
-                    if (this.x < -50) this.x = width + 50;
-                    if (this.x > width + 50) this.x = -50;
-                    if (this.y < -50) this.y = height + 50;
-                    if (this.y > height + 50) this.y = -50;
-                }
-
-                draw() {
-                    // Draw trail
-                    for (let i = 0; i < this.history.length; i++) {
-                        const alpha = (i / this.history.length) * 0.4;
-                        const size = this.size * (i / this.history.length) * 0.6;
-                        ctx.beginPath();
-                        ctx.arc(this.history[i].x, this.history[i].y, size, 0, Math.PI * 2);
-                        ctx.fillStyle = this.color.replace(/[\d.]+\)$/, alpha + ')');
-                        ctx.fill();
-                    }
-
-                    // Calculate angle from velocity
-                    const angle = Math.atan2(this.vy, this.vx);
-
-                    ctx.save();
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(angle);
-
-                    // Draw bird-like shape (small chevron/v-shape)
-                    ctx.beginPath();
-                    const size = this.size * 2;
-                    // Wing span
-                    ctx.moveTo(-size, -size * 0.8);
-                    ctx.lineTo(size * 0.5, 0);
-                    ctx.lineTo(-size, size * 0.8);
-                    // Slight curve inward for body
-                    ctx.quadraticCurveTo(-size * 0.3, 0, -size, -size * 0.8);
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
-
-                    ctx.restore();
-                }
-            }
-
-            function init() {
-                resize();
-                updateObstacles();
-                particles = [];
-                for (let i = 0; i < config.particleCount; i++) {
-                    particles.push(new Particle());
-                }
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-
-                for (const particle of particles) {
-                    particle.update(particles);
-                }
-
-                for (const particle of particles) {
-                    particle.draw();
-                }
-
-                animationId = requestAnimationFrame(animate);
-            }
-
-            // Pause animation when not visible
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (!animationId) animate();
-                    } else {
-                        if (animationId) {
-                            cancelAnimationFrame(animationId);
-                            animationId = null;
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            observer.observe(canvas.parentElement);
-
-            window.addEventListener('resize', () => {
-                resize();
-                updateObstacles();
-            });
-
-            init();
-            animate();
-        })();
-
-        // Contact Network Backdrop
-        // A calm drifting constellation behind the "Let's Talk" CTA — the
-        // same node-and-edge geometry as the dividers, brought to life.
-        // Unlike the hero murmuration there is no flocking: nodes drift
-        // slowly and an edge is drawn between any two that come close.
+        // Quiet network backdrop — a slow drifting constellation behind the
+        // page header. Same component as the homepage, dialed back.
         (function() {
             const canvas = document.getElementById('network-canvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            let width, height;
-            let nodes = [];
-            let animationId = null;
-
+            let width, height, nodes = [], animationId = null;
             const config = {
                 connectionDist: 110,
-                nodeColors: [
-                    'rgba(205, 127, 50, 0.5)',   // bronze
-                    'rgba(44, 95, 95, 0.45)',    // deep-teal
-                    'rgba(200, 90, 62, 0.5)'     // burnt-orange
-                ],
-                lineColor: 'rgba(44, 95, 95, ',  // deep-teal, alpha appended
-                maxLineAlpha: 0.18
+                nodeColors: ['rgba(205,127,50,0.45)', 'rgba(44,95,95,0.4)', 'rgba(200,90,62,0.45)'],
+                lineColor: 'rgba(44,95,95,',
+                maxLineAlpha: 0.14
             };
-
-            function nodeCount() {
-                return width < 600 ? 10 : 18;
-            }
-
+            function nodeCount() { return width < 600 ? 8 : 12; }
             function resize() {
                 const rect = canvas.parentElement.getBoundingClientRect();
-                width = rect.width;
-                height = rect.height;
+                width = rect.width; height = rect.height;
                 canvas.width = width * window.devicePixelRatio;
                 canvas.height = height * window.devicePixelRatio;
-                canvas.style.width = width + 'px';
-                canvas.style.height = height + 'px';
+                canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
                 ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
             }
-
             function makeNode() {
-                const speed = 0.15 + Math.random() * 0.15;
-                const angle = Math.random() * Math.PI * 2;
-                return {
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: Math.cos(angle) * speed,
-                    vy: Math.sin(angle) * speed,
-                    r: 2 + Math.random(),
-                    color: config.nodeColors[Math.floor(Math.random() * config.nodeColors.length)]
-                };
+                const speed = 0.12 + Math.random() * 0.13, angle = Math.random() * Math.PI * 2;
+                return { x: Math.random() * width, y: Math.random() * height,
+                    vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                    r: 2 + Math.random(), color: config.nodeColors[Math.floor(Math.random() * config.nodeColors.length)] };
             }
-
-            function init() {
-                resize();
-                nodes = [];
-                const count = nodeCount();
-                for (let i = 0; i < count; i++) nodes.push(makeNode());
-            }
-
+            function init() { resize(); nodes = []; for (let i = 0; i < nodeCount(); i++) nodes.push(makeNode()); }
             function step() {
                 for (const n of nodes) {
-                    n.x += n.vx;
-                    n.y += n.vy;
-                    if (n.x < -20) n.x = width + 20;
-                    if (n.x > width + 20) n.x = -20;
-                    if (n.y < -20) n.y = height + 20;
-                    if (n.y > height + 20) n.y = -20;
+                    n.x += n.vx; n.y += n.vy;
+                    if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
+                    if (n.y < -20) n.y = height + 20; if (n.y > height + 20) n.y = -20;
                 }
             }
-
             function draw() {
                 ctx.clearRect(0, 0, width, height);
                 for (let i = 0; i < nodes.length; i++) {
                     for (let j = i + 1; j < nodes.length; j++) {
-                        const dx = nodes[i].x - nodes[j].x;
-                        const dy = nodes[i].y - nodes[j].y;
+                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
                         if (dist < config.connectionDist) {
-                            const alpha = config.maxLineAlpha * (1 - dist / config.connectionDist);
-                            ctx.beginPath();
-                            ctx.moveTo(nodes[i].x, nodes[i].y);
-                            ctx.lineTo(nodes[j].x, nodes[j].y);
-                            ctx.strokeStyle = config.lineColor + alpha + ')';
-                            ctx.lineWidth = 1;
-                            ctx.stroke();
+                            const a = config.maxLineAlpha * (1 - dist / config.connectionDist);
+                            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = config.lineColor + a + ')'; ctx.lineWidth = 1; ctx.stroke();
                         }
                     }
                 }
                 for (const n of nodes) {
-                    ctx.beginPath();
-                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                    ctx.fillStyle = n.color;
-                    ctx.fill();
+                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color; ctx.fill();
                 }
             }
-
-            function animate() {
-                step();
-                draw();
-                animationId = requestAnimationFrame(animate);
-            }
-
+            function animate() { step(); draw(); animationId = requestAnimationFrame(animate); }
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (!reduceMotion && !animationId) animate();
-                    } else if (animationId) {
-                        cancelAnimationFrame(animationId);
-                        animationId = null;
-                    }
+                    if (entry.isIntersecting) { if (!reduceMotion && !animationId) animate(); }
+                    else if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
                 });
-            }, { threshold: 0.05 });
-
+            }, { threshold: 0.02 });
             observer.observe(canvas.parentElement);
-
             window.addEventListener('resize', () => {
                 resize();
-                const target = nodeCount();
-                while (nodes.length < target) nodes.push(makeNode());
-                while (nodes.length > target) nodes.pop();
+                const t = nodeCount();
+                while (nodes.length < t) nodes.push(makeNode());
+                while (nodes.length > t) nodes.pop();
                 if (reduceMotion) draw();
             });
-
             init();
-            if (reduceMotion) {
-                draw();  // single static frame, no animation loop
-            }
+            if (reduceMotion) draw();
         })();
     </script>
 </body>

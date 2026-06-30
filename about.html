@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writing - Deliberate Works</title>
+    <title>About - Deliberate Works</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --cream: #FFF8E7;
             --dark-blue: #1a2332;
@@ -22,7 +22,7 @@
             --stone: #D4C5B9;
             --deep-teal: #2C5F5F;
         }
-        
+
         body {
             font-family: 'IBM Plex Serif', serif;
             background: var(--cream);
@@ -31,7 +31,7 @@
             font-size: 18px;
             font-weight: 300;
         }
-        
+
         /* Geometric pattern background */
         body::before {
             content: '';
@@ -42,12 +42,12 @@
             height: 100%;
             opacity: 0.03;
             z-index: 0;
-            background-image: 
+            background-image:
                 repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
                 repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
             pointer-events: none;
         }
-        
+
         nav {
             position: fixed;
             top: 0;
@@ -58,16 +58,16 @@
             z-index: 1000;
             font-family: 'IBM Plex Mono', monospace;
         }
-        
+
         nav .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         nav .logo {
             text-decoration: none;
             display: flex;
@@ -77,15 +77,14 @@
         nav .logo img {
             height: 180px;
             width: auto;
-            display: block;
         }
-        
+
         nav ul {
             list-style: none;
             display: flex;
             gap: 2.5rem;
         }
-        
+
         nav a {
             color: var(--dark-blue);
             text-decoration: none;
@@ -93,8 +92,11 @@
             transition: color 0.3s;
             letter-spacing: 0.5px;
         }
-        
-        nav a:hover,
+
+        nav a:hover {
+            color: var(--burnt-orange);
+        }
+
         nav a.active {
             color: var(--burnt-orange);
         }
@@ -120,154 +122,116 @@
             position: relative;
             z-index: 1;
         }
-        
-        .blog-header {
-            padding: 200px 0 3rem;
-            text-align: center;
+
+        section {
+            padding: 4rem 0;
         }
-        
-        .blog-header h1 {
-            font-size: 4rem;
-            font-weight: 300;
+
+        .page-top {
+            padding-top: 220px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
             color: var(--dark-blue);
-            margin-bottom: 1rem;
+            position: relative;
+            display: block;
         }
-        
-        .blog-header p {
-            font-size: 1.3rem;
-            color: var(--deep-teal);
-            max-width: 700px;
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--bronze);
+        }
+
+        .about-content {
+            max-width: 900px;
             margin: 0 auto;
         }
-        
-        .blog-list {
-            padding: 3rem 0 6rem;
+
+        .about-photo-figure {
+            float: right;
+            margin: 0 0 1.5rem 2.5rem;
+            text-align: center;
         }
 
-        .blog-list .container {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.75rem;
+        .about-photo {
+            display: block;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            object-position: 20% top;
+            border-radius: 50%;
         }
 
-        .blog-post {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--stone);
-            padding: 2rem;
-            transition: all 0.3s;
+        .photo-credit {
+            margin-top: 0.4rem;
+            font-size: 0.7rem;
+            color: #999;
+        }
+
+        .photo-credit a {
+            color: #999;
             text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            color: inherit;
-        }
-        
-        .blog-post:hover {
-            transform: translateY(-3px);
-            border-color: var(--bronze);
-            background: rgba(255, 255, 255, 0.8);
-        }
-        
-        .blog-post-meta {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--deep-teal);
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .blog-post h2 {
-            font-size: 1.35rem;
-            font-weight: 500;
-            color: var(--dark-blue);
-            margin-bottom: 0.85rem;
-            line-height: 1.35;
         }
 
-        .blog-post-excerpt {
-            font-size: 1rem;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 5;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .read-more {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--burnt-orange);
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: auto;
+        .photo-credit a:hover {
+            text-decoration: underline;
         }
 
-        .read-more::after {
-            content: '→';
-            transition: transform 0.3s;
+        .about-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
-        
-        .blog-post:hover .read-more::after {
-            transform: translateX(5px);
+
+        .about-section {
+            margin-bottom: 5rem;
         }
-        
+
         footer {
             background: var(--dark-blue);
             color: var(--cream);
             padding: 4rem 0 2rem;
-            margin-top: 4rem;
+            margin-top: 8rem;
             font-family: 'IBM Plex Mono', monospace;
         }
-        
+
         footer .container {
             text-align: center;
         }
-        
+
         footer p {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        
-        @media (max-width: 980px) {
-            .blog-list .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
 
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            body::before {
+                opacity: 0.02;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            nav .container {
+                padding: 1rem 1.5rem;
+            }
+
             nav .logo img {
                 height: 90px;
             }
 
-            .blog-list .container {
-                grid-template-columns: 1fr;
-            }
-
-            .blog-header {
-                padding-top: 130px;
-            }
-
-            .blog-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .blog-header p {
-                font-size: 1.1rem;
-            }
-            
-            .blog-post {
-                padding: 2rem;
-            }
-            
-            .blog-post h2 {
-                font-size: 1.5rem;
-            }
-            
             .mobile-menu-toggle {
                 display: block;
             }
@@ -316,11 +280,55 @@
                 padding: 0.5rem;
                 line-height: 1;
             }
+
+            .page-top {
+                padding-top: 140px;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            h2::after {
+                width: 50px;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .about-content p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .about-section {
+                margin-bottom: 3rem;
+            }
         }
 
-        /* Geometric motifs — quiet network backdrop + faceted divider. */
+        @media (max-width: 600px) {
+            .about-photo-figure {
+                float: none;
+                margin: 0 auto 1.5rem;
+            }
+
+            .about-photo {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        /* Geometric motifs — quiet network backdrop + faceted divider,
+           the same language as the homepage but dialed back for interior pages. */
         .geo-host {
             position: relative;
+        }
+
+        .geo-host > .container {
+            position: relative;
+            z-index: 1;
         }
 
         .network-container {
@@ -363,28 +371,36 @@
 <body>
     <nav>
         <div class="container">
-            <a href="../index.html" class="logo"><img src="../images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
+            <a href="index.html" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
                 <button class="mobile-menu-close" aria-label="Close menu">×</button>
-                <li><a href="../about.html">About</a></li>
-                <li><a href="../services.html">Services</a></li>
-                <li><a href="../studio.html">Studio</a></li>
-                <li><a href="../speaking.html">Speaking</a></li>
-                <li><a href="index.html" class="active">Writing</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="speaking.html">Speaking</a></li>
+                <li><a href="writing/">Writing</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="blog-header geo-host">
+    <section class="page-top geo-host">
         <div class="network-container" aria-hidden="true">
             <canvas id="network-canvas"></canvas>
         </div>
         <div class="container">
-            <h1>Writing</h1>
-            <p>Thoughts on organizational design, change, and the systems that shape how we work.</p>
+            <h2>About Sam Spurlin</h2>
+            <div class="about-content">
+                <figure class="about-photo-figure">
+                    <img src="images/sam.jpeg" alt="Sam Spurlin" class="about-photo">
+                    <figcaption class="photo-credit">Photo &copy; <a href="https://www.photosalonhelga.com/" target="_blank" rel="noopener">Helga Traxler</a></figcaption>
+                </figure>
+                <p>Deliberate Works is led by Sam Spurlin, an organization designer with over a decade of experience helping executive teams change how their organizations actually operate. He has led transformation work for global companies and coached senior leaders through complex structural and strategic challenges. That experience revealed a recurring pattern: even the best external interventions rarely stick, because the organization never develops the internal muscle to continue the work.</p>
+
+                <p>That insight is the foundation of Deliberate Works. Sam's approach centers on transferring the capability to evolve—not just delivering recommendations, but building the sensing, designing, and iterating skills inside the organization itself. His background in positive psychology and systems thinking informs a practice oriented toward making organizations more adaptive, more humane, and less dependent on outside help to navigate complexity.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <div class="section-divider" aria-hidden="true">
         <div class="container">
@@ -409,98 +425,14 @@
         </div>
     </div>
 
-    <div class="blog-list">
-        <div class="container">
-
-            <a href="the-hammer-and-the-world/" class="blog-post">
-                <h2>What You Can Learn About Creating Better Organizations From a Controversial German Philosopher</h2>
-                <p class="blog-post-excerpt">
-                    Two ideas from Heidegger's Being and Time — the hammer and the world — and why the best organizational design is the kind you finally get to forget.
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="the-deliberate-organization/" class="blog-post">
-                <h2>The Deliberate Organization</h2>
-                <p class="blog-post-excerpt">
-                    Entropy, attention, and why your org chart can't save you
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="the-strategy-was-never-the-problem/" class="blog-post">
-                <h2>The Strategy Was Never the Problem</h2>
-                <p class="blog-post-excerpt">
-                    Why good thinking keeps dying in bad organizations — and what AI changes about it
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="changing-how-you-change/" class="blog-post">
-                <h2>Changing How You Change: The Case for Building Internal Org Design Capacity</h2>
-                <p class="blog-post-excerpt">
-                    The next frontier of performance isn't strategy or talent—it's the ability to change how you change. And that capability can only be built from within.
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="design-by-subtraction/" class="blog-post">
-                <h2>Design by Subtraction</h2>
-                <p class="blog-post-excerpt">
-                    Why the most valuable organizational design work is removal — and why almost nobody does it
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="leadership-after-control/" class="blog-post">
-                <h2>Leadership After Control</h2>
-                <p class="blog-post-excerpt">
-                    What's left for leaders when organizations can't be driven
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="where-will-the-judgment-come-from/" class="blog-post">
-                <h2>Where Will the Judgment Come From?</h2>
-                <p class="blog-post-excerpt">
-                    The death of the training paradigm and the future of getting better at work
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="the-right-amount-of-noise/" class="blog-post">
-                <h2>The Right Amount of Noise</h2>
-                <p class="blog-post-excerpt">
-                    Stochastic resonance, weak signals, and why your organization shouldn't be too quiet
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="working-on-it/" class="blog-post">
-                <h2>Working On It</h2>
-                <p class="blog-post-excerpt">
-                    Four beliefs that separate organizations that keep getting better from organizations that quietly stop
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-            <a href="the-weekly-meeting-is-your-organization-in-miniature/" class="blog-post">
-                <h2>The Weekly Meeting Is Your Organization in Miniature</h2>
-                <p class="blog-post-excerpt">
-                    The weekly team meeting is the smallest complete expression of your operating system. Everything about how your organization actually works leaks out in that hour—which makes it your best diagnostic and your highest-leverage place to intervene.
-                </p>
-                <span class="read-more">Read more</span>
-            </a>
-
-        </div>
-    </div>
-
     <footer>
         <div class="container">
             <p>© 2026 Deliberate Works. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
+        // Mobile menu toggle
         const menuToggle = document.querySelector('.mobile-menu-toggle');
         const menuClose = document.querySelector('.mobile-menu-close');
         const menu = document.querySelector('nav ul');

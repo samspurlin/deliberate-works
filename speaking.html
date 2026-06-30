@@ -551,6 +551,44 @@
             .custom-talk { padding: 2rem 1.5rem; }
             .form-row { grid-template-columns: 1fr; }
             section { padding: 3rem 0; }
+            .network-container { height: 360px; }
+            .section-divider { padding: 1rem 0; }
+            .section-divider svg { height: 40px; }
+        }
+
+        /* Geometric motifs — quiet network backdrop + faceted divider. */
+        .geo-host {
+            position: relative;
+        }
+
+        .network-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 600px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        #network-canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section-divider {
+            position: relative;
+            z-index: 1;
+            padding: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .section-divider svg {
+            display: block;
+            width: 100%;
+            height: 56px;
         }
     </style>
 </head>
@@ -561,8 +599,8 @@
             <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
             <ul>
                 <button class="mobile-menu-close" aria-label="Close menu">×</button>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#services">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="studio.html">Studio</a></li>
                 <li><a href="speaking.html" class="active">Speaking</a></li>
                 <li><a href="writing/">Writing</a></li>
@@ -570,7 +608,10 @@
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero geo-host">
+        <div class="network-container" aria-hidden="true">
+            <canvas id="network-canvas"></canvas>
+        </div>
         <div class="container">
             <p class="eyebrow">Speaking · Keynotes · Workshops</p>
             <h1>Talks that change how your audience thinks about <strong>how they work</strong></h1>
@@ -662,6 +703,29 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider" aria-hidden="true">
+        <div class="container">
+            <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
+                <polygon points="0,30 150,8 150,48" fill="#CD7F32" fill-opacity="0.11"/>
+                <polygon points="0,30 150,48 0,48" fill="#CD7F32" fill-opacity="0.18"/>
+                <polygon points="150,8 300,34 300,48" fill="#2C5F5F" fill-opacity="0.10"/>
+                <polygon points="150,8 300,48 150,48" fill="#2C5F5F" fill-opacity="0.16"/>
+                <polygon points="300,34 450,12 450,48" fill="#C85A3E" fill-opacity="0.11"/>
+                <polygon points="300,34 450,48 300,48" fill="#C85A3E" fill-opacity="0.18"/>
+                <polygon points="450,12 600,36 600,48" fill="#8B9D83" fill-opacity="0.12"/>
+                <polygon points="450,12 600,48 450,48" fill="#8B9D83" fill-opacity="0.18"/>
+                <polygon points="600,36 750,10 750,48" fill="#CD7F32" fill-opacity="0.11"/>
+                <polygon points="600,36 750,48 600,48" fill="#CD7F32" fill-opacity="0.18"/>
+                <polygon points="750,10 900,32 900,48" fill="#2C5F5F" fill-opacity="0.10"/>
+                <polygon points="750,10 900,48 750,48" fill="#2C5F5F" fill-opacity="0.16"/>
+                <polygon points="900,32 1050,14 1050,48" fill="#C85A3E" fill-opacity="0.11"/>
+                <polygon points="900,32 1050,48 900,48" fill="#C85A3E" fill-opacity="0.18"/>
+                <polygon points="1050,14 1200,30 1200,48" fill="#8B9D83" fill-opacity="0.12"/>
+                <polygon points="1050,14 1200,48 1050,48" fill="#8B9D83" fill-opacity="0.18"/>
+            </svg>
+        </div>
+    </div>
 
     <section id="testimonials">
         <div class="container">
@@ -824,6 +888,81 @@
                 menu.classList.remove('active');
             }
         });
+
+        // Quiet network backdrop — a slow drifting constellation behind the
+        // page header. Same component as the homepage, dialed back.
+        (function() {
+            const canvas = document.getElementById('network-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let width, height, nodes = [], animationId = null;
+            const config = {
+                connectionDist: 110,
+                nodeColors: ['rgba(205,127,50,0.45)', 'rgba(44,95,95,0.4)', 'rgba(200,90,62,0.45)'],
+                lineColor: 'rgba(44,95,95,',
+                maxLineAlpha: 0.14
+            };
+            function nodeCount() { return width < 600 ? 8 : 12; }
+            function resize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                width = rect.width; height = rect.height;
+                canvas.width = width * window.devicePixelRatio;
+                canvas.height = height * window.devicePixelRatio;
+                canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            }
+            function makeNode() {
+                const speed = 0.12 + Math.random() * 0.13, angle = Math.random() * Math.PI * 2;
+                return { x: Math.random() * width, y: Math.random() * height,
+                    vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                    r: 2 + Math.random(), color: config.nodeColors[Math.floor(Math.random() * config.nodeColors.length)] };
+            }
+            function init() { resize(); nodes = []; for (let i = 0; i < nodeCount(); i++) nodes.push(makeNode()); }
+            function step() {
+                for (const n of nodes) {
+                    n.x += n.vx; n.y += n.vy;
+                    if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
+                    if (n.y < -20) n.y = height + 20; if (n.y > height + 20) n.y = -20;
+                }
+            }
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < config.connectionDist) {
+                            const a = config.maxLineAlpha * (1 - dist / config.connectionDist);
+                            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = config.lineColor + a + ')'; ctx.lineWidth = 1; ctx.stroke();
+                        }
+                    }
+                }
+                for (const n of nodes) {
+                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color; ctx.fill();
+                }
+            }
+            function animate() { step(); draw(); animationId = requestAnimationFrame(animate); }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { if (!reduceMotion && !animationId) animate(); }
+                    else if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+                });
+            }, { threshold: 0.02 });
+            observer.observe(canvas.parentElement);
+            window.addEventListener('resize', () => {
+                resize();
+                const t = nodeCount();
+                while (nodes.length < t) nodes.push(makeNode());
+                while (nodes.length > t) nodes.pop();
+                if (reduceMotion) draw();
+            });
+            init();
+            if (reduceMotion) draw();
+        })();
     </script>
 </body>
 </html>
