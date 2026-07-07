@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Deliberate — a newsletter by Sam Spurlin</title>
-    <meta name="description" content="The Deliberate is a newsletter on the craft of operating well inside complex systems — at the scale of the individual, the organization, and beyond. By Sam Spurlin of Deliberate Works.">
+    <title>Studio — Deliberate Works</title>
+    <meta name="description" content="Deliberate Works Studio is the practitioner-facing side of the practice: The Deliberate newsletter, courses on operating well inside complex systems, and resources for change agents.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://deliberateworks.com/studio.html">
-    <meta property="og:title" content="The Deliberate — a newsletter by Sam Spurlin">
-    <meta property="og:description" content="Essays on the craft of operating well inside complex systems — at the scale of the individual, the organization, and beyond.">
+    <meta property="og:title" content="Studio — Deliberate Works">
+    <meta property="og:description" content="The practitioner-facing side of Deliberate Works: The Deliberate newsletter, courses, and resources for people doing the work on how work gets done.">
     <meta property="og:image" content="https://deliberateworks.com/images/swallow-mark.png">
     <meta property="og:site_name" content="Deliberate Works">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="The Deliberate — a newsletter by Sam Spurlin">
-    <meta name="twitter:description" content="Essays on the craft of operating well inside complex systems — at the scale of the individual, the organization, and beyond.">
+    <meta name="twitter:title" content="Studio — Deliberate Works">
+    <meta name="twitter:description" content="The practitioner-facing side of Deliberate Works: The Deliberate newsletter, courses, and resources for people doing the work on how work gets done.">
     <meta name="twitter:image" content="https://deliberateworks.com/images/swallow-mark.png">
     <link rel="canonical" href="https://deliberateworks.com/studio.html">
     <meta name="theme-color" content="#FAF7F2">
@@ -43,21 +43,29 @@
         .subscribe-card .mono-note { line-height: 1.7; }
         @media (max-width: 860px) { .subscribe-card { position: static; } }
 
-        .topics { list-style: none; border-top: 1px solid var(--hairline); max-width: 44rem; }
-        .topics li {
-            padding: 1rem 0 1rem 1.6rem;
-            position: relative;
-            border-bottom: 1px solid var(--hairline);
+        .pillar-card { position: relative; }
+        .pillar-card .status {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--hairline);
+            color: var(--ink-3);
+            align-self: flex-start;
         }
-        .topics li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 1.55rem;
-            width: 7px;
-            height: 7px;
-            background: var(--ember);
-            transform: rotate(45deg);
+        .pillar-card .status.live {
+            border-color: color-mix(in srgb, var(--ember) 45%, transparent);
+            color: var(--ember);
+        }
+        .pillar-card p { color: var(--ink-2); font-size: 0.98rem; }
+        .pillar-card .pillar-links {
+            margin-top: auto;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--hairline);
+            font-size: 0.95rem;
+            color: var(--ink-3);
         }
     </style>
 </head>
@@ -76,39 +84,93 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="speaking.html">Speaking</a></li>
                 <li><a href="writing/">Writing</a></li>
-                <li><a href="studio.html" aria-current="page">Newsletter</a></li>
-                <li><a class="nav-cta" href="index.html#contact">Let’s talk</a></li>
+                <li><a href="studio.html" aria-current="page">Studio</a></li>
+                <li><a class="nav-cta" href="index.html#contact">Let&rsquo;s talk</a></li>
             </ul>
         </div>
     </nav>
 
     <header class="hero" style="padding-bottom: 0;" id="main">
         <div class="container">
-            <p class="eyebrow">The Deliberate &middot; Newsletter</p>
-            <h1>Where the thinking shows up first.</h1>
-            <p class="lede measure">The Deliberate is where my thinking shows up first&mdash;essays on the craft of operating well inside complex systems, at the scale of the individual, the organization, and beyond.</p>
+            <p class="eyebrow">Studio</p>
+            <h1>For the people who do the work on how work gets done.</h1>
+            <p class="lede measure">The consulting practice helps organizations build the capacity to evolve. Studio is for the practitioners, leaders, and builders doing that work&mdash;developing the judgment, craft, and operating systems to navigate complexity at every scale.</p>
         </div>
     </header>
 
-    <section id="about-newsletter">
+    <section id="newsletter">
         <div class="container">
+            <div class="section-head">
+                <span class="section-no">01 &middot; The writing</span>
+                <h2>The Deliberate</h2>
+            </div>
             <div class="news-grid">
                 <div class="stack">
-                    <p>Most of what eventually becomes an <a href="writing/">essay on this site</a>&mdash;and a fair amount that never will&mdash;starts as an installment of The Deliberate. It’s the workbench: ideas tested in public, patterns from client work generalized until they’re useful to anyone, and the occasional detour through philosophy or physics that turns out to be about your Tuesday standup after all.</p>
-                    <p>It’s written for people who lead, design, or simply live inside organizations and suspect the friction isn’t mandatory: executives, founders, HR and OD practitioners, team leads, and the kind of person who reads more fiction than business books.</p>
-                    <p>What you can expect, in any given issue:</p>
-                    <ul class="topics">
-                        <li>One idea about how organizations actually work, taken seriously enough to be useful</li>
-                        <li>The tools and moves I use in real engagements&mdash;not frameworks for the sake of frameworks</li>
-                        <li>Zero growth hacks, zero hustle, zero “10 things top leaders do before 6am”</li>
-                    </ul>
-                    <p>It’s free. If you want a feel for the writing before subscribing, the <a href="writing/">archive here</a> is the best sampler.</p>
+                    <p class="lede" style="font-family: var(--font-display); font-style: italic;">On the craft of operating well inside complex systems.</p>
+                    <p>Most writing about work hands you frameworks to apply and tactics to copy. The Deliberate is something different: a newsletter for people trying to think carefully about how they work&mdash;and why it matters.</p>
+                    <p>Each issue explores the intersection of good business and good life: how organizational design shapes the texture of daily experience, how individuals build the capacity to act with agency inside complex systems, and what it looks like to treat leadership as a craft worth developing deliberately.</p>
+                    <p>It&rsquo;s for change agents and organizational practitioners, for leaders who read more fiction than business books, for people suspicious of business-as-usual advice who still believe organizations can be genuinely better.</p>
+                    <p>Much of what eventually becomes an <a href="writing/">essay on this site</a>&mdash;and a fair amount that never will&mdash;appears there first. If you want a feel for the writing before subscribing, the <a href="writing/">archive</a> is the best sampler.</p>
                 </div>
                 <div class="subscribe-card">
                     <h3>Get The Deliberate</h3>
-                    <p style="color: var(--ink-2);">Delivered by Substack. Free, and the unsubscribe link works.</p>
+                    <p style="color: var(--ink-2);">Essays on the craft of operating well&mdash;for people who want to think more carefully about how they work.</p>
                     <a class="btn btn-primary" href="https://thedeliberate.substack.com/subscribe" rel="noopener">Subscribe free &#8599;</a>
-                    <p class="mono-note">Or browse past issues at <a href="https://thedeliberate.substack.com" rel="noopener">thedeliberate.substack.com</a></p>
+                    <p class="mono-note">No spam. The unsubscribe link works.<br>Past issues at <a href="https://thedeliberate.substack.com" rel="noopener">thedeliberate.substack.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="rule">
+
+    <section id="pillars">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-no">02 &middot; What Studio is</span>
+                <h2>A growing body of work, built in the open.</h2>
+            </div>
+            <p class="measure mb-3">Studio is the practitioner-facing side of Deliberate Works&mdash;writing, courses, and resources for people building the capacity to redesign how their organizations, and they themselves, operate. It grows the way I tell clients to grow: small, real, and in public. Here&rsquo;s where each piece stands today.</p>
+            <div class="card-grid">
+                <div class="card pillar-card">
+                    <span class="status live">Live now</span>
+                    <h3>The Writing</h3>
+                    <p>The Deliberate newsletter and the <a href="writing/">essay archive</a>: regular writing that applies a systems lens to the craft of leadership, organizational design, and individual effectiveness.</p>
+                    <div class="pillar-links">
+                        <a href="https://thedeliberate.substack.com/subscribe" rel="noopener">Subscribe &#8599;</a> &nbsp;&middot;&nbsp; <a href="writing/">Browse essays &rarr;</a>
+                    </div>
+                </div>
+                <div class="card pillar-card">
+                    <span class="status">In development</span>
+                    <h3>Courses &amp; Cohorts</h3>
+                    <p>Structured learning on operating well inside complex systems, built around the Three Body Problem curriculum&mdash;first taught at Critical Business School, now being reworked for open cohorts.</p>
+                    <div class="pillar-links">
+                        Subscribers hear first when enrollment opens.
+                    </div>
+                </div>
+                <div class="card pillar-card">
+                    <span class="status">In development</span>
+                    <h3>Practitioner Resources</h3>
+                    <p>Tools, frameworks, and experiment logs from real engagements, curated for change agents who&rsquo;d rather adapt working material than start from a blank page.</p>
+                    <div class="pillar-links">
+                        Announced in The Deliberate as they ship.
+                    </div>
+                </div>
+            </div>
+            <p class="mono-note mt-2">No member walls, no vaporware links&mdash;when something here says it exists, it exists.</p>
+        </div>
+    </section>
+
+    <hr class="rule">
+
+    <section id="org">
+        <div class="container">
+            <div class="stack">
+                <h2 style="max-width: 24ch;">Want this thinking inside your organization, not just your inbox?</h2>
+                <p class="measure">Studio is the public workbench. The <a href="services.html">consulting practice</a> is the same craft applied directly to your organization&rsquo;s specific tensions&mdash;and the <a href="speaking.html">talks</a> bring it to your event.</p>
+                <div class="btn-row">
+                    <a class="btn btn-primary" href="services.html">Ways to work together</a>
+                    <a class="btn btn-ghost" href="index.html#contact">Let&rsquo;s talk</a>
                 </div>
             </div>
         </div>
@@ -128,7 +190,7 @@
                         <li><a href="services.html">Services</a></li>
                         <li><a href="speaking.html">Speaking</a></li>
                         <li><a href="writing/">Writing</a></li>
-                        <li><a href="studio.html">Newsletter</a></li>
+                        <li><a href="studio.html">Studio</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
