@@ -3,1393 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Deliberate Works</title>
+    <title>Services — Deliberate Works</title>
+    <meta name="description" content="Three ways to work with Deliberate Works: the Experimentation Sprint (6–8 weeks), Executive Advisory, and Fractional Organizational Design Leadership. Every engagement is designed around its own exit.">
+    <link rel="icon" type="image/png" href="images/deliberate-works-logo-color.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --cream: #FFF8E7;
-            --dark-blue: #1a2332;
-            --bronze: #CD7F32;
-            --burnt-orange: #C85A3E;
-            --sage: #8B9D83;
-            --stone: #D4C5B9;
-            --deep-teal: #2C5F5F;
-        }
-        
-        body {
-            font-family: 'IBM Plex Serif', serif;
-            background: var(--cream);
-            color: var(--dark-blue);
-            line-height: 1.7;
-            font-size: 18px;
-            font-weight: 300;
-        }
-        
-        /* Geometric pattern background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 0;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
-            pointer-events: none;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 248, 231, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--bronze);
-            z-index: 1000;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        nav .logo {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        nav .logo img {
-            height: 180px;
-            width: auto;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-        }
-        
-        nav a {
-            color: var(--dark-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
-        }
-        
-        nav a:hover {
-            color: var(--burnt-orange);
-        }
-
-        nav a.active {
-            color: var(--burnt-orange);
-        }
-        
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-blue);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .mobile-menu-close {
-            display: none;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        section {
-            padding: 4rem 0;
-        }
-
-        .page-top {
-            padding-top: 220px;
-        }
-
-        /* ── Geometric motif system ───────────────────────────────────
-           Extends the faceted-bird / murmuration language into the rest
-           of the page: low-poly section seams, a faceted card-corner
-           accent, and a drifting network backdrop behind the contact CTA.
-           All inherit the existing palette and stay deliberately quiet. */
-
-        .section-divider {
-            position: relative;
-            z-index: 1;
-            padding: 1.5rem 0;
-            overflow: hidden;
-        }
-
-        .section-divider svg {
-            display: block;
-            width: 100%;
-            height: 56px;
-        }
-
-        @media (max-width: 768px) {
-            .section-divider { padding: 1rem 0; }
-            .section-divider svg { height: 40px; }
-            .network-container { height: 360px; }
-        }
-
-        .geo-host {
-            position: relative;
-        }
-
-        .geo-host > .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .network-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 600px;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-        }
-
-        #network-canvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-top: 200px;
-            padding-bottom: 2rem;
-        }
-
-        .murmuration-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        #murmuration-canvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero .container {
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 6.5rem;
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            color: var(--dark-blue);
-            max-width: 1000px;
-        }
-        
-        .hero h1 strong {
-            font-weight: 500;
-            color: var(--burnt-orange);
-            white-space: nowrap;
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 700px;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            color: var(--deep-teal);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--dark-blue);
-            color: var(--cream);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            border: 2px solid var(--dark-blue);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--burnt-orange);
-            transition: left 0.3s;
-            z-index: -1;
-        }
-        
-        .cta-button:hover::before {
-            left: 0;
-        }
-        
-        .cta-button:hover {
-            border-color: var(--burnt-orange);
-        }
-        
-        h2 {
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 3rem;
-            color: var(--dark-blue);
-            position: relative;
-            display: block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--bronze);
-        }
-        
-        h3 {
-            font-size: 2rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            color: var(--dark-blue);
-        }
-        
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .about-photo-figure {
-            float: right;
-            margin: 0 0 1.5rem 2.5rem;
-            text-align: center;
-        }
-
-        .about-photo {
-            display: block;
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            object-position: 20% top;
-            border-radius: 50%;
-        }
-
-        .photo-credit {
-            margin-top: 0.4rem;
-            font-size: 0.7rem;
-            color: #999;
-        }
-
-        .photo-credit a {
-            color: #999;
-            text-decoration: none;
-        }
-
-        .photo-credit a:hover {
-            text-decoration: underline;
-        }
-
-        .about-content p {
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .about-section {
-            margin-bottom: 5rem;
-        }
-        
-        .services-grid {
+        .offer {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
-            margin-top: 4rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+            gap: clamp(2rem, 5vw, 4.5rem);
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            border-top: 1px solid var(--hairline);
+        }
+        .offer:first-of-type { border-top: none; padding-top: 0; }
+        .offer-head { position: sticky; top: 100px; align-self: start; }
+        .offer-head .index {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            color: var(--ember);
+            display: block;
+            margin-bottom: 0.9rem;
+        }
+        .offer-head h2 { font-size: clamp(1.7rem, 2.8vw, 2.2rem); margin-bottom: 1rem; }
+        .offer-head .tagline { color: var(--ink-2); font-size: 1.05rem; }
+        .offer-shape {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-3);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--hairline);
+        }
+        .offer-body { max-width: 40rem; }
+        .offer-body p { margin-bottom: 1.25rem; }
+        .offer-body h3 {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin: 2rem 0 0.9rem;
+        }
+        .offer-body ul { list-style: none; }
+        .offer-body li {
+            padding: 0.55rem 0 0.55rem 1.4rem;
+            position: relative;
+            border-bottom: 1px solid color-mix(in srgb, var(--hairline) 60%, transparent);
+        }
+        .offer-body li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.05rem;
+            width: 7px;
+            height: 7px;
+            background: var(--ember);
+            transform: rotate(45deg);
+        }
+        @media (max-width: 860px) {
+            .offer { grid-template-columns: 1fr; }
+            .offer-head { position: static; }
+        }
+
+        .path-steps {
+            counter-reset: path;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .path-steps .step { border-top: 2px solid var(--ink); padding-top: 1.1rem; }
+        .path-steps .no {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            color: var(--ember);
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .path-steps h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .path-steps p { font-size: 0.95rem; color: var(--ink-2); }
+        @media (max-width: 860px) { .path-steps { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 560px) { .path-steps { grid-template-columns: 1fr; } }
+
+        .form-success { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.5; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+            gap: clamp(2.5rem, 6vw, 5rem);
             align-items: start;
         }
-
-        .service-card.featured {
-            grid-column: 1 / -1;
-            background: #FBF2E2;
-            border-color: var(--bronze);
-            border-top-color: var(--burnt-orange);
-        }
-
-        /* When the featured card spans the full row, keep its text to a
-           readable, centered measure rather than one very long line. */
-        @media (min-width: 1025px) {
-            .service-card.featured > .service-card-head,
-            .service-card.featured > h3,
-            .service-card.featured > .tagline,
-            .service-card.featured > p,
-            .service-card.featured > .service-card-footer,
-            .service-card.featured > .service-details {
-                max-width: 760px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .service-card {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 2.5rem 3rem 3rem;
-            border: 1px solid var(--stone);
-            border-top: 3px solid var(--bronze);
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        /* Card header: index number (and, on the featured card, a badge) */
-        .service-card-head {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-index {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            color: var(--bronze);
-        }
-
-        .service-badge {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--cream);
-            background: var(--burnt-orange);
-            padding: 0.25rem 0.65rem;
-        }
-
-        /* Secondary copy + meta, collapsed behind the More button so the
-           card leads with its hook and stays scannable. */
-        .service-details {
-            display: none;
-        }
-
-        .service-details.expanded {
-            display: block;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(135deg, var(--bronze), var(--burnt-orange));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: transparent;
-        }
-        
-        .service-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .service-card h3 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--burnt-orange);
-        }
-        
-        .service-card .tagline {
-            font-style: italic;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--deep-teal);
-        }
-        
-        .service-card p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-card ul {
-            list-style: none;
-            margin: 2rem 0;
-        }
-        
-        .service-card li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-        
-        .service-card li::before {
-            content: '◆';
-            position: absolute;
-            left: 0;
-            color: var(--bronze);
-            font-size: 0.8rem;
-        }
-        
-        .service-meta {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--stone);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        .service-card-footer {
-            margin-top: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .service-more-btn {
-            background: none;
-            border: 1px solid var(--stone);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            cursor: pointer;
-            padding: 0.45rem 1rem;
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .service-more-btn:hover {
-            border-color: var(--deep-teal);
-            color: var(--dark-blue);
-        }
-
-        .service-contact-btn {
-            background: none;
-            border: 1px solid var(--burnt-orange);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--burnt-orange);
-            cursor: pointer;
-            padding: 0.45rem 1rem;
-            transition: background 0.2s, color 0.2s;
-            display: none;
-        }
-
-        .service-contact-btn.visible {
-            display: inline-block;
-        }
-
-        .service-contact-btn:hover {
-            background: var(--burnt-orange);
-            color: var(--cream);
-        }
-        
-        .service-meta h4 {
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            margin-top: 1.5rem;
-            color: var(--deep-teal);
-        }
-        
-        .service-meta h4:first-child {
-            margin-top: 0;
-        }
-        
-        footer {
-            background: var(--dark-blue);
-            color: var(--cream);
-            padding: 4rem 0 2rem;
-            margin-top: 8rem;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        footer .container {
-            text-align: center;
-        }
-        
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        .quote-block {
-            background: rgba(255, 255, 255, 0.5);
-            border-left: 3px solid var(--bronze);
-            padding: 2rem 2.5rem;
-            margin: 3rem 0;
-            font-style: italic;
-            font-size: 1.15rem;
-            color: var(--deep-teal);
-        }
-
-        #clients {
-            padding: 3rem 0 4rem 0;
-        }
-
-        #clients h2 {
-            text-align: center;
-        }
-
-        #clients h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        #contact h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .client-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3rem 4rem;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .client-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-            filter: grayscale(100%);
-        }
-
-        .client-logo:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        .client-logo-img {
-            height: 50px;
-            width: auto;
-            max-width: 150px;
-            object-fit: contain;
-        }
-
-        .client-logo-img.logo-lesmills {
-            height: 50px;
-        }
-
-        .client-logo-img.logo-rescuetime {
-            height: 65px;
-        }
-
-        .client-logo-img.logo-pge {
-            height: 70px;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                font-size: 16px;
-            }
-            
-            body::before {
-                opacity: 0.02;
-            }
-            
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            nav .container {
-                padding: 1rem 1.5rem;
-            }
-            
-            nav .logo img {
-                height: 90px;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            nav ul {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                max-width: 300px;
-                background: var(--cream);
-                flex-direction: column;
-                gap: 0;
-                padding: 5rem 2rem 2rem 2rem;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                border-left: 1px solid var(--bronze);
-            }
-            
-            nav ul.active {
-                right: 0;
-            }
-            
-            nav ul li {
-                width: 100%;
-                border-bottom: 1px solid var(--stone);
-            }
-            
-            nav ul a {
-                display: block;
-                padding: 1.25rem 0;
-                font-size: 1rem;
-            }
-            
-            .mobile-menu-close {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1.5rem;
-                background: none;
-                border: none;
-                font-size: 2rem;
-                color: var(--dark-blue);
-                cursor: pointer;
-                padding: 0.5rem;
-                line-height: 1;
-            }
-            
-            .hero {
-                min-height: 80vh;
-                padding-top: 110px;
-            }
-            
-            .murmuration-container {
-                opacity: 0.7;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .cta-button {
-                padding: 0.9rem 2rem;
-                font-size: 0.9rem;
-                text-align: center;
-            }
-            
-            h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            h2::after {
-                width: 50px;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-
-            .page-top {
-                padding-top: 140px;
-            }
-
-            .about-content p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .about-section {
-                margin-bottom: 3rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                margin-top: 2rem;
-            }
-            
-            .service-card {
-                padding: 2rem 1.5rem;
-            }
-            
-            .service-card h3 {
-                font-size: 1.3rem;
-            }
-            
-            .service-card .tagline {
-                font-size: 1.05rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .service-card p {
-                margin-bottom: 1.25rem;
-            }
-            
-            .service-card ul {
-                margin: 1.5rem 0;
-            }
-            
-            .service-meta {
-                font-size: 0.85rem;
-            }
-            
-            .service-meta h4 {
-                font-size: 0.8rem;
-            }
-            
-            footer {
-                margin-top: 4rem;
-                padding: 3rem 0 1.5rem;
-            }
-            
-            footer p {
-                font-size: 0.85rem;
-            }
-            
-            #contact div[style*="max-width"] p {
-                font-size: 1rem !important;
-            }
-
-            .client-logos {
-                gap: 2rem 3rem;
-            }
-
-            .client-logo-img {
-                height: 40px;
-                max-width: 120px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            h2 {
-                font-size: 1.75rem;
-            }
-            
-            .service-card {
-                padding: 1.5rem 1.25rem;
-            }
-        }
-
-        /* Get in Touch Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(26, 35, 50, 0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: var(--cream);
-            border: 1px solid var(--stone);
-            max-width: 520px;
-            width: 100%;
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .modal h3 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1.25rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-blue);
-            line-height: 1;
-            opacity: 0.6;
-        }
-
-        .modal-close:hover {
-            opacity: 1;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            margin-bottom: 0.4rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: white;
-            border: 1px solid var(--stone);
-            font-family: 'IBM Plex Serif', serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--dark-blue);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--deep-teal);
-        }
-
-        .form-group textarea {
-            height: 130px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: var(--dark-blue);
-            color: var(--cream);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 2px solid var(--dark-blue);
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
-            width: 100%;
-            margin-top: 0.5rem;
-        }
-
-        .form-submit:hover {
-            background: var(--burnt-orange);
-            border-color: var(--burnt-orange);
-        }
-
-        .form-success {
-            display: none;
-            text-align: center;
-            padding: 1rem 0;
-            color: var(--deep-teal);
-            font-size: 1.05rem;
-        }
-
-        .get-in-touch-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--burnt-orange);
-            color: var(--cream);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 2px solid var(--burnt-orange);
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s, color 0.2s;
-            margin-top: 1.5rem;
-        }
-
-        .get-in-touch-btn:hover {
-            background: transparent;
-            color: var(--burnt-orange);
-        }
-        /* Rich footer */
-        footer .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            text-align: left;
-            margin-bottom: 3rem;
-        }
-        .footer-brand p { font-size: 0.95rem; opacity: 0.85; max-width: 30ch; margin-top: 0.75rem; }
-        .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 1rem; }
-        .footer-col a { display: block; color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.7rem; transition: opacity 0.2s, color 0.2s; }
-        .footer-col a:hover { opacity: 1; color: var(--bronze); }
-        .footer-bottom { border-top: 1px solid rgba(255, 248, 231, 0.18); padding-top: 1.5rem; text-align: left; opacity: 0.7; }
-        @media (max-width: 900px) { footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-        @media (max-width: 560px) { footer .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <nav>
+
+    <nav class="site-nav">
         <div class="container">
-            <a href="index.html" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
-            <ul>
-                <button class="mobile-menu-close" aria-label="Close menu">×</button>
+            <a class="brand" href="index.html">
+                <img src="images/deliberate-works-logo-color.png" alt="Deliberate Works — geometric swallow mark">
+                <span class="brand-name">Deliberate Works</span>
+            </a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="about.html">About</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="studio.html">Studio</a></li>
+                <li><a href="services.html" aria-current="page">Services</a></li>
                 <li><a href="speaking.html">Speaking</a></li>
                 <li><a href="writing/">Writing</a></li>
+                <li><a href="studio.html">Newsletter</a></li>
+                <li><a class="nav-cta" href="#contact">Let's talk</a></li>
             </ul>
         </div>
     </nav>
-    
-    <section id="services" class="page-top geo-host">
-        <div class="network-container" aria-hidden="true">
-            <canvas id="network-canvas"></canvas>
-        </div>
+
+    <header class="hero" style="padding-bottom: 0;">
         <div class="container">
-            <div style="max-width: 900px; margin: 0 auto 4rem auto;">
-                <p>Most organizations outsource their own evolution. When something isn't working—decision-making is too slow, coordination is breaking down, strategy isn't translating into action—the instinct is to bring in outside help. That can be valuable. But it doesn't solve the underlying problem: the organization has no internal function dedicated to continuously improving how it operates.</p>
+            <p class="eyebrow">Services</p>
+            <h1>Three ways in. Every one designed around its own exit.</h1>
+            <p class="lede measure">I don't sell transformation programs, and I don't bill by the deliverable. Every engagement below exists to make one thing true: your organization gets measurably better at changing itself, and keeps that ability when I leave.</p>
+        </div>
+    </header>
 
-                <p>Deliberate Works offers several ways to close that gap, each designed to leave your organization more capable than before:</p>
-            </div>
+    <section id="offers">
+        <div class="container">
 
-            <div class="section-divider" aria-hidden="true">
-                <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
-                    <polygon points="0,30 150,8 150,48" fill="#CD7F32" fill-opacity="0.11"/>
-                    <polygon points="0,30 150,48 0,48" fill="#CD7F32" fill-opacity="0.18"/>
-                    <polygon points="150,8 300,34 300,48" fill="#2C5F5F" fill-opacity="0.10"/>
-                    <polygon points="150,8 300,48 150,48" fill="#2C5F5F" fill-opacity="0.16"/>
-                    <polygon points="300,34 450,12 450,48" fill="#C85A3E" fill-opacity="0.11"/>
-                    <polygon points="300,34 450,48 300,48" fill="#C85A3E" fill-opacity="0.18"/>
-                    <polygon points="450,12 600,36 600,48" fill="#8B9D83" fill-opacity="0.12"/>
-                    <polygon points="450,12 600,48 450,48" fill="#8B9D83" fill-opacity="0.18"/>
-                    <polygon points="600,36 750,10 750,48" fill="#CD7F32" fill-opacity="0.11"/>
-                    <polygon points="600,36 750,48 600,48" fill="#CD7F32" fill-opacity="0.18"/>
-                    <polygon points="750,10 900,32 900,48" fill="#2C5F5F" fill-opacity="0.10"/>
-                    <polygon points="750,10 900,48 750,48" fill="#2C5F5F" fill-opacity="0.16"/>
-                    <polygon points="900,32 1050,14 1050,48" fill="#C85A3E" fill-opacity="0.11"/>
-                    <polygon points="900,32 1050,48 900,48" fill="#C85A3E" fill-opacity="0.18"/>
-                    <polygon points="1050,14 1200,30 1200,48" fill="#8B9D83" fill-opacity="0.12"/>
-                    <polygon points="1050,14 1200,48 1050,48" fill="#8B9D83" fill-opacity="0.18"/>
-                </svg>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card featured">
-                    <div class="service-card-head">
-                        <span class="service-index">01</span>
-                        <span class="service-badge">Best first step</span>
-                    </div>
-                    <h3>Experimentation Sprint</h3>
-                    <p class="tagline">Resolve one keenly felt organizational tension in six to eight weeks—and prove the organization can change itself.</p>
-
-                    <p>Every organization carries at least one tension everyone can feel but no one has resolved: a handoff that keeps breaking, a decision that never quite gets made, a meeting that drains more energy than it creates. The usual responses are too big or too slow—a sweeping reorganization, or another diagnostic that ends in a document nobody acts on.</p>
-
-                    <div class="service-card-footer">
-                        <button class="service-more-btn">More</button>
-                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
-                    </div>
-
-                    <div class="service-details">
-                    <p>An Experimentation Sprint does something narrower and far more useful. We choose one tension that genuinely matters, and over six to eight weeks design and run a small set of finely scoped experiments aimed squarely at it. Not a plan to maybe change someday—real changes, tested in the actual flow of work and adjusted as we learn. The first goal is relief you can feel, quickly.</p>
-
-                    <p>The deeper payoff is what the sprint leaves behind. When a team watches itself name a problem, try something, and make it measurably better, it stops experiencing change as something that happens to it. That self-efficacy compounds: the people who ran these experiments are now more capable of stewarding the next round of change themselves—without waiting for permission or outside help.</p>
-
-                    <p>This is not a strategy offsite or a transformation program. It is a tight, hands-on proof that your hardest knots can be untied—by the people who live inside them.</p>
-
-                    <div class="service-meta">
-                        <h4>What this looks like</h4>
-                        <ul>
-                            <li>Naming the one tension worth solving—and getting honest about what it's costing</li>
-                            <li>Designing a small portfolio of finely scoped, low-risk experiments</li>
-                            <li>Running them with the people closest to the work, not around them</li>
-                            <li>Reading the results together—keeping what works, retiring what doesn't</li>
-                        </ul>
-
-                        <h4>Best for</h4>
-                        <ul>
-                            <li>Teams stuck on a specific, persistent friction they can name</li>
-                            <li>Leaders who want momentum and evidence before committing to a larger effort</li>
-                            <li>Organizations that want to build the muscle for change, not just buy an answer</li>
-                        </ul>
-
-                        <p style="margin-top: 1rem; opacity: 0.8;">Often the best first step—a focused, low-commitment way to create real relief and see how Deliberate Works operates before a deeper engagement.</p>
-                    </div>
+            <article class="offer" id="sprint">
+                <div class="offer-head">
+                    <span class="index">01 &middot; The entry point</span>
+                    <h2>Experimentation Sprint</h2>
+                    <p class="tagline">Resolve one keenly felt organizational tension in six to eight weeks&mdash;and prove the organization can change itself.</p>
+                    <div class="offer-shape">
+                        <span>Duration &mdash; 6&ndash;8 weeks</span>
+                        <span>Format &mdash; Hands-on, with the people closest to the work</span>
+                        <span>Commitment &mdash; The smallest one I offer</span>
                     </div>
                 </div>
+                <div class="offer-body">
+                    <p>Every organization carries at least one tension everyone can feel but no one has resolved: a handoff that keeps breaking, a decision that never quite gets made, a meeting that drains more energy than it creates. The usual responses are too big or too slow&mdash;a sweeping reorganization, or another diagnostic that ends in a document nobody acts on.</p>
+                    <p>An Experimentation Sprint does something narrower and far more useful. We choose one tension that genuinely matters, and over six to eight weeks design and run a small set of finely scoped experiments aimed squarely at it. Not a plan to maybe change someday&mdash;real changes, tested in the actual flow of work and adjusted as we learn. The first goal is relief you can feel, quickly.</p>
+                    <p>The deeper payoff is what the sprint leaves behind. When a team watches itself name a problem, try something, and make it measurably better, it stops experiencing change as something that happens <em>to</em> it. The people who ran these experiments can run the next round without waiting for permission or outside help.</p>
+                    <h3>What this looks like</h3>
+                    <ul>
+                        <li>Naming the one tension worth solving&mdash;and getting honest about what it's costing</li>
+                        <li>Designing a small portfolio of finely scoped, low-risk experiments</li>
+                        <li>Running them with the people closest to the work, not around them</li>
+                        <li>Reading the results together&mdash;keeping what works, retiring what doesn't</li>
+                    </ul>
+                    <h3>Best for</h3>
+                    <ul>
+                        <li>Teams stuck on a specific, persistent friction they can name</li>
+                        <li>Leaders who want momentum and evidence before committing to a larger effort</li>
+                        <li>Organizations that want to build the muscle for change, not just buy an answer</li>
+                    </ul>
+                </div>
+            </article>
 
-                <div class="service-card">
-                    <div class="service-card-head">
-                        <span class="service-index">02</span>
-                    </div>
-                    <h3>Executive Advisory</h3>
+            <article class="offer" id="advisory">
+                <div class="offer-head">
+                    <span class="index">02 &middot; The thinking partner</span>
+                    <h2>Executive Advisory</h2>
                     <p class="tagline">Organizational judgment for leaders navigating consequential decisions.</p>
-
-                    <p>Some decisions can't wait for a full engagement. Leaders facing structural questions, strategic ambiguity, or organizational friction need a thinking partner with deep pattern recognition—not another framework or slide deck.</p>
-
-                    <div class="service-card-footer">
-                        <button class="service-more-btn">More</button>
-                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
-                    </div>
-
-                    <div class="service-details">
-                    <p>This advisory relationship focuses on the specific decisions and dynamics that matter most right now. The orientation is always toward building the leader's own judgment about how their organization works, not creating ongoing dependency.</p>
-
-                    <p>This is not coaching. It is not facilitation. It is experienced organizational judgment applied in real time.</p>
-
-                    <div class="service-meta">
-                        <h4>What this looks like</h4>
-                        <ul>
-                            <li>Pressure-testing structural and strategic decisions before they harden</li>
-                            <li>Identifying where coordination friction is draining energy</li>
-                            <li>Advising on how to sequence changes so they actually stick</li>
-                            <li>Helping leaders see the system they're operating inside</li>
-                        </ul>
-
-                        <h4>Best for</h4>
-                        <ul>
-                            <li>CEOs, founders, and senior executives</li>
-                            <li>Complex, time-sensitive organizational decisions</li>
-                            <li>Leaders building their own capacity to read and reshape their organization</li>
-                        </ul>
-
-                        <p style="margin-top: 1rem; opacity: 0.8;">This offering is capacity-limited and reserved for a small number of clients at any given time.</p>
-                    </div>
+                    <div class="offer-shape">
+                        <span>Duration &mdash; Ongoing relationship</span>
+                        <span>Format &mdash; Direct, real-time, one-on-one</span>
+                        <span>Availability &mdash; Capacity-limited by design</span>
                     </div>
                 </div>
+                <div class="offer-body">
+                    <p>Some decisions can't wait for a full engagement. Leaders facing structural questions, strategic ambiguity, or organizational friction need a thinking partner with deep pattern recognition&mdash;not another framework, and not another slide deck.</p>
+                    <p>This is not coaching. It is not facilitation. It is experienced organizational judgment applied in real time, to the specific decisions and dynamics that matter most right now. The orientation is always toward building your own judgment about how your organization works&mdash;not creating a dependency on mine.</p>
+                    <h3>What this looks like</h3>
+                    <ul>
+                        <li>Pressure-testing structural and strategic decisions before they harden</li>
+                        <li>Identifying where coordination friction is draining energy</li>
+                        <li>Advising on how to sequence changes so they actually stick</li>
+                        <li>Helping you see the system you're operating inside</li>
+                    </ul>
+                    <h3>Best for</h3>
+                    <ul>
+                        <li>CEOs, founders, and senior executives</li>
+                        <li>Complex, time-sensitive organizational decisions</li>
+                        <li>Leaders building their own capacity to read and reshape their organization</li>
+                    </ul>
+                    <p class="mono-note" style="margin-top: 1.5rem;">Reserved for a small number of leaders at any given time.</p>
+                </div>
+            </article>
 
-                <div class="service-card">
-                    <div class="service-card-head">
-                        <span class="service-index">03</span>
-                    </div>
-                    <h3>Fractional Organizational Design Leadership</h3>
+            <article class="offer" id="fractional">
+                <div class="offer-head">
+                    <span class="index">03 &middot; The deep engagement</span>
+                    <h2>Fractional Org Design Leadership</h2>
                     <p class="tagline">Build a permanent internal capability to evolve how your organization works.</p>
-
-                    <p>Most transformation efforts fail for the same reason: they live outside the organization. Consultants leave. The initiative winds down. And the organization reverts, because it never developed its own capacity to keep evolving.</p>
-
-                    <div class="service-card-footer">
-                        <button class="service-more-btn">More</button>
-                        <button class="service-contact-btn" onclick="document.getElementById('contact-modal').classList.add('active')">Get in Touch</button>
-                    </div>
-
-                    <div class="service-details">
-                    <p>This engagement is designed to do the opposite. Deliberate Works embeds as a fractional Org Design leadership function—not to deliver a reorganization, but to help your organization build something like an internal innovation lab focused on itself. The goal is a permanent capability that can sense what's not working, design targeted changes, and iterate continuously.</p>
-
-                    <p>Think of it as three modes of work operating in parallel: research and sensing (understanding how the organization actually functions), testing and design (running focused experiments), and development and iteration (scaling what works and retiring what doesn't). Over time, this produces a compounding portfolio of better practices, clearer structures, and stronger internal judgment about how to adapt.</p>
-
-                    <div class="service-meta">
-                        <h4>What this covers</h4>
-                        <ul>
-                            <li>Standing up an internal org design function with real authority and scope</li>
-                            <li>Diagnosing where coordination friction is trapping potential energy</li>
-                            <li>Designing and running high-leverage experiments on how the organization operates</li>
-                            <li>Transferring the skills and rhythms so this work continues without outside help</li>
-                        </ul>
-
-                        <h4>Best for</h4>
-                        <ul>
-                            <li>Organizations tired of cyclical reorganizations that don't stick</li>
-                            <li>Leaders who want to stop outsourcing their own evolution</li>
-                            <li>Teams ready to own how they work, not just what they work on</li>
-                        </ul>
-
-                        <p style="margin-top: 1rem; opacity: 0.8;">This is an alternative to hiring a full-time executive or launching a large external transformation.</p>
-                    </div>
+                    <div class="offer-shape">
+                        <span>Duration &mdash; Quarterly rhythm, longer arc</span>
+                        <span>Format &mdash; Embedded fractional leadership</span>
+                        <span>Alternative to &mdash; A full-time hire or an external transformation</span>
                     </div>
                 </div>
+                <div class="offer-body">
+                    <p>Most transformation efforts fail for the same reason: they live outside the organization. Consultants leave. The initiative winds down. And the organization reverts, because it never developed its own capacity to keep evolving.</p>
+                    <p>This engagement is designed to do the opposite. I embed as a fractional organizational design leader&mdash;not to deliver a reorganization, but to help you build something like an internal innovation lab focused on itself: a function that can sense what's not working, design targeted changes, and iterate continuously.</p>
+                    <p>Think of it as three modes running in parallel: <strong>research and sensing</strong> (understanding how the organization actually functions), <strong>testing and design</strong> (running focused experiments), and <strong>development and iteration</strong> (scaling what works, retiring what doesn't). Over time this produces a compounding portfolio of better practices, clearer structures, and stronger internal judgment about how to adapt.</p>
+                    <h3>What this covers</h3>
+                    <ul>
+                        <li>Standing up an internal org design function with real authority and scope</li>
+                        <li>Diagnosing where coordination friction is trapping potential energy</li>
+                        <li>Designing and running high-leverage experiments on how the organization operates</li>
+                        <li>Transferring the skills and rhythms so this work continues without outside help</li>
+                    </ul>
+                    <h3>Best for</h3>
+                    <ul>
+                        <li>Organizations tired of cyclical reorganizations that don't stick</li>
+                        <li>Leaders who want to stop outsourcing their own evolution</li>
+                        <li>Teams ready to own how they work, not just what they work on</li>
+                    </ul>
+                </div>
+            </article>
 
+        </div>
+    </section>
+
+    <hr class="rule">
+
+    <section id="how">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-no">How working together works</span>
+                <h2>No mystery, no maze.</h2>
+            </div>
+            <div class="path-steps">
+                <div class="step">
+                    <span class="no">Step 1</span>
+                    <h3>A real conversation</h3>
+                    <p>You tell me what's grinding. I tell you honestly whether I can help&mdash;and if someone else is a better fit, I'll say so. Free, useful either way.</p>
+                </div>
+                <div class="step">
+                    <span class="no">Step 2</span>
+                    <h3>A shaped proposal</h3>
+                    <p>One page, plain language: the tension we're aiming at, the shape of the work, the price, and what "done" means. No 40-slide preamble.</p>
+                </div>
+                <div class="step">
+                    <span class="no">Step 3</span>
+                    <h3>The work itself</h3>
+                    <p>Hands-on, in the real flow of your organization, with the people who live inside the problem. You'll feel progress in weeks, not quarters.</p>
+                </div>
+                <div class="step">
+                    <span class="no">Step 4</span>
+                    <h3>The handoff</h3>
+                    <p>Every engagement ends with the capability living in your organization&mdash;rhythms running, skills transferred, and a clear picture of what to tackle next without me.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Get in Touch Modal -->
-    <!-- To receive form submissions by email, create a free account at formspree.io,
-         create a form, and replace "YOUR_FORM_ID" in the action URL below. -->
-    <div class="modal-overlay" id="contact-modal">
-        <div class="modal">
-            <button class="modal-close" onclick="document.getElementById('contact-modal').classList.remove('active')" aria-label="Close">&times;</button>
-            <h3>Get in Touch</h3>
-            <form id="contact-form" action="https://formspree.io/f/xeeplkrl" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+    <section id="contact" class="dark-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="stack">
+                    <p class="eyebrow">Start</p>
+                    <h2>Not sure which way in? Start with the conversation.</h2>
+                    <p class="lede">Describe the friction. I'll suggest the smallest engagement that could actually resolve it&mdash;which is sometimes none at all.</p>
+                    <p class="mono-note">Prefer email? <a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a></p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">How can I help?</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <input type="hidden" name="_replyto" value="sam@deliberateworks.com">
-                <button type="submit" class="form-submit">Send Message</button>
-            </form>
-            <div class="form-success" id="form-success">
-                <p>Thanks for reaching out. I'll be in touch soon.</p>
+                <form data-formspree action="https://formspree.io/f/xeeplkrl" method="POST" class="form-grid">
+                    <input type="hidden" name="_subject" value="Services inquiry via deliberateworks.com">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="field full">
+                        <label for="message">What's grinding?</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="full">
+                        <button type="submit" class="btn btn-primary">Send it</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-    
-    <footer>
+    </section>
+
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <strong>Deliberate Works</strong>
-                    <p>Helping organizations become more human, more adaptive, and more able to change themselves.</p>
+                    <img src="images/deliberate-works-logo-color.png" alt="Deliberate Works">
+                    <p>Organizational design, done on purpose. Helping organizations become more human, more adaptive, and more able to change themselves.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Explore</h4>
-                    <a href="about.html">About</a>
-                    <a href="services.html">Services</a>
-                    <a href="speaking.html">Speaking</a>
-                    <a href="writing/">Writing</a>
-                    <a href="studio.html">Studio</a>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="speaking.html">Speaking</a></li>
+                        <li><a href="writing/">Writing</a></li>
+                        <li><a href="studio.html">Newsletter</a></li>
+                    </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a>
-                    <a href="studio.html">Newsletter</a>
+                    <ul>
+                        <li><a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a></li>
+                        <li><a href="https://thedeliberate.substack.com" rel="noopener">The Deliberate &#8599;</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Deliberate Works. All rights reserved.</p>
+            <div class="footer-colophon">
+                <span>&copy; 2026 Deliberate Works &middot; New York</span>
+                <span>Set in Fraunces, Hanken Grotesk &amp; IBM Plex Mono &middot; Built by hand</span>
             </div>
         </div>
     </footer>
-    
-    <script>
-        // Service card expand/collapse
-        document.querySelectorAll('.service-more-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const card = btn.closest('.service-card');
-                const details = card.querySelector('.service-details');
-                const contactBtn = card.querySelector('.service-contact-btn');
-                const expanded = details.classList.toggle('expanded');
-                btn.textContent = expanded ? 'Less' : 'More';
-                contactBtn.classList.toggle('visible', expanded);
-            });
-        });
 
-        // Contact form modal
-        const contactModal = document.getElementById('contact-modal');
-        const contactForm = document.getElementById('contact-form');
-        const formSuccess = document.getElementById('form-success');
-
-        contactModal.addEventListener('click', (e) => {
-            if (e.target === contactModal) contactModal.classList.remove('active');
-        });
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                contactForm.style.display = 'none';
-                formSuccess.style.display = 'block';
-            } else {
-                alert('Something went wrong. Please email sam@deliberateworks.com directly.');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-        
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const menuClose = document.querySelector('.mobile-menu-close');
-        const menu = document.querySelector('nav ul');
-        
-        menuToggle.addEventListener('click', () => {
-            menu.classList.add('active');
-        });
-        
-        menuClose.addEventListener('click', () => {
-            menu.classList.remove('active');
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menu.classList.remove('active');
-            }
-        });
-
-        // Quiet network backdrop — a slow drifting constellation behind the
-        // page header. Same component as the homepage, dialed back.
-        (function() {
-            const canvas = document.getElementById('network-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            let width, height, nodes = [], animationId = null;
-            const config = {
-                connectionDist: 110,
-                nodeColors: ['rgba(205,127,50,0.45)', 'rgba(44,95,95,0.4)', 'rgba(200,90,62,0.45)'],
-                lineColor: 'rgba(44,95,95,',
-                maxLineAlpha: 0.14
-            };
-            function nodeCount() { return width < 600 ? 8 : 12; }
-            function resize() {
-                const rect = canvas.parentElement.getBoundingClientRect();
-                width = rect.width; height = rect.height;
-                canvas.width = width * window.devicePixelRatio;
-                canvas.height = height * window.devicePixelRatio;
-                canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
-            function makeNode() {
-                const speed = 0.12 + Math.random() * 0.13, angle = Math.random() * Math.PI * 2;
-                return { x: Math.random() * width, y: Math.random() * height,
-                    vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
-                    r: 2 + Math.random(), color: config.nodeColors[Math.floor(Math.random() * config.nodeColors.length)] };
-            }
-            function init() { resize(); nodes = []; for (let i = 0; i < nodeCount(); i++) nodes.push(makeNode()); }
-            function step() {
-                for (const n of nodes) {
-                    n.x += n.vx; n.y += n.vy;
-                    if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
-                    if (n.y < -20) n.y = height + 20; if (n.y > height + 20) n.y = -20;
-                }
-            }
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                const count = nodes.length;
-                const linked = new Array(count).fill(false);
-                function edge(i, j, alpha) {
-                    ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = config.lineColor + alpha + ')'; ctx.lineWidth = 1; ctx.stroke();
-                }
-                for (let i = 0; i < count; i++) {
-                    for (let j = i + 1; j < count; j++) {
-                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < config.connectionDist) {
-                            edge(i, j, config.maxLineAlpha * (1 - dist / config.connectionDist));
-                            linked[i] = true; linked[j] = true;
-                        }
-                    }
-                }
-                // No free-floating dots: link any isolated node to its nearest neighbour.
-                for (let i = 0; i < count; i++) {
-                    if (linked[i]) continue;
-                    let best = -1, bestDist = Infinity;
-                    for (let j = 0; j < count; j++) {
-                        if (j === i) continue;
-                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-                        const d = dx * dx + dy * dy;
-                        if (d < bestDist) { bestDist = d; best = j; }
-                    }
-                    if (best >= 0) { edge(i, best, config.maxLineAlpha * 0.5); linked[i] = true; linked[best] = true; }
-                }
-                for (const n of nodes) {
-                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                    ctx.fillStyle = n.color; ctx.fill();
-                }
-            }
-            function animate() { step(); draw(); animationId = requestAnimationFrame(animate); }
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { if (!reduceMotion && !animationId) animate(); }
-                    else if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-                });
-            }, { threshold: 0.02 });
-            observer.observe(canvas.parentElement);
-            window.addEventListener('resize', () => {
-                resize();
-                const t = nodeCount();
-                while (nodes.length < t) nodes.push(makeNode());
-                while (nodes.length > t) nodes.pop();
-                if (reduceMotion) draw();
-            });
-            init();
-            if (reduceMotion) draw();
-        })();
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

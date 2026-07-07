@@ -3,1019 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speaking — Sam Spurlin | Deliberate Works</title>
-    <meta name="description" content="Book Sam Spurlin to speak on organizational evolution, the craft of deliberate work, and building organizations that can redesign themselves.">
+    <title>Speaking — Deliberate Works</title>
+    <meta name="description" content="Book Sam Spurlin to speak on organizational evolution, agency in complexity, and the craft of working deliberately. Keynotes, workshops, and virtual sessions.">
+    <link rel="icon" type="image/png" href="images/deliberate-works-logo-color.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --cream: #FFF8E7;
-            --dark-blue: #1a2332;
-            --bronze: #CD7F32;
-            --burnt-orange: #C85A3E;
-            --sage: #8B9D83;
-            --stone: #D4C5B9;
-            --deep-teal: #2C5F5F;
-        }
-
-        body {
-            font-family: 'IBM Plex Serif', serif;
-            background: var(--cream);
-            color: var(--dark-blue);
-            line-height: 1.7;
-            font-size: 18px;
-            font-weight: 300;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            opacity: 0.03;
-            z-index: 0;
-            background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
-            pointer-events: none;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 248, 231, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--bronze);
-            z-index: 1000;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo { text-decoration: none; display: flex; align-items: center; }
-        nav .logo img { height: 180px; width: auto; }
-
-        nav ul { list-style: none; display: flex; gap: 2.5rem; }
-
-        nav a {
-            color: var(--dark-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        nav a:hover, nav a:focus-visible { color: var(--burnt-orange); }
-        a:focus-visible, button:focus-visible { outline: 2px solid var(--deep-teal); outline-offset: 3px; }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-blue);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-close { display: none; }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        section { padding: 4rem 0; }
-
-        .eyebrow {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--bronze);
-            margin-bottom: 1.25rem;
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            padding-top: 200px;
-            padding-bottom: 3rem;
-        }
-
-        .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 300;
-            line-height: 1.12;
-            margin-bottom: 2rem;
-            max-width: 950px;
-        }
-
-        .hero h1 strong { font-weight: 500; color: var(--burnt-orange); }
-
-        .hero .lede {
-            font-size: 1.35rem;
-            max-width: 720px;
-            margin-bottom: 3rem;
-            color: var(--deep-teal);
-        }
-
-        .hero-ctas { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--dark-blue);
-            color: var(--cream);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            border: 2px solid var(--dark-blue);
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .cta-button:hover { background: var(--burnt-orange); border-color: var(--burnt-orange); }
-
-        .cta-secondary {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--dark-blue);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            border: 2px solid var(--stone);
-            transition: border-color 0.3s, color 0.3s;
-        }
-
-        .cta-secondary:hover { border-color: var(--deep-teal); color: var(--deep-teal); }
-
-        /* ---------- HEADINGS ---------- */
-        h2 {
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: var(--bronze);
-        }
-
-        /* ---------- CLIENT STRIP ---------- */
-        .client-strip { padding: 2rem 0 3rem; border-top: 1px solid var(--stone); }
-
-        .client-strip .label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .client-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem 3.5rem;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .client-logo { opacity: 0.7; filter: grayscale(100%); transition: opacity 0.3s, filter 0.3s; }
-        .client-logo:hover { opacity: 1; filter: grayscale(0%); }
-        .client-logo img { height: 45px; width: auto; max-width: 140px; object-fit: contain; }
-
-        /* ---------- PLACEHOLDER BLOCKS ---------- */
-        .placeholder {
-            border: 2px dashed var(--bronze);
-            background: rgba(205, 127, 50, 0.06);
-            padding: 2rem;
-            text-align: center;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--deep-teal);
-        }
-
-        .placeholder .ph-label {
-            display: inline-block;
-            background: var(--bronze);
-            color: var(--cream);
-            padding: 0.2rem 0.75rem;
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        /* ---------- REEL ---------- */
-        .reel-frame {
-            max-width: 900px;
-            margin: 0 auto;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ---------- TALK CARDS ---------- */
-        .talks-grid {
+        .talk {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            max-width: 1000px;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+            gap: clamp(2rem, 5vw, 4.5rem);
+            padding: clamp(2.5rem, 5vw, 4rem) 0;
+            border-top: 1px solid var(--hairline);
         }
-
-        .talk-card {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--stone);
-            padding: 3rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .talk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(26, 35, 50, 0.07); }
-
-        .talk-meta {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
-        }
-
-        .talk-meta span::before { content: '◆ '; color: var(--bronze); font-size: 0.65rem; }
-
-        .talk-card h3 {
-            font-size: 1.9rem;
-            font-weight: 500;
-            line-height: 1.25;
-            margin-bottom: 1rem;
-        }
-
-        .talk-card .talk-question {
+        .talk:first-of-type { border-top: none; padding-top: 0; }
+        .talk-head h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 1rem; }
+        .talk-head .question {
+            font-family: var(--font-display);
             font-style: italic;
-            color: var(--deep-teal);
-            font-size: 1.15rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .talk-card p { margin-bottom: 1.25rem; }
-
-        .talk-card h4 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            margin: 1.75rem 0 0.75rem;
-        }
-
-        .talk-card ul { list-style: none; }
-
-        .talk-card li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.6rem;
-            position: relative;
-        }
-
-        .talk-card li::before {
-            content: '◆';
-            position: absolute;
-            left: 0;
-            color: var(--bronze);
-            font-size: 0.8rem;
-        }
-
-        .draft-note {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--burnt-orange);
-            border-left: 2px solid var(--burnt-orange);
-            padding-left: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .custom-talk {
-            max-width: 1000px;
-            margin-top: 2.5rem;
-            padding: 2.5rem 3rem;
-            border-left: 3px solid var(--bronze);
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .custom-talk h3 {
-            font-family: 'IBM Plex Mono', monospace;
             font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--deep-teal);
-            margin-bottom: 1rem;
+            color: var(--ember-2);
+            line-height: 1.45;
         }
-
-        .custom-talk p { margin-bottom: 1.75rem; max-width: 750px; }
-
-        /* ---------- TESTIMONIALS ---------- */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--stone);
-            border-top: 3px solid var(--bronze);
-            padding: 2.25rem 2rem;
+        .talk-meta {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-3);
             display: flex;
             flex-direction: column;
+            gap: 0.35rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--hairline);
         }
-
-        .testimonial blockquote {
-            font-style: italic;
-            font-size: 1.05rem;
-            color: var(--dark-blue);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .testimonial cite {
-            font-family: 'IBM Plex Mono', monospace;
-            font-style: normal;
-            font-size: 0.78rem;
-            letter-spacing: 0.08em;
+        .talk-body { max-width: 40rem; }
+        .talk-body p { margin-bottom: 1.25rem; }
+        .talk-body h3 {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--deep-teal);
+            color: var(--ink-3);
+            margin: 1.75rem 0 0.9rem;
         }
-
-        /* ---------- BIO ---------- */
-        .bio-layout {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 4rem;
-            align-items: start;
-            max-width: 1100px;
+        .talk-body ul { list-style: none; }
+        .talk-body li {
+            padding: 0.55rem 0 0.55rem 1.4rem;
+            position: relative;
+            border-bottom: 1px solid color-mix(in srgb, var(--hairline) 60%, transparent);
         }
+        .talk-body li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1.05rem;
+            width: 7px;
+            height: 7px;
+            background: var(--ember);
+            transform: rotate(45deg);
+        }
+        @media (max-width: 860px) { .talk { grid-template-columns: 1fr; } }
 
-        .headshot-frame { aspect-ratio: 4 / 5; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
-        .headshot-frame img { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--stone); }
-
-        .bio-copy p { margin-bottom: 1.5rem; font-size: 1.05rem; }
-
-        /* ---------- FORMATS ---------- */
         .formats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .formats-grid .card h3 { margin-bottom: 0.6rem; }
+        .formats-grid .card p { color: var(--ink-2); font-size: 0.98rem; }
+        @media (max-width: 860px) { .formats-grid { grid-template-columns: 1fr; } }
+
+        .custom-talk {
+            border: 1px solid var(--hairline);
+            padding: clamp(2rem, 4vw, 3rem);
+            margin-top: clamp(2.5rem, 5vw, 4rem);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
         }
 
-        .format-card {
-            border: 1px solid var(--stone);
-            background: rgba(255, 255, 255, 0.5);
-            padding: 2rem;
-        }
-
-        .format-card h3 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.05rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--burnt-orange);
-            margin-bottom: 0.75rem;
-        }
-
-        .format-card p { font-size: 0.98rem; }
-
-        /* ---------- INQUIRY FORM ---------- */
-        #book { background: var(--dark-blue); color: var(--cream); margin-top: 4rem; }
-        #book h2 { color: var(--cream); }
-        #book .intro { max-width: 650px; margin-bottom: 3rem; opacity: 0.85; }
-
-        .inquiry-form { max-width: 650px; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-
-        .form-group { margin-bottom: 1.25rem; }
-
-        .form-group label {
-            display: block;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--stone);
-            margin-bottom: 0.4rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(255, 248, 231, 0.07);
-            border: 1px solid rgba(212, 197, 185, 0.35);
-            font-family: 'IBM Plex Serif', serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: var(--cream);
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group select { appearance: none; }
-        .form-group select option { color: var(--dark-blue); }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus { border-color: var(--bronze); }
-
-        .form-group textarea { height: 130px; resize: vertical; }
-
-        .form-submit {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--burnt-orange);
-            color: var(--cream);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border: 2px solid var(--burnt-orange);
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 0.5rem;
-        }
-
-        .form-submit:hover { background: transparent; }
-
-        .form-success { display: none; padding: 1rem 0; font-size: 1.05rem; }
-
-        footer {
-            background: var(--dark-blue);
-            color: var(--cream);
-            padding: 3rem 0 2rem;
-            font-family: 'IBM Plex Mono', monospace;
-            border-top: 1px solid rgba(212, 197, 185, 0.2);
-        }
-
-        footer .container { text-align: center; }
-        footer p { font-size: 0.9rem; opacity: 0.8; }
-
-        @media (prefers-reduced-motion: reduce) {
-            * { transition: none !important; }
-        }
-
-        @media (max-width: 900px) {
-            .bio-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-            .headshot-frame { max-width: 320px; }
-        }
-
-        @media (max-width: 768px) {
-            body { font-size: 16px; }
-            .container { padding: 0 1.5rem; }
-            nav .container { padding: 1rem 1.5rem; }
-            nav .logo img { height: 90px; }
-            .mobile-menu-toggle { display: block; }
-
-            nav ul {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                max-width: 300px;
-                background: var(--cream);
-                flex-direction: column;
-                gap: 0;
-                padding: 5rem 2rem 2rem;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                border-left: 1px solid var(--bronze);
-            }
-
-            nav ul.active { right: 0; }
-            nav ul li { width: 100%; border-bottom: 1px solid var(--stone); }
-            nav ul a { display: block; padding: 1.25rem 0; font-size: 1rem; }
-
-            .mobile-menu-close {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1.5rem;
-                background: none;
-                border: none;
-                font-size: 2rem;
-                color: var(--dark-blue);
-                cursor: pointer;
-                padding: 0.5rem;
-                line-height: 1;
-            }
-
-            .hero { min-height: 70vh; padding-top: 7rem; }
-            .hero h1 { font-size: 2.4rem; }
-            .hero .lede { font-size: 1.1rem; }
-            h2 { font-size: 2rem; }
-            .talk-card { padding: 2rem 1.5rem; }
-            .talk-card h3 { font-size: 1.5rem; }
-            .custom-talk { padding: 2rem 1.5rem; }
-            .form-row { grid-template-columns: 1fr; }
-            section { padding: 3rem 0; }
-            .network-container { height: 360px; }
-            .section-divider { padding: 1rem 0; }
-            .section-divider svg { height: 40px; }
-        }
-
-        /* Geometric motifs — quiet network backdrop + faceted divider. */
-        .geo-host {
-            position: relative;
-        }
-
-        .network-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 600px;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-        }
-
-        #network-canvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .section-divider {
-            position: relative;
-            z-index: 1;
-            padding: 1.5rem 0;
-            overflow: hidden;
-        }
-
-        .section-divider svg {
-            display: block;
-            width: 100%;
-            height: 56px;
-        }
-        /* Rich footer */
-        footer .footer-grid {
+        .form-success { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.5; }
+        .contact-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            text-align: left;
-            margin-bottom: 3rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+            gap: clamp(2.5rem, 6vw, 5rem);
+            align-items: start;
         }
-        .footer-brand p { font-size: 0.95rem; opacity: 0.85; max-width: 30ch; margin-top: 0.75rem; }
-        .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 1rem; }
-        .footer-col a { display: block; color: var(--cream); text-decoration: none; font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.7rem; transition: opacity 0.2s, color 0.2s; }
-        .footer-col a:hover { opacity: 1; color: var(--bronze); }
-        .footer-bottom { border-top: 1px solid rgba(255, 248, 231, 0.18); padding-top: 1.5rem; text-align: left; opacity: 0.7; }
-        @media (max-width: 900px) { footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-        @media (max-width: 560px) { footer .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <nav>
+
+    <nav class="site-nav">
         <div class="container">
-            <a href="index.html" class="logo"><img src="images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
-            <ul>
-                <button class="mobile-menu-close" aria-label="Close menu">×</button>
+            <a class="brand" href="index.html">
+                <img src="images/deliberate-works-logo-color.png" alt="Deliberate Works — geometric swallow mark">
+                <span class="brand-name">Deliberate Works</span>
+            </a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="studio.html">Studio</a></li>
-                <li><a href="speaking.html" class="active">Speaking</a></li>
+                <li><a href="speaking.html" aria-current="page">Speaking</a></li>
                 <li><a href="writing/">Writing</a></li>
+                <li><a href="studio.html">Newsletter</a></li>
+                <li><a class="nav-cta" href="#book">Check availability</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero geo-host">
-        <div class="network-container" aria-hidden="true">
-            <canvas id="network-canvas"></canvas>
-        </div>
+    <header class="hero" style="padding-bottom: 0;">
         <div class="container">
-            <p class="eyebrow">Speaking · Keynotes · Workshops</p>
-            <h1>Talks that change how your audience thinks about <strong>how they work</strong></h1>
-            <p class="lede">Sam Spurlin speaks about organizational evolution and the craft of working deliberately—at every scale, from the individual practitioner to the executive team to the whole organization. These aren't keynote-circuit ideas. They come from the grounded perspective of someone who has spent the past decade on the ground inside organizations of every kind, doing the work he talks about.</p>
-            <div class="hero-ctas">
-                <a href="#book" class="cta-button">CHECK AVAILABILITY</a>
-                <a href="#talks" class="cta-secondary">EXPLORE THE TALKS</a>
+            <p class="eyebrow">Speaking &middot; Keynotes &middot; Workshops</p>
+            <h1>Talks that change how your audience thinks about how they work.</h1>
+            <p class="lede measure">Not keynote-circuit ideas. These talks come from a decade on the ground inside organizations of every kind&mdash;doing the work, not just describing it. Every one gets tailored to your audience through a pre-event conversation.</p>
+            <div class="btn-row" style="margin-top: 2.5rem;">
+                <a class="btn btn-primary" href="#book">Check availability</a>
+                <a class="btn btn-ghost" href="#talks">Explore the talks</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="clients" style="padding-bottom: 0;">
+        <div class="container">
+            <p class="mono-note mb-2">Sam has advised and led work inside organizations including</p>
+            <div class="logo-strip">
+                <img src="logos/pge.png" alt="PG&E">
+                <img src="logos/akamai.png" alt="Akamai">
+                <img src="logos/MITRE.png" alt="MITRE">
+                <img src="logos/freshdirect.png" alt="FreshDirect">
+                <img src="logos/lesmills.png" alt="Les Mills">
+                <img src="logos/gitcoin.png" alt="Gitcoin">
+                <img src="logos/rescuetime.png" alt="RescueTime">
             </div>
         </div>
     </section>
 
-    <div class="client-strip">
-        <div class="container">
-            <p class="label">Sam has advised and led work inside organizations including</p>
-            <div class="client-logos">
-                <div class="client-logo" title="FreshDirect"><img src="logos/freshdirect.png" alt="FreshDirect"></div>
-                <div class="client-logo" title="Akamai"><img src="logos/akamai.png" alt="Akamai"></div>
-                <div class="client-logo" title="Gitcoin"><img src="logos/gitcoin.png" alt="Gitcoin"></div>
-                <div class="client-logo" title="MITRE"><img src="logos/MITRE.png" alt="MITRE"></div>
-                <div class="client-logo" title="Les Mills"><img src="logos/lesmills.png" alt="Les Mills"></div>
-                <div class="client-logo" title="RescueTime"><img src="logos/rescuetime.png" alt="RescueTime"></div>
-                <div class="client-logo" title="PG&E"><img src="logos/pge.png" alt="PG&E"></div>
-            </div>
-        </div>
-    </div>
-
     <section id="talks">
         <div class="container">
-            <h2>Signature Talks</h2>
-            <div class="talks-grid">
+            <div class="section-head">
+                <span class="section-no">Signature talks</span>
+                <h2>Three talks, one thread: agency inside complex systems.</h2>
+            </div>
 
-                <div class="talk-card">
+            <article class="talk">
+                <div class="talk-head">
+                    <h2>The Three Body Problem: Building Agency in a World of Complexity</h2>
+                    <p class="question">Individuals, organizations, and societies are all facing the same problem. What if the way through is the same, too?</p>
                     <div class="talk-meta">
-                        <span>Keynote · 30–60 min</span>
+                        <span>Keynote &middot; 30&ndash;60 min</span>
                         <span>Workshop &amp; cohort formats available</span>
                         <span>Leaders &amp; practitioners</span>
                     </div>
-                    <h3>The Three Body Problem: Building Agency in a World of Complexity</h3>
-                    <p class="talk-question">Individuals, organizations, and societies are all facing the same problem. What if the way through is the same, too?</p>
-                    <p>Rising complexity is breaking our operating systems at every scale: the individual drowning in demands they didn't choose, the organization that can't change how it works, the society straining under problems its institutions weren't built for. We treat these as three separate crises with three separate bookshelves. This talk—drawn from the course Sam taught at Critical Business School—argues they're the same problem at different scales, and that the capacities that help organizations adapt are the same ones that help people thrive. The way through isn't more control. It's building genuine agency: the ability to see the system you're inside and act on it deliberately.</p>
-                    <h4>Audiences leave with</h4>
+                </div>
+                <div class="talk-body">
+                    <p>Rising complexity is breaking our operating systems at every scale: the individual drowning in demands they didn't choose, the organization that can't change how it works, the society straining under problems its institutions weren't built for. We treat these as three separate crises with three separate bookshelves. This talk&mdash;drawn from the course Sam taught at Critical Business School&mdash;argues they're the same problem at different scales, and that the way through isn't more control. It's building genuine agency: the ability to see the system you're inside and act on it deliberately.</p>
+                    <h3>Audiences leave with</h3>
                     <ul>
                         <li>A way of seeing their personal, organizational, and societal challenges as one problem at three scales</li>
                         <li>The "operating system" lens: what it means to upgrade how you work, not just what you work on</li>
                         <li>Concrete starting points for building agency inside systems they didn't design</li>
                     </ul>
                 </div>
+            </article>
 
-                <div class="talk-card">
+            <article class="talk">
+                <div class="talk-head">
+                    <h2>Organizational Catalysts</h2>
+                    <p class="question">Everyone owns a piece of how your organization works. Who owns the system?</p>
                     <div class="talk-meta">
-                        <span>Keynote · 30–60 min</span>
+                        <span>Keynote &middot; 30&ndash;60 min</span>
                         <span>Workshop format available</span>
                         <span>HR, OD &amp; transformation leaders</span>
                     </div>
-                    <h3>Organizational Catalysts</h3>
-                    <p class="talk-question">Everyone owns a piece of how your organization works. Who owns the system?</p>
-                    <p>Most organizations are renting their change capability from consultants when they should be building their own—bespoke, customized, and deeply integrated. The old assumption of "design once, run forever" has been replaced by the reorg treadmill: restructure, wait eighteen months, restructure again. Disruption without adaptive capacity, just as destructive as standing still. This talk makes the case for a different function entirely: an organizational catalyst that owns the organizational operating system and tends its ongoing fitness. Drawing on an extended detour through nuclear physics—fission to release the energy trapped in organizational debt, fusion to bring fragmented capability together—it argues the goal isn't a changed state. It's criticality: a self-maintaining capacity for adaptation that doesn't depend on periodic outside intervention.</p>
-                    <h4>Audiences leave with</h4>
+                </div>
+                <div class="talk-body">
+                    <p>Most organizations are renting their change capability from consultants when they should be building their own. The old assumption of "design once, run forever" has been replaced by the reorg treadmill: restructure, wait eighteen months, restructure again. This talk makes the case for a different function entirely&mdash;an organizational catalyst that owns the operating system and tends its ongoing fitness. Drawing on an extended detour through nuclear physics&mdash;fission to release the energy trapped in organizational debt, fusion to bring fragmented capability together&mdash;it argues the goal isn't a changed state. It's criticality: a self-maintaining capacity for adaptation.</p>
+                    <h3>Audiences leave with</h3>
                     <ul>
-                        <li>A diagnosis of why both the reorg treadmill and rented transformation fail—and the middle ground: a function that owns the operating system everyone uses but nobody tends</li>
-                        <li>The fission/fusion lens for spotting trapped energy: organizational debt that needs releasing, and fragmentation that needs a container held under pressure</li>
-                        <li>Three moves for making the case without formal authority—plus the predictable failure modes and why AI makes this function urgent now</li>
+                        <li>A diagnosis of why both the reorg treadmill and rented transformation fail&mdash;and the middle ground between them</li>
+                        <li>The fission/fusion lens for spotting trapped energy: organizational debt to release, fragmentation to fuse</li>
+                        <li>Three moves for making the case without formal authority&mdash;and why AI makes this function urgent now</li>
                     </ul>
                 </div>
+            </article>
 
-                <div class="talk-card">
+            <article class="talk">
+                <div class="talk-head">
+                    <h2>Facilitation Is Org Design</h2>
+                    <p class="question">If culture is created by the quality of interactions&mdash;and meetings are where most interactions happen&mdash;what are your meetings building?</p>
                     <div class="talk-meta">
-                        <span>Keynote · 30–60 min</span>
+                        <span>Keynote &middot; 30&ndash;60 min</span>
                         <span>Best as an interactive session</span>
-                        <span>Facilitators, team leaders &amp; practitioners</span>
+                        <span>Facilitators, team leads &amp; practitioners</span>
                     </div>
-                    <h3>Facilitation is Org Design</h3>
-                    <p class="talk-question">If culture is created by the quality of an organization's interactions—and meetings are where most interactions happen—what are your meetings building?</p>
-                    <p>Facilitation gets reduced to tips and tricks for running a meeting. This talk reframes it as something much bigger: meeting design as the most accessible form of org design there is. Meetings amplify and reflect the organization back to us—who gets invited reveals assumptions about authority, whether decisions stick reveals whether authority is clear, how information flows reveals whether the organization has a memory. Which makes better meetings a helpful Trojan horse: improving them quickly surfaces the deeper questions about strategy, decision rights, and ways of working. The talk covers the craft itself—the three meeting modes and why most dysfunction comes from mixing them, designing an operating rhythm, holding the container rather than just keeping time—and treats each meeting as an act of worldbuilding for the team that inhabits it.</p>
-                    <h4>Audiences leave with</h4>
+                </div>
+                <div class="talk-body">
+                    <p>Facilitation gets reduced to tips and tricks for running a meeting. This talk reframes it as something much bigger: meeting design as the most accessible form of org design there is. Meetings amplify and reflect the organization back to us&mdash;who gets invited reveals assumptions about authority, whether decisions stick reveals whether authority is clear. Which makes better meetings a helpful Trojan horse: improving them quickly surfaces the deeper questions about strategy, decision rights, and ways of working.</p>
+                    <h3>Audiences leave with</h3>
                     <ul>
-                        <li>The core reframe: if you want to change your organization, go to where the interactions are and make them better</li>
-                        <li>The three meeting modes—diverge, converge, align—and the discipline of doing one at a time, inside a deliberately designed operating rhythm</li>
-                        <li>A facilitator's real job description: holding the container, navigating the difference between safety and comfort, and five facilitative skills to develop</li>
+                        <li>The core reframe: to change your organization, go to where the interactions are and make them better</li>
+                        <li>The three meeting modes&mdash;diverge, converge, align&mdash;and the discipline of doing one at a time</li>
+                        <li>A facilitator's real job description: holding the container, plus five facilitative skills to develop</li>
                     </ul>
                 </div>
-
-            </div>
+            </article>
 
             <div class="custom-talk">
                 <h3>Need something built for your moment?</h3>
-                <p>Every one of these talks gets tailored to your audience through a pre-event conversation. But if your event calls for something none of them quite covers, Sam will gladly work with you to develop a custom talk for your specific need and moment—grounded in the same decade of on-the-ground experience.</p>
-                <a href="#book" class="cta-secondary">START A CONVERSATION</a>
+                <p class="measure">If your event calls for something none of these quite covers, I'll gladly develop a custom talk for your specific audience and moment&mdash;grounded in the same decade of on-the-ground experience.</p>
+                <a class="btn btn-ghost" href="#book">Start a conversation</a>
             </div>
         </div>
     </section>
 
-    <div class="section-divider" aria-hidden="true">
-        <div class="container">
-            <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
-                <polygon points="0,30 150,8 150,48" fill="#CD7F32" fill-opacity="0.11"/>
-                <polygon points="0,30 150,48 0,48" fill="#CD7F32" fill-opacity="0.18"/>
-                <polygon points="150,8 300,34 300,48" fill="#2C5F5F" fill-opacity="0.10"/>
-                <polygon points="150,8 300,48 150,48" fill="#2C5F5F" fill-opacity="0.16"/>
-                <polygon points="300,34 450,12 450,48" fill="#C85A3E" fill-opacity="0.11"/>
-                <polygon points="300,34 450,48 300,48" fill="#C85A3E" fill-opacity="0.18"/>
-                <polygon points="450,12 600,36 600,48" fill="#8B9D83" fill-opacity="0.12"/>
-                <polygon points="450,12 600,48 450,48" fill="#8B9D83" fill-opacity="0.18"/>
-                <polygon points="600,36 750,10 750,48" fill="#CD7F32" fill-opacity="0.11"/>
-                <polygon points="600,36 750,48 600,48" fill="#CD7F32" fill-opacity="0.18"/>
-                <polygon points="750,10 900,32 900,48" fill="#2C5F5F" fill-opacity="0.10"/>
-                <polygon points="750,10 900,48 750,48" fill="#2C5F5F" fill-opacity="0.16"/>
-                <polygon points="900,32 1050,14 1050,48" fill="#C85A3E" fill-opacity="0.11"/>
-                <polygon points="900,32 1050,48 900,48" fill="#C85A3E" fill-opacity="0.18"/>
-                <polygon points="1050,14 1200,30 1200,48" fill="#8B9D83" fill-opacity="0.12"/>
-                <polygon points="1050,14 1200,48 1050,48" fill="#8B9D83" fill-opacity="0.18"/>
-            </svg>
-        </div>
-    </div>
+    <hr class="rule">
 
     <section id="testimonials">
         <div class="container">
-            <h2>What Organizers and Audiences Say</h2>
-            <div class="testimonials-grid">
+            <div class="section-head">
+                <span class="section-no">What organizers say</span>
+                <h2>The reviews that matter: the people who booked him.</h2>
+            </div>
+            <div class="proof-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 5rem);">
                 <div class="testimonial">
-                    <blockquote>"You absolutely delivered on our expectations. I really appreciate all the thought, care and time you clearly put into it. It showed throughout. It delivered exactly what I had hoped for — provoking people's thinking, giving them fresh language and frameworks and helping them feel more resourced in their own roles."</blockquote>
-                    <cite>Garin Rouch · CIPD Event Organizer</cite>
+                    <blockquote>&ldquo;You absolutely delivered on our expectations. I really appreciate all the thought, care and time you clearly put into it. It showed throughout&mdash;provoking people's thinking, giving them fresh language and frameworks and helping them feel more resourced in their own roles.&rdquo;</blockquote>
+                    <cite>Garin Rouch &middot; CIPD event organizer</cite>
                 </div>
                 <div class="testimonial">
-                    <blockquote>"I called Sam up to bring his specific brilliance with organizations, leaders, and teams… he jumped right in and delivered everything we hoped for and more. He's a great teacher and a great listener who brings a rare kind of upbeat, compassionate, and get-stuff-done energy."</blockquote>
-                    <cite>Infrastructure &amp; Urban Systems Client</cite>
-                </div>
-                <div class="testimonial">
-                    <blockquote>"You've definitely given me food for thought, thank you so much, great session."</blockquote>
-                    <cite>Organizational Catalysts Talk Attendee</cite>
+                    <blockquote>&ldquo;I called Sam up to bring his specific brilliance with organizations, leaders, and teams&hellip; he jumped right in and delivered everything we hoped for and more. He's a great teacher and a great listener.&rdquo;</blockquote>
+                    <cite>Infrastructure &amp; urban systems client</cite>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="bio">
-        <div class="container">
-            <h2>About Sam</h2>
-            <div class="bio-layout">
-                <div class="headshot-frame">
-                    <img src="images/sam-spurlin.jpg" alt="Sam Spurlin">
-                </div>
-                <div class="bio-copy">
-                    <p>Sam Spurlin is an organization designer and the founder of Deliberate Works. For over a decade he has helped executive teams change how their organizations actually operate—leading transformation work for global companies and coaching senior leaders through complex structural and strategic challenges.</p>
-                    <p>His work centers on a single conviction: the ability to change how you work is itself a skill, and it belongs inside the organization, not outsourced to consultants. His background in positive psychology and systems thinking informs a practice oriented toward making organizations more adaptive, more humane, and less dependent on outside help to navigate complexity.</p>
-                    <p>He writes The Deliberate, a newsletter on the craft of operating well inside complex systems—at the scale of the individual, the organization, and beyond.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <hr class="rule">
 
     <section id="formats">
         <div class="container">
-            <h2>Formats &amp; Logistics</h2>
+            <div class="section-head">
+                <span class="section-no">Formats &amp; logistics</span>
+                <h2>Three formats, zero fuss.</h2>
+            </div>
             <div class="formats-grid">
-                <div class="format-card">
-                    <h3>Keynote</h3>
-                    <p>30–60 minutes, with optional Q&amp;A. Tailored to your event's theme and audience through a pre-event conversation.</p>
+                <div class="card">
+                    <span class="index">Keynote</span>
+                    <h3>30&ndash;60 minutes</h3>
+                    <p>With optional Q&amp;A. Tailored to your event's theme and audience through a pre-event conversation.</p>
                 </div>
-                <div class="format-card">
-                    <h3>Workshop</h3>
-                    <p>Half-day or full-day working sessions for leadership teams and practitioner groups. Not a talk with worksheets—actual sensemaking on your real problems.</p>
+                <div class="card">
+                    <span class="index">Workshop</span>
+                    <h3>Half-day or full-day</h3>
+                    <p>Working sessions for leadership teams and practitioner groups. Not a talk with worksheets&mdash;actual sensemaking on your real problems.</p>
                 </div>
-                <div class="format-card">
-                    <h3>Virtual</h3>
-                    <p>Keynotes and workshops available remotely for distributed teams and online events.</p>
+                <div class="card">
+                    <span class="index">Virtual</span>
+                    <h3>Remote-first available</h3>
+                    <p>Keynotes and workshops delivered remotely for distributed teams and online events.</p>
                 </div>
             </div>
-            <p style="margin-top: 2.5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: var(--deep-teal);">Based in the New York area · Available for travel worldwide · Fees discussed during inquiry</p>
+            <p class="mono-note mt-2">Based in the New York area &middot; Available for travel worldwide &middot; Fees discussed during inquiry</p>
         </div>
     </section>
 
-    <section id="book">
+    <section id="book" class="dark-section">
         <div class="container">
-            <h2>Book Sam for Your Event</h2>
-            <p class="intro">Tell me a little about your event and I'll get back to you within two business days. If timing is tight, say so—I'll prioritize accordingly.</p>
-            <form class="inquiry-form" id="speaking-form" action="https://formspree.io/f/xeeplkrl" method="POST">
-                <input type="hidden" name="_subject" value="Speaking inquiry via deliberateworks.com">
-                <input type="hidden" name="inquiry_type" value="speaking">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Your name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+            <div class="contact-grid">
+                <div class="stack">
+                    <p class="eyebrow">Book Sam</p>
+                    <h2>Tell me about your event.</h2>
+                    <p class="lede">I'll get back to you within two business days. If timing is tight, say so&mdash;I'll prioritize accordingly.</p>
+                    <p class="mono-note">Prefer email? <a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a></p>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
+                <form data-formspree action="https://formspree.io/f/xeeplkrl" method="POST" class="form-grid">
+                    <input type="hidden" name="_subject" value="Speaking inquiry via deliberateworks.com">
+                    <input type="hidden" name="inquiry_type" value="speaking">
+                    <div class="field">
+                        <label for="name">Your name</label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+                    <div class="field">
                         <label for="org">Organization / event</label>
                         <input type="text" id="org" name="organization">
                     </div>
-                    <div class="form-group">
+                    <div class="field">
                         <label for="date">Event date (if known)</label>
-                        <input type="text" id="date" name="event_date" placeholder="e.g. October 2026">
+                        <input type="text" id="date" name="event_date">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="format">Format</label>
-                    <select id="format" name="format">
-                        <option value="">Not sure yet</option>
-                        <option value="keynote">Keynote</option>
-                        <option value="workshop">Workshop</option>
-                        <option value="virtual">Virtual session</option>
-                        <option value="other">Something else</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">About your event and audience</label>
-                    <textarea id="message" name="message" required placeholder="Who's in the room, what the event is about, and what you're hoping a speaker brings to it."></textarea>
-                </div>
-                <button type="submit" class="form-submit">Send Inquiry</button>
-            </form>
-            <div class="form-success" id="form-success">
-                <p>Thanks for reaching out. I'll be in touch within two business days.</p>
+                    <div class="field full">
+                        <label for="message">What are you looking for?</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="full">
+                        <button type="submit" class="btn btn-primary">Send inquiry</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <strong>Deliberate Works</strong>
-                    <p>Helping organizations become more human, more adaptive, and more able to change themselves.</p>
+                    <img src="images/deliberate-works-logo-color.png" alt="Deliberate Works">
+                    <p>Organizational design, done on purpose. Helping organizations become more human, more adaptive, and more able to change themselves.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Explore</h4>
-                    <a href="about.html">About</a>
-                    <a href="services.html">Services</a>
-                    <a href="speaking.html">Speaking</a>
-                    <a href="writing/">Writing</a>
-                    <a href="studio.html">Studio</a>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="speaking.html">Speaking</a></li>
+                        <li><a href="writing/">Writing</a></li>
+                        <li><a href="studio.html">Newsletter</a></li>
+                    </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Connect</h4>
-                    <a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a>
-                    <a href="studio.html">Newsletter</a>
+                    <ul>
+                        <li><a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a></li>
+                        <li><a href="https://thedeliberate.substack.com" rel="noopener">The Deliberate &#8599;</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 Deliberate Works. All rights reserved.</p>
+            <div class="footer-colophon">
+                <span>&copy; 2026 Deliberate Works &middot; New York</span>
+                <span>Set in Fraunces, Hanken Grotesk &amp; IBM Plex Mono &middot; Built by hand</span>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Inquiry form (reuses the existing Formspree endpoint with a speaking flag)
-        const speakingForm = document.getElementById('speaking-form');
-        const formSuccess = document.getElementById('form-success');
-
-        speakingForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = new FormData(speakingForm);
-            try {
-                const response = await fetch(speakingForm.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    speakingForm.style.display = 'none';
-                    formSuccess.style.display = 'block';
-                } else {
-                    alert('Something went wrong. Please email sam@deliberateworks.com directly.');
-                }
-            } catch {
-                alert('Something went wrong. Please email sam@deliberateworks.com directly.');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-
-        // Mobile menu
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const menuClose = document.querySelector('.mobile-menu-close');
-        const menu = document.querySelector('nav ul');
-
-        menuToggle.addEventListener('click', () => menu.classList.add('active'));
-        menuClose.addEventListener('click', () => menu.classList.remove('active'));
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menu.classList.remove('active');
-            }
-        });
-
-        // Quiet network backdrop — a slow drifting constellation behind the
-        // page header. Same component as the homepage, dialed back.
-        (function() {
-            const canvas = document.getElementById('network-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            let width, height, nodes = [], animationId = null;
-            const config = {
-                connectionDist: 110,
-                nodeColors: ['rgba(205,127,50,0.45)', 'rgba(44,95,95,0.4)', 'rgba(200,90,62,0.45)'],
-                lineColor: 'rgba(44,95,95,',
-                maxLineAlpha: 0.14
-            };
-            function nodeCount() { return width < 600 ? 8 : 12; }
-            function resize() {
-                const rect = canvas.parentElement.getBoundingClientRect();
-                width = rect.width; height = rect.height;
-                canvas.width = width * window.devicePixelRatio;
-                canvas.height = height * window.devicePixelRatio;
-                canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
-            function makeNode() {
-                const speed = 0.12 + Math.random() * 0.13, angle = Math.random() * Math.PI * 2;
-                return { x: Math.random() * width, y: Math.random() * height,
-                    vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
-                    r: 2 + Math.random(), color: config.nodeColors[Math.floor(Math.random() * config.nodeColors.length)] };
-            }
-            function init() { resize(); nodes = []; for (let i = 0; i < nodeCount(); i++) nodes.push(makeNode()); }
-            function step() {
-                for (const n of nodes) {
-                    n.x += n.vx; n.y += n.vy;
-                    if (n.x < -20) n.x = width + 20; if (n.x > width + 20) n.x = -20;
-                    if (n.y < -20) n.y = height + 20; if (n.y > height + 20) n.y = -20;
-                }
-            }
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                const count = nodes.length;
-                const linked = new Array(count).fill(false);
-                function edge(i, j, alpha) {
-                    ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
-                    ctx.strokeStyle = config.lineColor + alpha + ')'; ctx.lineWidth = 1; ctx.stroke();
-                }
-                for (let i = 0; i < count; i++) {
-                    for (let j = i + 1; j < count; j++) {
-                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < config.connectionDist) {
-                            edge(i, j, config.maxLineAlpha * (1 - dist / config.connectionDist));
-                            linked[i] = true; linked[j] = true;
-                        }
-                    }
-                }
-                // No free-floating dots: link any isolated node to its nearest neighbour.
-                for (let i = 0; i < count; i++) {
-                    if (linked[i]) continue;
-                    let best = -1, bestDist = Infinity;
-                    for (let j = 0; j < count; j++) {
-                        if (j === i) continue;
-                        const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
-                        const d = dx * dx + dy * dy;
-                        if (d < bestDist) { bestDist = d; best = j; }
-                    }
-                    if (best >= 0) { edge(i, best, config.maxLineAlpha * 0.5); linked[i] = true; linked[best] = true; }
-                }
-                for (const n of nodes) {
-                    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                    ctx.fillStyle = n.color; ctx.fill();
-                }
-            }
-            function animate() { step(); draw(); animationId = requestAnimationFrame(animate); }
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) { if (!reduceMotion && !animationId) animate(); }
-                    else if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-                });
-            }, { threshold: 0.02 });
-            observer.observe(canvas.parentElement);
-            window.addEventListener('resize', () => {
-                resize();
-                const t = nodeCount();
-                while (nodes.length < t) nodes.push(makeNode());
-                while (nodes.length > t) nodes.pop();
-                if (reduceMotion) draw();
-            });
-            init();
-            if (reduceMotion) draw();
-        })();
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

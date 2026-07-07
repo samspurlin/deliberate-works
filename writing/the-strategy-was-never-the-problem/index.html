@@ -3,365 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Strategy Was Never the Problem - Deliberate Works</title>
+    <title>The Strategy Was Never the Problem — Deliberate Works</title>
+    <meta name="description" content="Why good thinking keeps dying in bad organizations — and what AI changes about it">
+    <link rel="icon" type="image/png" href="../../images/deliberate-works-logo-color.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:wght@300;400;500;600&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --cream: #FFF8E7;
-            --dark-blue: #1a2332;
-            --bronze: #CD7F32;
-            --burnt-orange: #C85A3E;
-            --sage: #8B9D83;
-            --stone: #D4C5B9;
-            --deep-teal: #2C5F5F;
-        }
-        
-        body {
-            font-family: 'IBM Plex Serif', serif;
-            background: var(--cream);
-            color: var(--dark-blue);
-            line-height: 1.7;
-            font-size: 18px;
-            font-weight: 300;
-        }
-        
-        /* Geometric pattern background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 0;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--bronze) 35px, var(--bronze) 36px);
-            pointer-events: none;
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 248, 231, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--bronze);
-            z-index: 1000;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        nav .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        nav .logo {
+        .post-hero { padding: clamp(4rem, 8vh, 6rem) 0 clamp(2.5rem, 5vh, 4rem); }
+        .post-hero .back {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        nav .logo img {
-            height: 180px;
-            width: auto;
-            display: block;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2.5rem;
-        }
-        
-        nav a {
-            color: var(--dark-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
-        }
-        
-        nav a:hover,
-        nav a.active {
-            color: var(--burnt-orange);
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark-blue);
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-close {
-            display: none;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .post-header {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 230px 0 0;
-        }
-        
-        .back-link {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--deep-teal);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 3rem;
-            transition: color 0.3s;
-        }
-        
-        .back-link:hover {
-            color: var(--burnt-orange);
-        }
-        
-        .back-link::before {
-            content: '←';
-        }
-        
-        .post-meta {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--deep-teal);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-        
-        .post-header h1 {
-            font-size: 3.5rem;
-            font-weight: 400;
-            color: var(--dark-blue);
-            line-height: 1.2;
+            color: var(--ink-3);
+            display: inline-block;
             margin-bottom: 2rem;
         }
-        
-        .post-intro {
-            font-size: 1.3rem;
-            color: var(--deep-teal);
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2.5rem;
-            border-bottom: 1px solid var(--stone);
+        .post-hero .back:hover { color: var(--ember); }
+        .post-hero h1 { font-size: clamp(2.1rem, 4.5vw, 3.4rem); max-width: 22ch; margin-bottom: 1.25rem; }
+        .post-hero .lede { font-style: italic; font-family: var(--font-display); }
+        .end-panel {
+            border: 1px solid var(--hairline);
+            padding: clamp(2rem, 4vw, 3rem);
+            max-width: var(--measure);
+            margin: 4rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            align-items: flex-start;
         }
-        
-        .post-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-bottom: 6rem;
-        }
-        
-        .post-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1.8rem;
-            line-height: 1.8;
-        }
-        
-        .post-content h2 {
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--dark-blue);
-            margin: 3rem 0 1.5rem;
-            line-height: 1.3;
-        }
-        
-        .post-content h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--dark-blue);
-            margin: 2.5rem 0 1rem;
-        }
-        
-        .post-content ul, .post-content ol {
-            margin: 2rem 0;
-            padding-left: 2rem;
-        }
-        
-        .post-content li {
-            margin-bottom: 0.75rem;
-            line-height: 1.8;
-        }
-        
-        .post-content blockquote {
-            background: rgba(255, 255, 255, 0.5);
-            border-left: 3px solid var(--bronze);
-            padding: 2rem 2.5rem;
-            margin: 3rem 0;
-            font-style: italic;
-            font-size: 1.15rem;
-            color: var(--deep-teal);
-        }
-        
-        .post-content strong {
-            font-weight: 500;
-            color: var(--dark-blue);
-        }
-        
-        .post-content em {
-            font-style: italic;
-        }
-        
-        .post-footer {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 0 6rem;
-            border-top: 1px solid var(--stone);
-        }
-        
-        .post-footer p {
-            font-size: 1rem;
-            color: var(--deep-teal);
-        }
-        
-        footer {
-            background: var(--dark-blue);
-            color: var(--cream);
-            padding: 4rem 0 2rem;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-        
-        footer .container {
-            text-align: center;
-        }
-        
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        @media (max-width: 768px) {
-            nav .logo img {
-                height: 90px;
-            }
-
-            .post-header {
-                padding-top: 150px;
-            }
-
-            .post-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .post-intro {
-                font-size: 1.1rem;
-            }
-            
-            .post-content h2 {
-                font-size: 1.6rem;
-            }
-            
-            .post-content h3 {
-                font-size: 1.3rem;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            nav ul {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                max-width: 300px;
-                background: var(--cream);
-                flex-direction: column;
-                gap: 0;
-                padding: 5rem 2rem 2rem 2rem;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-                transition: right 0.3s ease;
-                border-left: 1px solid var(--bronze);
-            }
-
-            nav ul.active {
-                right: 0;
-            }
-
-            nav ul li {
-                width: 100%;
-                border-bottom: 1px solid var(--stone);
-            }
-
-            nav ul a {
-                display: block;
-                padding: 1.25rem 0;
-                font-size: 1rem;
-            }
-
-            .mobile-menu-close {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1.5rem;
-                background: none;
-                border: none;
-                font-size: 2rem;
-                color: var(--dark-blue);
-                cursor: pointer;
-                padding: 0.5rem;
-                line-height: 1;
-            }
-        }
+        .end-panel h2 { font-size: 1.4rem; }
+        .end-panel p { color: var(--ink-2); }
     </style>
 </head>
 <body>
-    <nav>
+
+    <nav class="site-nav">
         <div class="container">
-            <a href="../../index.html" class="logo"><img src="../../images/deliberate-works-logo-color.png" alt="Deliberate Works"></a>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
-            <ul>
-                <button class="mobile-menu-close" aria-label="Close menu">×</button>
+            <a class="brand" href="../../index.html">
+                <img src="../../images/deliberate-works-logo-color.png" alt="Deliberate Works — geometric swallow mark">
+                <span class="brand-name">Deliberate Works</span>
+            </a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="../../about.html">About</a></li>
                 <li><a href="../../services.html">Services</a></li>
-                <li><a href="../../studio.html">Studio</a></li>
                 <li><a href="../../speaking.html">Speaking</a></li>
-                <li><a href="../" class="active">Writing</a></li>
+                <li><a href="../" aria-current="page">Writing</a></li>
+                <li><a href="../../studio.html">Newsletter</a></li>
+                <li><a class="nav-cta" href="../../index.html#contact">Let's talk</a></li>
             </ul>
         </div>
     </nav>
 
-    <article>
-        <div class="post-header">
-            <div class="container">
-                <a href="../" class="back-link">All Writing</a>
-                <h1>The Strategy Was Never the Problem</h1>
-                <p class="post-intro">
-                    Why good thinking keeps dying in bad organizations — and what AI changes about it
-                </p>
-            </div>
+    <header class="post-hero">
+        <div class="container">
+            <a class="back" href="../">&larr; All writing</a>
+            <p class="eyebrow">Writing &middot; No. 04</p>
+            <h1>The Strategy Was Never the Problem</h1>
+            <p class="lede measure">Why good thinking keeps dying in bad organizations — and what AI changes about it</p>
         </div>
+    </header>
 
-        <div class="post-content">
+    <hr class="rule">
+
+    <main>
+        <section>
             <div class="container">
+                <article class="prose">
+
                 <p>I've watched this movie enough times to recite it from memory.</p>
 
                 <p>A leadership team spends months developing a new strategy. Real work goes into it — research, debate, consensus-building, several near-death experiences in conference rooms. It culminates in an artifact, usually a genuinely beautiful deck, that articulates a smart and cogent shift in direction. Everyone important nods. There's a palpable sense of relief: <em>the thinking is done; now we just have to implement it.</em> And then, over the following eighteen to thirty-six months, almost nothing changes. The strategy doesn't fail loudly. It just fails to <em>manifest</em> — until eventually someone concludes that what's needed is, of course, a new strategy. Roll credits. Cue sequel.</p>
@@ -422,40 +135,52 @@
 
                 <p>But hold the order of operations clearly in mind. The deck is not the strategy. The deck is a proposal. The strategy is what your operating system does with it — and that, not the thinking, is where the next version of your organization will be won or lost.</p>
 
-                <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--stone); font-size: 0.95rem; color: var(--deep-teal);"><em>A note on lineage: an earlier version of this argument appeared in 2021 as "<a href="https://medium.com/the-ready/why-your-new-strategy-will-fail-c023758d8473" style="color: var(--burnt-orange);">Why Strategic and Organizational Change Must Happen Together</a>," written during my decade at The Ready. The OS framing and the meta-strategy conclusion began there; the attention argument and the AI convergence argument are where the thinking has gone since.</em></p>
+                <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--hairline); font-size: 0.95rem; color: var(--ink-2);"><em>A note on lineage: an earlier version of this argument appeared in 2021 as "<a href="https://medium.com/the-ready/why-your-new-strategy-will-fail-c023758d8473" style="color: var(--ember);">Why Strategic and Organizational Change Must Happen Together</a>," written during my decade at The Ready. The OS framing and the meta-strategy conclusion began there; the attention argument and the AI convergence argument are where the thinking has gone since.</em></p>
+                </article>
+                <div class="end-panel">
+                    <h2>This is the kind of thinking you hire.</h2>
+                    <p>If this essay sounds like the way you wish your organization thought about itself, that's the signal. New essays land first in <a href="https://thedeliberate.substack.com" rel="noopener">The Deliberate</a>, the newsletter&mdash;or skip ahead and <a href="../../index.html#contact">tell me what's grinding</a>.</p>
+                    <div class="btn-row">
+                        <a class="btn btn-primary" href="../../index.html#contact">Let's talk</a>
+                        <a class="btn btn-ghost" href="../../studio.html">Get the newsletter</a>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="post-footer">
-            <div class="container">
-                <p>If you're wrestling with these patterns in your organization, I'd be glad to talk. Reach out at <a href="mailto:sam@deliberateworks.com" style="color: var(--burnt-orange); text-decoration: none;">sam@deliberateworks.com</a>.</p>
-            </div>
-        </div>
-    </article>
-
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <p>© 2026 Deliberate Works. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../../images/deliberate-works-logo-color.png" alt="Deliberate Works">
+                    <p>Organizational design, done on purpose. Helping organizations become more human, more adaptive, and more able to change themselves.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="../../about.html">About</a></li>
+                        <li><a href="../../services.html">Services</a></li>
+                        <li><a href="../../speaking.html">Speaking</a></li>
+                        <li><a href="../">Writing</a></li>
+                        <li><a href="../../studio.html">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:sam@deliberateworks.com">sam@deliberateworks.com</a></li>
+                        <li><a href="https://thedeliberate.substack.com" rel="noopener">The Deliberate &#8599;</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-colophon">
+                <span>&copy; 2026 Deliberate Works &middot; New York</span>
+                <span>Set in Fraunces, Hanken Grotesk &amp; IBM Plex Mono &middot; Built by hand</span>
+            </div>
         </div>
     </footer>
-    <script>
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const menuClose = document.querySelector('.mobile-menu-close');
-        const menu = document.querySelector('nav ul');
 
-        menuToggle.addEventListener('click', () => {
-            menu.classList.add('active');
-        });
-
-        menuClose.addEventListener('click', () => {
-            menu.classList.remove('active');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menu.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>
