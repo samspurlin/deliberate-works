@@ -249,7 +249,8 @@
             resize();
             updateObstacles();
             particles = [];
-            for (let i = 0; i < config.particleCount; i++) particles.push(new Particle());
+            var count = width < 700 ? 42 : config.particleCount;
+            for (let i = 0; i < count; i++) particles.push(new Particle());
         }
 
         function animate() {
