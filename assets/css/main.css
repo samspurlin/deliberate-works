@@ -69,6 +69,23 @@ body::after {
 
 img { max-width: 100%; height: auto; display: block; }
 
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 200;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.skip-link:focus { left: 0; }
+
 /* ---------- Typography ---------- */
 
 h1, h2, h3 {
