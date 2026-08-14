@@ -569,6 +569,8 @@ section { padding: var(--space-section) 0; }
 }
 .dark-section .btn-primary { background: var(--ember); border-color: var(--ember); color: #fff; }
 .dark-section .btn-primary:hover { background: var(--ember-2); border-color: var(--ember-2); }
+.dark-section .btn-ghost { color: var(--dark-text); border-color: var(--dark-muted); }
+.dark-section .btn-ghost:hover { border-color: var(--ember); color: var(--ember); }
 .dark-section .mono-note { color: var(--dark-muted); }
 
 /* ---------- Essay / prose ---------- */
@@ -662,6 +664,16 @@ section { padding: var(--space-section) 0; }
 .mb-2 { margin-bottom: 2rem; }
 .mb-3 { margin-bottom: 3rem; }
 .stack > * + * { margin-top: 1.25rem; }
+
+/* Secondary booking call-to-action beneath a contact form's intro copy */
+.booking-cta {
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--hairline);
+}
+
+.stack > .booking-cta { margin-top: 2rem; }
+.dark-section .booking-cta { border-top-color: var(--dark-hairline); }
+.booking-cta > .mono-note { margin-bottom: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
