@@ -31,6 +31,19 @@
             button.textContent = 'Sending…';
             button.disabled = true;
 
+            function showError(detail) {
+                button.textContent = original;
+                button.disabled = false;
+                let err = form.querySelector('.form-error');
+                if (!err) {
+                    err = document.createElement('p');
+                    err.className = 'form-error mono-note';
+                    form.appendChild(err);
+                }
+                err.textContent = 'Something went wrong. Email me directly: sam@deliberateworks.com';
+                console.error('[form] submission failed:', detail);
+            }
+
             fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
@@ -40,20 +53,26 @@
                     if (res.ok) {
                         form.innerHTML =
                             '<p class="form-success">Thanks — your note is in. I read every message myself and will reply within two business days.</p>';
-                    } else {
-                        throw new Error('Submit failed');
+                        return;
                     }
+                    /* Surface the real reason (Formspree returns JSON errors) so
+                       a broken form is diagnosable instead of silently generic. */
+                    return res.json().then(function (data) {
+                        let detail;
+                        if (data && data.errors) {
+                            detail = data.errors.map(function (x) { return x.message; }).join('; ');
+                        } else if (data && data.error) {
+                            detail = data.error;
+                        } else {
+                            detail = JSON.stringify(data);
+                        }
+                        showError(res.status + ' ' + detail);
+                    }, function () {
+                        showError(res.status + ' ' + res.statusText);
+                    });
                 })
-                .catch(function () {
-                    button.textContent = original;
-                    button.disabled = false;
-                    let err = form.querySelector('.form-error');
-                    if (!err) {
-                        err = document.createElement('p');
-                        err.className = 'form-error mono-note';
-                        form.appendChild(err);
-                    }
-                    err.textContent = 'Something went wrong. Email me directly: sam@deliberateworks.com';
+                .catch(function (e) {
+                    showError(e);
                 });
         });
     });
